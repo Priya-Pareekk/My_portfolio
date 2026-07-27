@@ -1,0 +1,19 @@
+{
+    "name": "Priya Pareek — Portfolio",
+    "short_name": "Priya Pareek",
+    "icons": [
+        {
+            "src": "favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#FAF9F5",
+    "background_color": "#FAF9F5",
+    "display": "standalone"
+}
