@@ -59,6 +59,10 @@
                 <span class="material-symbols-outlined">description</span>
                 Resume
             </button>
+            <button class="cmd-trigger-btn" id="cmdPaletteBtn" type="button" aria-label="Open command palette">
+                <span class="material-symbols-outlined">search</span>
+                <kbd class="cmd-kbd" id="cmdKbdHint">Ctrl K</kbd>
+            </button>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -77,9 +81,7 @@
                     <span class="gradient-text">Priya Pareek</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Passionate Computer Science student specializing in cloud technologies, AI/ML, and modern web
-                    development. Currently pursuing B.Tech CSE at VIT-AP University with expertise in Microsoft Azure and
-                    IBM AI technologies.
+                    4th year Computer Science Engineering student at VIT-AP University, focused on backend development and system design. I enjoy building scalable systems and solving real-world engineering problems through clean, efficient code.
                 </p>
                 <div class="hero-ctas">
                     <a href="#about" class="btn btn-primary magnetic-btn">
@@ -236,14 +238,10 @@
                     <span class="section-tag">Get to know me</span>
                     <h2 class="section-title">About Me</h2>
                     <p class="feature-description">
-                        I'm a passionate Computer Science Engineering student currently in my 3rd year at VIT-AP
-                        University. My journey in technology has been driven by curiosity and a desire to solve
-                        real-world problems through innovative solutions.
+                        I'm a 4th year Computer Science Engineering student at VIT-AP University, with a strong focus on backend development and system design. My interest lies in understanding how large-scale systems are built — from designing clean APIs and efficient databases to architecting systems that scale reliably under real-world load.
                     </p>
                     <p class="feature-description">
-                        I specialize in cloud technologies, particularly Microsoft Azure, and have a strong interest in
-                        artificial intelligence and machine learning. My academic focus combines theoretical knowledge
-                        with practical applications, preparing me for the evolving tech landscape.
+                        I enjoy going deep into the fundamentals — data structures, algorithms, distributed systems — and applying that understanding to build backend systems that are both robust and maintainable. I'm currently preparing for SDE and backend developer roles, sharpening my problem-solving through consistent DSA practice and hands-on system design work.
                     </p>
                 </div>
                 <div class="feature-visual reveal-right">
@@ -277,17 +275,17 @@
                             </div>
                         </div>
                         <div class="highlight-card magnetic-btn">
-                            <span class="material-symbols-outlined">verified</span>
+                            <span class="material-symbols-outlined">task_alt</span>
                             <div>
-                                <h4>Microsoft Certified</h4>
-                                <p>Multiple Microsoft technology certifications</p>
+                                <h4>Problem Solving</h4>
+                                <p>Consistent DSA practice with 50+ problems solved, strengthening algorithmic thinking</p>
                             </div>
                         </div>
                         <div class="highlight-card magnetic-btn">
-                            <span class="material-symbols-outlined">psychology</span>
+                            <span class="material-symbols-outlined">layers</span>
                             <div>
-                                <h4>AI/ML Focus</h4>
-                                <p>Specialized in Generative AI and modern technologies</p>
+                                <h4>System Design &amp; Backend</h4>
+                                <p>Focused on scalable backend architecture, efficient APIs, and system design fundamentals</p>
                             </div>
                         </div>
                     </div>
@@ -296,28 +294,28 @@
                     <div class="glass-card strengths-visual-card">
                         <div class="strengths-grid">
                             <div class="strength-bubble">
-                                <span class="material-symbols-outlined">cloud</span>
-                                <span>Cloud</span>
+                                <span class="material-symbols-outlined">dns</span>
+                                <span>Backend</span>
                             </div>
                             <div class="strength-bubble accent">
-                                <span class="material-symbols-outlined">smart_toy</span>
-                                <span>AI/ML</span>
+                                <span class="material-symbols-outlined">hub</span>
+                                <span>System Design</span>
                             </div>
                             <div class="strength-bubble">
-                                <span class="material-symbols-outlined">code</span>
-                                <span>Full-Stack</span>
-                            </div>
-                            <div class="strength-bubble accent-2">
-                                <span class="material-symbols-outlined">security</span>
-                                <span>Security</span>
-                            </div>
-                            <div class="strength-bubble accent-3">
                                 <span class="material-symbols-outlined">database</span>
                                 <span>Database</span>
                             </div>
+                            <div class="strength-bubble accent-2">
+                                <span class="material-symbols-outlined">alt_route</span>
+                                <span>DSA &amp; Algorithms</span>
+                            </div>
+                            <div class="strength-bubble accent-3">
+                                <span class="material-symbols-outlined">api</span>
+                                <span>APIs</span>
+                            </div>
                             <div class="strength-bubble">
-                                <span class="material-symbols-outlined">devices</span>
-                                <span>Web</span>
+                                <span class="material-symbols-outlined">settings</span>
+                                <span>DevOps</span>
                             </div>
                         </div>
                     </div>
@@ -539,6 +537,62 @@
                         <div class="project-case-study">
                             <p><strong>Problem:</strong> Institutional-grade financial auditing tools are locked behind expensive enterprise terminals, leaving individual investors to rely on stock price hype instead of fundamentals — and manually reading hundreds of pages of regulatory filings isn't realistic.</p>
                             <p><strong>Approach:</strong> Built a dual-engine system that unites deterministic math (Altman Z-Score risk classification) with an LLM layer that scans executive narratives for evasive language and policy shifts. Added a Monte Carlo simulation engine running 1,000 statistical paths for revenue stress-testing, backed by a resilient async data pipeline (SEC EDGAR with Yahoo Finance fallback) covering both US and Indian exchanges.</p>
+                            <div class="project-architecture-diag">
+                                <div class="architecture-diag-title">System Architecture</div>
+                                <svg viewBox="0 0 540 420" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; display: block; margin: 0 auto; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;">
+                                    <defs>
+                                        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                            <path d="M 0 2 L 8 5 L 0 8 z" fill="#6B7A52" />
+                                        </marker>
+                                    </defs>
+
+                                    <!-- 1. Client -->
+                                    <rect x="150" y="10" width="240" height="48" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
+                                    <text x="270" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">Client</text>
+                                    <text x="270" y="46" text-anchor="middle" font-size="11" fill="#565A4D">Next.js frontend</text>
+
+                                    <!-- Arrow 1 -> 2 -->
+                                    <line x1="270" y1="58" x2="270" y2="88" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                                    <!-- 2. API -->
+                                    <rect x="150" y="88" width="240" height="48" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
+                                    <text x="270" y="108" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">API</text>
+                                    <text x="270" y="124" text-anchor="middle" font-size="11" fill="#565A4D">FastAPI backend</text>
+
+                                    <!-- Arrow 2 -> 3 -->
+                                    <line x1="270" y1="136" x2="270" y2="166" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                                    <!-- 3. Data Pipeline -->
+                                    <rect x="110" y="166" width="320" height="48" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
+                                    <text x="270" y="186" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">Data Pipeline</text>
+                                    <text x="270" y="202" text-anchor="middle" font-size="11" fill="#565A4D">SEC EDGAR → Yahoo Finance fallback</text>
+
+                                    <!-- Split Arrows 3 -> 4a & 4b -->
+                                    <path d="M 270 214 L 270 230 L 135 230 L 135 250" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
+                                    <path d="M 270 214 L 270 230 L 405 230 L 405 250" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                                    <!-- 4a. Quant Engine (Left) -->
+                                    <rect x="20" y="250" width="230" height="60" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
+                                    <text x="135" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#292A24">Quant Engine</text>
+                                    <text x="135" y="285" text-anchor="middle" font-size="10.5" fill="#565A4D">Altman Z-Score, Monte Carlo</text>
+                                    <text x="135" y="299" text-anchor="middle" font-size="10" fill="#6B7A52">1,000 simulated paths</text>
+
+                                    <!-- 4b. Gemini NLP (Right) -->
+                                    <rect x="290" y="250" width="230" height="60" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
+                                    <text x="405" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#292A24">Gemini NLP</text>
+                                    <text x="405" y="285" text-anchor="middle" font-size="10.5" fill="#565A4D">Forensic text analysis</text>
+                                    <text x="405" y="299" text-anchor="middle" font-size="10" fill="#6B7A52">Truth Score engine</text>
+
+                                    <!-- Converging Arrows 4a & 4b -> 5 -->
+                                    <path d="M 135 310 L 135 330 L 270 330 L 270 348" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
+                                    <path d="M 405 310 L 405 330 L 270 330 L 270 348" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                                    <!-- 5. Risk Report -->
+                                    <rect x="80" y="350" width="380" height="54" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
+                                    <text x="270" y="371" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">Risk Report</text>
+                                    <text x="270" y="389" text-anchor="middle" font-size="11" fill="#565A4D">Combined structural + linguistic score · Delivered in &lt; 2.4s</text>
+                                </svg>
+                            </div>
                             <p><strong>Stack:</strong> Next.js, TypeScript, Tailwind CSS, FastAPI, Pandas, NumPy, Scikit-learn, Google Gemini API, Playwright/BeautifulSoup, deployed on Vercel + Railway.</p>
                             <p><strong>Outcome:</strong> Processes full corporate disclosures like 10-K filings into actionable risk intelligence — combining quantitative and qualitative signals — in under 2.4 seconds.</p>
                         </div>
@@ -677,7 +731,7 @@
             <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
             <div class="hero-ctas">
-                <a href="mailto:priyapareeek29@gmail.com" class="btn btn-primary magnetic-btn">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=priyapareeek29@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic-btn">
                     <span class="material-symbols-outlined">mail</span>
                     Get In Touch
                 </a>
@@ -712,7 +766,7 @@
                                 d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
                     </a>
-                    <a href="mailto:priyapareeek29@gmail.com" class="footer-social" aria-label="Email">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=priyapareeek29@gmail.com" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Email">
                         <span class="material-symbols-outlined">mail</span>
                     </a>
                 </div>
@@ -727,6 +781,7 @@
                     <a href="#certifications">Certifications</a>
                 </div>
             </div>
+            <p class="footer-note">Built with vanilla JS &middot; Deployed on GitHub Pages &middot; LeetCode stats fetched live via API</p>
         </div>
     </footer>
 
@@ -752,6 +807,89 @@
             </div>
             <div class="resume-modal-body">
                 <iframe src="Pareek_Resume.pdf" title="Priya Pareek Resume Preview" id="resumeIframe"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Command Palette Modal -->
+    <div class="cmd-modal" id="cmdModal" aria-hidden="true" role="dialog" aria-label="Command Palette">
+        <div class="cmd-modal-backdrop" id="cmdModalBackdrop"></div>
+        <div class="cmd-modal-box">
+            <div class="cmd-search-bar">
+                <span class="material-symbols-outlined search-icon">search</span>
+                <input type="text" id="cmdSearchInput" placeholder="Type a command or search..." autocomplete="off" />
+                <kbd class="cmd-esc-kbd">ESC</kbd>
+            </div>
+            <div class="cmd-results" id="cmdResultsList" role="listbox">
+                <div class="cmd-item selected" data-type="nav" data-url="#home" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">home</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">Home</span>
+                        <span class="cmd-item-desc">Go to top of page</span>
+                    </div>
+                    <span class="cmd-item-badge">Jump</span>
+                </div>
+                <div class="cmd-item" data-type="nav" data-url="#about" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">person</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">About</span>
+                        <span class="cmd-item-desc">Learn more about Priya</span>
+                    </div>
+                    <span class="cmd-item-badge">Jump</span>
+                </div>
+                <div class="cmd-item" data-type="nav" data-url="#skills" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">code</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">Skills</span>
+                        <span class="cmd-item-desc">Technical skills and tech stack</span>
+                    </div>
+                    <span class="cmd-item-badge">Jump</span>
+                </div>
+                <div class="cmd-item" data-type="nav" data-url="#projects" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">folder</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">Projects</span>
+                        <span class="cmd-item-desc">Featured engineering projects</span>
+                    </div>
+                    <span class="cmd-item-badge">Jump</span>
+                </div>
+                <div class="cmd-item" data-type="nav" data-url="#certifications" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">verified</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">Certifications</span>
+                        <span class="cmd-item-desc">Professional certifications</span>
+                    </div>
+                    <span class="cmd-item-badge">Jump</span>
+                </div>
+                <div class="cmd-item" data-type="action" data-action="resume" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">description</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">Resume</span>
+                        <span class="cmd-item-desc">Open resume preview / download</span>
+                    </div>
+                    <span class="cmd-item-badge">Action</span>
+                </div>
+                <div class="cmd-item" data-type="ext" data-url="https://github.com/Priya-Pareekk" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">open_in_new</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">GitHub</span>
+                        <span class="cmd-item-desc">View GitHub profile and repositories</span>
+                    </div>
+                    <span class="cmd-item-badge">External</span>
+                </div>
+                <div class="cmd-item" data-type="ext" data-url="https://leetcode.com/u/Priya_pareek/" role="option">
+                    <span class="material-symbols-outlined cmd-item-icon">open_in_new</span>
+                    <div class="cmd-item-info">
+                        <span class="cmd-item-title">LeetCode</span>
+                        <span class="cmd-item-desc">View LeetCode problem solving stats</span>
+                    </div>
+                    <span class="cmd-item-badge">External</span>
+                </div>
+            </div>
+            <div class="cmd-footer">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+                <span><kbd>↵</kbd> to select</span>
+                <span><kbd>esc</kbd> to close</span>
             </div>
         </div>
     </div>

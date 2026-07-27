@@ -298,9 +298,164 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     if (resumeModalClose) resumeModalClose.addEventListener('click', closeResumeModal);
     if (resumeModalBackdrop) resumeModalBackdrop.addEventListener('click', closeResumeModal);
 
+    // ─── Command Palette ───────────
+    const cmdModal = document.getElementById('cmdModal');
+    const cmdModalBackdrop = document.getElementById('cmdModalBackdrop');
+    const cmdPaletteBtn = document.getElementById('cmdPaletteBtn');
+    const cmdSearchInput = document.getElementById('cmdSearchInput');
+    const cmdResultsList = document.getElementById('cmdResultsList');
+    const cmdKbdHint = document.getElementById('cmdKbdHint');
+
+    // Display correct OS shortcut hint (Cmd K vs Ctrl K)
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+    if (cmdKbdHint) {
+        cmdKbdHint.textContent = isMac ? '⌘K' : 'Ctrl K';
+    }
+
+    function openCmdModal() {
+        if (!cmdModal) return;
+        cmdModal.classList.add('open');
+        cmdModal.setAttribute('aria-hidden', 'false');
+        if (cmdSearchInput) {
+            cmdSearchInput.value = '';
+            filterCmdItems('');
+            setTimeout(() => cmdSearchInput.focus(), 50);
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCmdModal() {
+        if (!cmdModal) return;
+        cmdModal.classList.remove('open');
+        cmdModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function getVisibleCmdItems() {
+        if (!cmdResultsList) return [];
+        return Array.from(cmdResultsList.querySelectorAll('.cmd-item')).filter(el => el.style.display !== 'none');
+    }
+
+    function setSelectedCmdItem(index) {
+        const visibleItems = getVisibleCmdItems();
+        if (visibleItems.length === 0) return;
+
+        visibleItems.forEach(item => item.classList.remove('selected'));
+        const safeIndex = Math.max(0, Math.min(index, visibleItems.length - 1));
+        visibleItems[safeIndex].classList.add('selected');
+        visibleItems[safeIndex].scrollIntoView({ block: 'nearest' });
+    }
+
+    function getSelectedIndex() {
+        const visibleItems = getVisibleCmdItems();
+        return visibleItems.findIndex(item => item.classList.contains('selected'));
+    }
+
+    function filterCmdItems(query) {
+        if (!cmdResultsList) return;
+        const q = query.trim().toLowerCase();
+        const items = Array.from(cmdResultsList.querySelectorAll('.cmd-item'));
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            const title = item.querySelector('.cmd-item-title')?.textContent.toLowerCase() || '';
+            const desc = item.querySelector('.cmd-item-desc')?.textContent.toLowerCase() || '';
+            const matches = !q || title.includes(q) || desc.includes(q);
+
+            item.style.display = matches ? 'flex' : 'none';
+            if (matches) visibleCount++;
+        });
+
+        let noResEl = cmdResultsList.querySelector('.cmd-no-results');
+        if (visibleCount === 0) {
+            if (!noResEl) {
+                noResEl = document.createElement('div');
+                noResEl.className = 'cmd-no-results';
+                noResEl.textContent = 'No matching commands found.';
+                cmdResultsList.appendChild(noResEl);
+            }
+            noResEl.style.display = 'block';
+        } else if (noResEl) {
+            noResEl.style.display = 'none';
+        }
+
+        setSelectedCmdItem(0);
+    }
+
+    function executeCmdItem(item) {
+        if (!item) return;
+        const type = item.getAttribute('data-type');
+        const url = item.getAttribute('data-url');
+        const action = item.getAttribute('data-action');
+
+        closeCmdModal();
+
+        if (type === 'nav' && url) {
+            const targetEl = document.querySelector(url);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.location.hash = url;
+            }
+        } else if (type === 'action' && action === 'resume') {
+            openResumeModal();
+        } else if (type === 'ext' && url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    }
+
+    if (cmdPaletteBtn) cmdPaletteBtn.addEventListener('click', openCmdModal);
+    if (cmdModalBackdrop) cmdModalBackdrop.addEventListener('click', closeCmdModal);
+
+    if (cmdSearchInput) {
+        cmdSearchInput.addEventListener('input', (e) => {
+            filterCmdItems(e.target.value);
+        });
+
+        cmdSearchInput.addEventListener('keydown', (e) => {
+            const visibleItems = getVisibleCmdItems();
+            const currentIndex = getSelectedIndex();
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setSelectedCmdItem(currentIndex + 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                setSelectedCmdItem(currentIndex - 1);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (visibleItems[currentIndex]) {
+                    executeCmdItem(visibleItems[currentIndex]);
+                }
+            }
+        });
+    }
+
+    if (cmdResultsList) {
+        cmdResultsList.addEventListener('click', (e) => {
+            const item = e.target.closest('.cmd-item');
+            if (item) {
+                executeCmdItem(item);
+            }
+        });
+    }
+
+    // Global Keydown Handler (Ctrl+K / Cmd+K and ESC)
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && resumeModal && resumeModal.classList.contains('open')) {
-            closeResumeModal();
+        const isK = e.key && e.key.toLowerCase() === 'k';
+        if (isK && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            if (cmdModal && cmdModal.classList.contains('open')) {
+                closeCmdModal();
+            } else {
+                openCmdModal();
+            }
+        } else if (e.key === 'Escape') {
+            if (cmdModal && cmdModal.classList.contains('open')) {
+                closeCmdModal();
+            } else if (resumeModal && resumeModal.classList.contains('open')) {
+                closeResumeModal();
+            }
         }
     });
 
