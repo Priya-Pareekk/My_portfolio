@@ -21,13 +21,6 @@
 
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
-
-    <!-- Floating Particles Canvas -->
-    <canvas id="particles-canvas"></canvas>
-
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -42,10 +35,10 @@
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#certifications" class="nav-link">Certifications</a>
             </div>
-            <a href="Pareek_Resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-cta">
-                <span class="material-symbols-outlined">download</span>
+            <button class="nav-cta" id="resumePreviewBtn" type="button">
+                <span class="material-symbols-outlined">description</span>
                 Resume
-            </a>
+            </button>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -54,35 +47,136 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Available for Opportunities
+        <div class="hero-grid">
+            <div class="hero-content hero-left">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for Opportunities
+                </div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">Priya Pareek</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Passionate Computer Science student specializing in cloud technologies, AI/ML, and modern web
+                    development. Currently pursuing B.Tech CSE at VIT-AP University with expertise in Microsoft Azure and
+                    IBM AI technologies.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#about" class="btn btn-primary magnetic-btn">
+                        <span class="material-symbols-outlined">person</span>
+                        About Me
+                    </a>
+                    <a href="#skills" class="btn btn-secondary magnetic-btn">
+                        Explore Skills
+                    </a>
+                </div>
             </div>
-            <h1 class="hero-title">
-                <span class="gradient-text">Priya Pareek</span>
-            </h1>
-            <p class="hero-subtitle">
-                Passionate Computer Science student specializing in cloud technologies, AI/ML, and modern web
-                development. Currently pursuing B.Tech CSE at VIT-AP University with expertise in Microsoft Azure and
-                IBM AI technologies.
-            </p>
-            <div class="hero-ctas">
-                <a href="#about" class="btn btn-primary magnetic-btn">
-                    <span class="material-symbols-outlined">person</span>
-                    About Me
-                </a>
-                <a href="#skills" class="btn btn-secondary magnetic-btn">
-                    Explore Skills
-                </a>
+
+            <div class="hero-right">
+                <div class="glass-card dashboard-card">
+                    <div class="dashboard-tabs">
+                        <button class="dashboard-tab active" data-tab="github">
+                            <span class="material-symbols-outlined">code</span>
+                            GitHub
+                        </button>
+                        <button class="dashboard-tab" data-tab="leetcode">
+                            <span class="material-symbols-outlined">terminal</span>
+                            LeetCode
+                        </button>
+                    </div>
+
+                    <div class="dashboard-panel active" id="panel-github">
+                        <div class="dashboard-live">
+                            <span class="currently-dot"></span>
+                            <span>Live from GitHub</span>
+                        </div>
+                        <div class="leetcode-total">
+                            <span id="githubRepoCount">—</span>
+                            <span class="leetcode-total-label">Public Repositories</span>
+                        </div>
+                        <div class="github-mini-stats">
+                            <div class="github-mini-stat">
+                                <span class="material-symbols-outlined">group</span>
+                                <span id="githubFollowers">—</span>
+                                <small>Followers</small>
+                            </div>
+                            <div class="github-mini-stat">
+                                <span class="material-symbols-outlined">star</span>
+                                <span id="githubStars">—</span>
+                                <small>Total Stars</small>
+                            </div>
+                            <div class="github-mini-stat">
+                                <span class="material-symbols-outlined">code</span>
+                                <span id="githubTopLang">—</span>
+                                <small>Top Language</small>
+                            </div>
+                        </div>
+                        <a href="https://github.com/Priya-Pareekk" target="_blank" rel="noopener noreferrer"
+                            class="dashboard-link magnetic-btn">
+                            View GitHub Profile
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <div class="dashboard-panel" id="panel-leetcode">
+                        <div class="dashboard-live">
+                            <span class="currently-dot"></span>
+                            <span>Live from LeetCode</span>
+                        </div>
+                        <div class="leetcode-total">
+                            <span id="heroLeetcodeTotal">—</span>
+                            <span class="leetcode-total-label">Problems Solved</span>
+                        </div>
+                        <div class="leetcode-breakdown">
+                            <div class="leetcode-bar-row">
+                                <span class="leetcode-bar-label">Easy</span>
+                                <div class="leetcode-bar-track">
+                                    <div class="leetcode-bar-fill easy" id="barEasy" style="width: 0%"></div>
+                                </div>
+                                <span class="leetcode-bar-count" id="countEasy">0</span>
+                            </div>
+                            <div class="leetcode-bar-row">
+                                <span class="leetcode-bar-label">Medium</span>
+                                <div class="leetcode-bar-track">
+                                    <div class="leetcode-bar-fill medium" id="barMedium" style="width: 0%"></div>
+                                </div>
+                                <span class="leetcode-bar-count" id="countMedium">0</span>
+                            </div>
+                            <div class="leetcode-bar-row">
+                                <span class="leetcode-bar-label">Hard</span>
+                                <div class="leetcode-bar-track">
+                                    <div class="leetcode-bar-fill hard" id="barHard" style="width: 0%"></div>
+                                </div>
+                                <span class="leetcode-bar-count" id="countHard">0</span>
+                            </div>
+                        </div>
+                        <a href="https://leetcode.com/u/Priya_pareek/" target="_blank" rel="noopener noreferrer"
+                            class="dashboard-link magnetic-btn">
+                            View LeetCode Profile
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+
         <!-- Scroll indicator -->
         <div class="scroll-indicator">
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
             </div>
             <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Currently Strip -->
+    <section class="currently-strip">
+        <div class="currently-container">
+            <span class="currently-dot"></span>
+            <p class="currently-text">
+                <strong>Currently:</strong> preparing for SDE &amp; backend developer placements — deep in DSA, System Design, and building
+                <a href="#projects" class="currently-link">Alpha-Guard</a>.
+            </p>
         </div>
     </section>
 
@@ -95,18 +189,19 @@
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number" data-target="14">0</span>
+                <span class="stat-number" data-target="17">0</span>
                 <span class="stat-label">Technical Skills</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number" data-target="4">0</span>
+                <span class="stat-number" data-target="2">0</span>
                 <span class="stat-label">Projects</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number" data-target="3">0</span>
-                <span class="stat-label">Years of Study</span>
+                <!-- Fallback value below (150) is used only if the live API fails -->
+                <span class="stat-number" id="leetcodeStat" data-target="150">0</span>
+                <span class="stat-label">LeetCode Solved</span>
             </div>
         </div>
     </section>
@@ -132,50 +227,14 @@
                     </p>
                 </div>
                 <div class="feature-visual reveal-right">
-                    <div class="glass-card about-card">
-                        <div class="card-header">
-                            <span class="material-symbols-outlined card-icon">badge</span>
-                            <span class="card-badge">B.Tech CSE</span>
-                        </div>
-                        <div class="card-info-grid">
-                            <div class="card-info">
-                                <span class="material-symbols-outlined">mail</span>
-                                <div>
-                                    <small>Email</small>
-                                    <p>priyapareeek29@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="card-info">
-                                <span class="material-symbols-outlined">call</span>
-                                <div>
-                                    <small>Phone</small>
-                                    <p>+91-9928821167</p>
-                                </div>
-                            </div>
-                            <div class="card-info">
-                                <span class="material-symbols-outlined">location_on</span>
-                                <div>
-                                    <small>Location</small>
-                                    <p>VIT-AP University</p>
-                                </div>
-                            </div>
-                            <div class="card-info">
-                                <span class="material-symbols-outlined">calendar_month</span>
-                                <div>
-                                    <small>Duration</small>
-                                    <p>Sept 2023 — 2027</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-timeline">
-                            <h4>Academic Journey</h4>
-                            <div class="timeline-bar">
-                                <div class="timeline-fill" style="width: 55%"></div>
-                            </div>
-                            <div class="timeline-labels">
-                                <span>September 2023</span>
-                                <span>2027</span>
-                            </div>
+                    <div class="glass-card about-image-card">
+                        <img src="" alt="Priya Pareek" class="about-img" id="aboutImg" style="display: none;"
+                            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';"
+                            onload="this.style.display='block'; if(this.nextElementSibling) this.nextElementSibling.style.display='none';">
+                        <div class="about-image-placeholder">
+                            <span class="material-symbols-outlined">add_a_photo</span>
+                            <p>Image Placeholder</p>
+                            <small>Add your image URL or file here</small>
                         </div>
                     </div>
                 </div>
@@ -262,73 +321,61 @@
             <div class="icon-wave" data-direction="left">
                 <div class="icon-wave-track">
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                            alt="Python">
-                        <span>Python</span>
-                    </div>
-                    <div class="icon-wave-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
                         <span>Java</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
-                            alt="C++">
-                        <span>C++</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        <span>Python</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                            alt="JavaScript">
-                        <span>JavaScript</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+                        <span>SQL</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                            alt="React">
-                        <span>React</span>
-                    </div>
-                    <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                            alt="Node.js">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
                         <span>Node.js</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                            alt="MongoDB">
-                        <span>MongoDB</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express">
+                        <span>Express</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                        <span>Docker</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                        <span>C++</span>
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                            alt="Python">
-                        <span>Python</span>
-                    </div>
-                    <div class="icon-wave-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
                         <span>Java</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
-                            alt="C++">
-                        <span>C++</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        <span>Python</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                            alt="JavaScript">
-                        <span>JavaScript</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+                        <span>SQL</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                            alt="React">
-                        <span>React</span>
-                    </div>
-                    <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                            alt="Node.js">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
                         <span>Node.js</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                            alt="MongoDB">
-                        <span>MongoDB</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express">
+                        <span>Express</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                        <span>Docker</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                        <span>C++</span>
                     </div>
                 </div>
             </div>
@@ -339,22 +386,23 @@
             <div class="icon-wave" data-direction="right">
                 <div class="icon-wave-track">
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg"
-                            alt="Azure">
-                        <span>Azure</span>
-                    </div>
-                    <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-                            alt="Express">
-                        <span>Express</span>
-                    </div>
-                    <div class="icon-wave-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
                         <span>Git</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                            alt="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                        <span>GitHub</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                        <span>React</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
                         <span>HTML5</span>
                     </div>
                     <div class="icon-wave-item">
@@ -362,33 +410,28 @@
                         <span>CSS3</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                            alt="GitHub">
-                        <span>GitHub</span>
-                    </div>
-                    <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
-                            alt="VS Code">
-                        <span>VS Code</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+                        <span>Azure</span>
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg"
-                            alt="Azure">
-                        <span>Azure</span>
-                    </div>
-                    <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-                            alt="Express">
-                        <span>Express</span>
-                    </div>
-                    <div class="icon-wave-item">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
                         <span>Git</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                            alt="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                        <span>GitHub</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                        <span>React</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
                         <span>HTML5</span>
                     </div>
                     <div class="icon-wave-item">
@@ -396,14 +439,8 @@
                         <span>CSS3</span>
                     </div>
                     <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                            alt="GitHub">
-                        <span>GitHub</span>
-                    </div>
-                    <div class="icon-wave-item">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
-                            alt="VS Code">
-                        <span>VS Code</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+                        <span>Azure</span>
                     </div>
                 </div>
             </div>
@@ -414,42 +451,43 @@
             <div class="skills-grid">
                 <div class="glass-card skill-category magnetic-btn">
                     <div class="category-header">
-                        <span class="material-symbols-outlined">code</span>
-                        <h3>Programming Languages</h3>
+                        <span class="material-symbols-outlined">dns</span>
+                        <h3>Backend &amp; Core CS</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
                         <span class="skill-tag">Java</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">System Design</span>
+                        <span class="skill-tag">DBMS</span>
+                        <span class="skill-tag">DSA</span>
                     </div>
                 </div>
                 <div class="glass-card skill-category magnetic-btn">
                     <div class="category-header">
                         <span class="material-symbols-outlined">developer_board</span>
-                        <h3>Frameworks & Tools</h3>
+                        <h3>Frameworks &amp; Tools</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">React</span>
                         <span class="skill-tag">Node.js</span>
                         <span class="skill-tag">Express</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">React</span>
                         <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">HTML/CSS</span>
                     </div>
                 </div>
                 <div class="glass-card skill-category magnetic-btn">
                     <div class="category-header">
                         <span class="material-symbols-outlined">cloud</span>
-                        <h3>Cloud & AI</h3>
+                        <h3>Cloud &amp; Security</h3>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">Microsoft Azure</span>
                         <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Network Security</span>
                         <span class="skill-tag">Generative AI</span>
-                        <span class="skill-tag">IBM watsonx</span>
-                        <span class="skill-tag">Cybersecurity</span>
                     </div>
                 </div>
             </div>
@@ -467,7 +505,32 @@
 
             <div class="projects-grid">
                 <div class="project-card glass-card tilt-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #121317 0%, #2a2d35 100%);">
+                    <div class="project-image">
+                        <span class="material-symbols-outlined project-icon">shield_moon</span>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Next.js</span>
+                            <span class="project-tag">FastAPI</span>
+                            <span class="project-tag">Gemini API</span>
+                            <span class="project-tag">Financial Data</span>
+                        </div>
+                        <h3>Alpha-Guard — Forensic Credit Risk Platform</h3>
+                        <div class="project-case-study">
+                            <p><strong>Problem:</strong> Institutional-grade financial auditing tools are locked behind expensive enterprise terminals, leaving individual investors to rely on stock price hype instead of fundamentals — and manually reading hundreds of pages of regulatory filings isn't realistic.</p>
+                            <p><strong>Approach:</strong> Built a dual-engine system that unites deterministic math (Altman Z-Score risk classification) with an LLM layer that scans executive narratives for evasive language and policy shifts. Added a Monte Carlo simulation engine running 1,000 statistical paths for revenue stress-testing, backed by a resilient async data pipeline (SEC EDGAR with Yahoo Finance fallback) covering both US and Indian exchanges.</p>
+                            <p><strong>Stack:</strong> Next.js, TypeScript, Tailwind CSS, FastAPI, Pandas, NumPy, Scikit-learn, Google Gemini API, Playwright/BeautifulSoup, deployed on Vercel + Railway.</p>
+                            <p><strong>Outcome:</strong> Processes full corporate disclosures like 10-K filings into actionable risk intelligence — combining quantitative and qualitative signals — in under 2.4 seconds.</p>
+                        </div>
+                        <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="project-link magnetic-btn">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card tilt-card">
+                    <div class="project-image">
                         <span class="material-symbols-outlined project-icon">monitoring</span>
                     </div>
                     <div class="project-content">
@@ -478,71 +541,16 @@
                             <span class="project-tag">API</span>
                         </div>
                         <h3>TubeRadar: YouTube Sentiment Suite</h3>
-                        <p>A data-driven dashboard that scrapes YouTube comments via Google API to perform real-time
-                            sentiment analysis. Features TextBlob NLP for polarity scoring, Plotly charts, and a
-                            "Competitor Battle" mode for brand comparisons.</p>
+                        <div class="project-case-study">
+                            <p><strong>Problem:</strong> Brands and creators need to gauge audience sentiment across hundreds of YouTube comments without reading each one manually.</p>
+                            <p><strong>Approach:</strong> Built a dashboard that scrapes comments via the Google API and runs TextBlob NLP for polarity scoring, visualized with Plotly — including a "Competitor Battle" mode for side-by-side brand comparison.</p>
+                            <p><strong>Stack:</strong> Python, Streamlit, TextBlob, Google API, Plotly.</p>
+                            <p><strong>Outcome:</strong> A real-time sentiment analysis suite usable for both single-channel monitoring and competitor benchmarking.</p>
+                        </div>
                         <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer"
                             class="project-link magnetic-btn">
                             <span class="material-symbols-outlined">arrow_forward</span>
                             View Code
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card glass-card tilt-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #1a1d25 0%, #121317 100%);">
-                        <span class="material-symbols-outlined project-icon">smart_toy</span>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">AI/ML</span>
-                            <span class="project-tag">Python</span>
-                        </div>
-                        <h3>Generative AI Application</h3>
-                        <p>Developed a Generative AI application using IBM watsonx for automated content generation,
-                            text analysis, and intelligent response systems.</p>
-                        <a href="#" class="project-link magnetic-btn">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                            View Details
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card glass-card tilt-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #121317 0%, #1e2028 100%);">
-                        <span class="material-symbols-outlined project-icon">web</span>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">React</span>
-                            <span class="project-tag">Node.js</span>
-                            <span class="project-tag">MongoDB</span>
-                        </div>
-                        <h3>Full-Stack Web App</h3>
-                        <p>Created a MERN stack web application with user authentication, REST APIs, and responsive
-                            design for real-time data visualization.</p>
-                        <a href="#" class="project-link magnetic-btn">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                            View Details
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card glass-card tilt-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #1e2028 0%, #121317 100%);">
-                        <span class="material-symbols-outlined project-icon">shield</span>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">Security</span>
-                            <span class="project-tag">Azure</span>
-                        </div>
-                        <h3>Cybersecurity Dashboard</h3>
-                        <p>Designed a cybersecurity monitoring dashboard using Azure Security Center for threat
-                            detection and vulnerability assessment.</p>
-                        <a href="#" class="project-link magnetic-btn">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                            View Details
                         </a>
                     </div>
                 </div>
@@ -560,111 +568,101 @@
             </div>
 
             <!-- Horizontal scroll cards like Antigravity blog section -->
-            <div class="certs-scroll-container">
-                <div class="certs-scroll-track">
-                    <div class="cert-card glass-card tilt-card">
-                        <div class="cert-card-top azure-bg">
-                            <span class="material-symbols-outlined">school</span>
-                        </div>
-                        <div class="cert-card-body">
-                            <h3>Bonafide Certificate</h3>
-                            <p class="cert-issuer">VIT-AP University</p>
-                            <a href="Bonafide.pdf" target="_blank" rel="noopener noreferrer" class="cert-link magnetic-btn">
-                                View Certificate <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
+            <div class="certs-grid">
+                <div class="cert-item glass-card">
+                    <div class="cert-item-icon azure-bg">
+                        <span class="material-symbols-outlined">school</span>
                     </div>
-
-                    <div class="cert-card glass-card tilt-card">
-                        <div class="cert-card-top microsoft-bg">
-                            <span class="material-symbols-outlined">cloud</span>
-                        </div>
-                        <div class="cert-card-body">
-                            <h3>Develop Solutions for Microsoft Azure</h3>
-                            <p class="cert-issuer">Microsoft</p>
-                            <a href="MSazure.pdf" target="_blank" rel="noopener noreferrer" class="cert-link magnetic-btn">
-                                View Certificate <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
+                    <div class="cert-item-info">
+                        <h3>Bonafide Certificate</h3>
+                        <p class="cert-issuer">VIT-AP University</p>
                     </div>
-
-                    <div class="cert-card glass-card tilt-card">
-                        <div class="cert-card-top security-bg">
-                            <span class="material-symbols-outlined">security</span>
-                        </div>
-                        <div class="cert-card-body">
-                            <h3>Microsoft Cybersecurity Architect</h3>
-                            <p class="cert-issuer">Microsoft</p>
-                            <a href="MScybersecurity.pdf" target="_blank" rel="noopener noreferrer" class="cert-link magnetic-btn">
-                                View Certificate <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="cert-card glass-card tilt-card">
-                        <div class="cert-card-top ibm-bg">
-                            <span class="material-symbols-outlined">psychology</span>
-                        </div>
-                        <div class="cert-card-body">
-                            <h3>Generative AI using IBM watsonx</h3>
-                            <p class="cert-issuer">IBM</p>
-                            <a href="IBM.pdf" target="_blank" rel="noopener noreferrer" class="cert-link magnetic-btn">
-                                View Certificate <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="cert-card glass-card tilt-card">
-                        <div class="cert-card-top aws-bg">
-                            <span class="material-symbols-outlined">cloud</span>
-                        </div>
-                        <div class="cert-card-body">
-                            <h3>AWS Cloud Foundation</h3>
-                            <p class="cert-issuer">Amazon Web Services</p>
-                            <a href="AWS Foundation .pdf" target="_blank" rel="noopener noreferrer" class="cert-link magnetic-btn">
-                                View Certificate <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="cert-card glass-card tilt-card">
-                        <div class="cert-card-top aws-arch-bg">
-                            <span class="material-symbols-outlined">architecture</span>
-                        </div>
-                        <div class="cert-card-body">
-                            <h3>AWS Cloud Architecture</h3>
-                            <p class="cert-issuer">Amazon Web Services</p>
-                            <a href="AWS Cloud Architecture.pdf" target="_blank" rel="noopener noreferrer" class="cert-link magnetic-btn">
-                                View Certificate <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                    </div>
+                    <a href="Bonafide.pdf" target="_blank" rel="noopener noreferrer" class="cert-item-link magnetic-btn" aria-label="View Bonafide Certificate">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
                 </div>
-                <!-- Scroll nav arrows -->
-                <div class="scroll-arrows">
-                    <button class="scroll-arrow" id="scrollLeft" aria-label="Scroll left"><span
-                            class="material-symbols-outlined">chevron_left</span></button>
-                    <button class="scroll-arrow" id="scrollRight" aria-label="Scroll right"><span
-                            class="material-symbols-outlined">chevron_right</span></button>
+
+                <div class="cert-item glass-card">
+                    <div class="cert-item-icon microsoft-bg">
+                        <span class="material-symbols-outlined">cloud</span>
+                    </div>
+                    <div class="cert-item-info">
+                        <h3>Develop Solutions for Microsoft Azure</h3>
+                        <p class="cert-issuer">Microsoft</p>
+                    </div>
+                    <a href="MSazure.pdf" target="_blank" rel="noopener noreferrer" class="cert-item-link magnetic-btn" aria-label="View Azure Certificate">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <div class="cert-item-icon security-bg">
+                        <span class="material-symbols-outlined">security</span>
+                    </div>
+                    <div class="cert-item-info">
+                        <h3>Microsoft Cybersecurity Architect</h3>
+                        <p class="cert-issuer">Microsoft</p>
+                    </div>
+                    <a href="MScybersecurity.pdf" target="_blank" rel="noopener noreferrer" class="cert-item-link magnetic-btn" aria-label="View Cybersecurity Certificate">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <div class="cert-item-icon ibm-bg">
+                        <span class="material-symbols-outlined">psychology</span>
+                    </div>
+                    <div class="cert-item-info">
+                        <h3>Generative AI using IBM watsonx</h3>
+                        <p class="cert-issuer">IBM</p>
+                    </div>
+                    <a href="IBM.pdf" target="_blank" rel="noopener noreferrer" class="cert-item-link magnetic-btn" aria-label="View IBM Certificate">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <div class="cert-item-icon aws-bg">
+                        <span class="material-symbols-outlined">cloud</span>
+                    </div>
+                    <div class="cert-item-info">
+                        <h3>AWS Cloud Foundation</h3>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                    </div>
+                    <a href="AWS Foundation .pdf" target="_blank" rel="noopener noreferrer" class="cert-item-link magnetic-btn" aria-label="View AWS Foundation Certificate">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="cert-item glass-card">
+                    <div class="cert-item-icon aws-arch-bg">
+                        <span class="material-symbols-outlined">architecture</span>
+                    </div>
+                    <div class="cert-item-info">
+                        <h3>AWS Cloud Architecture</h3>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                    </div>
+                    <a href="AWS Cloud Architecture.pdf" target="_blank" rel="noopener noreferrer" class="cert-item-link magnetic-btn" aria-label="View AWS Architecture Certificate">
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Dark CTA Section (like Antigravity bottom) -->
-    <section class="dark-section">
-        <canvas id="dark-particles-canvas"></canvas>
-        <div class="dark-section-content">
+    <!-- Light CTA Section -->
+    <section class="cta-section section">
+        <div class="cta-section-content">
             <h2>Let's Build Something<br><span class="gradient-text">Amazing Together</span></h2>
             <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
             <div class="hero-ctas">
-                <a href="mailto:priyapareeek29@gmail.com" class="btn btn-glow magnetic-btn">
+                <a href="mailto:priyapareeek29@gmail.com" class="btn btn-primary magnetic-btn">
                     <span class="material-symbols-outlined">mail</span>
                     Get In Touch
                 </a>
                 <a href="https://www.linkedin.com/in/priya-pareek-68993a323" target="_blank" rel="noopener noreferrer"
-                    class="btn btn-outline magnetic-btn">
+                    class="btn btn-secondary magnetic-btn">
                     LinkedIn
                 </a>
             </div>
@@ -711,6 +709,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- Resume Preview Modal -->
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-modal-backdrop" id="resumeModalBackdrop"></div>
+        <div class="resume-modal-box">
+            <div class="resume-modal-header">
+                <h3>Priya Pareek — Resume</h3>
+                <div class="resume-modal-actions">
+                    <a href="Pareek_Resume.pdf" download class="resume-modal-btn magnetic-btn" aria-label="Download resume">
+                        <span class="material-symbols-outlined">download</span>
+                        Download
+                    </a>
+                    <a href="Pareek_Resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-modal-btn magnetic-btn" aria-label="Open resume in new tab">
+                        <span class="material-symbols-outlined">open_in_new</span>
+                        Open in New Tab
+                    </a>
+                    <button class="resume-modal-close" id="resumeModalClose" aria-label="Close preview">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <iframe src="Pareek_Resume.pdf" title="Priya Pareek Resume Preview" id="resumeIframe"></iframe>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
