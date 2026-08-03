@@ -137,38 +137,10 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const navLinks = document.getElementById('navLinks');
     const navLinkEls = document.querySelectorAll('.nav-link');
 
-    // Sticky nav + transparent state while hero visible
-    (function setupNavbarHeroState() {
-        const hero = document.getElementById('home');
-        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        function setNavTransparent(on) {
-            if (!navbar) return;
-            navbar.classList.toggle('navbar--transparent', on);
-            navbar.classList.toggle('scrolled', !on && window.scrollY > 40);
-        }
-
-        // Default based on scroll
-        setNavTransparent(window.scrollY < 80 && !!hero);
-
-        if (hero && 'IntersectionObserver' in window) {
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    setNavTransparent(e.isIntersecting && e.intersectionRatio > 0.25);
-                });
-            }, { threshold: [0, 0.25, 0.5] });
-            obs.observe(hero);
-        } else {
-            // fallback: simple scroll
-            window.addEventListener('scroll', () => setNavTransparent(window.scrollY < 80));
-        }
-
-        if (!prefersReduce) {
-            window.addEventListener('scroll', () => {
-                navbar?.classList.toggle('scrolled', window.scrollY > 40);
-            });
-        }
-    })();
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+        navbar?.classList.toggle('scrolled', window.scrollY > 40);
+    });
 
     // Mobile menu
     mobileMenuBtn?.addEventListener('click', () => {
@@ -253,197 +225,18 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = entry.target;
-                // Add visible class to the element (or its project parent)
-                const projectParent = target.closest && target.closest('.project-case');
-                if (projectParent) {
-                    projectParent.classList.add('visible');
-                    animateProjectMetrics(projectParent);
-                } else {
-                    target.classList.add('visible');
-                }
-
-                if (target.closest && target.closest('.stats-bar')) {
+                entry.target.classList.add('visible');
+                if (entry.target.closest('.stats-bar')) {
                     animateStats();
                 }
             }
         });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Observe reveal elements (include new project-case elements)
-    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .section-header, .glass-card, .project-card, .cert-card, .project-case').forEach(el => {
+    // Observe reveal elements
+    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .section-header, .glass-card, .project-card, .cert-card').forEach(el => {
         revealObserver.observe(el);
     });
-
-    // Animate project metrics when a project becomes visible
-    function animateProjectMetrics(projectEl) {
-        if (!projectEl) return;
-        const nums = projectEl.querySelectorAll('.metric-number');
-        nums.forEach(num => {
-            if (num.classList.contains('counting')) return;
-            const target = parseInt(num.dataset.target || '0', 10);
-            if (!target) { num.textContent = '0'; return; }
-            num.classList.add('counting');
-            const duration = 1200;
-            const start = performance.now();
-            function step(ts) {
-                const elapsed = ts - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                num.textContent = Math.floor(target * eased).toString();
-                if (progress < 1) requestAnimationFrame(step);
-                else { num.textContent = target.toString(); num.classList.remove('counting'); }
-            }
-            requestAnimationFrame(step);
-        });
-    }
-
-    // ---------- Engineering Dashboard Animations ----------
-    let engAnimated = false;
-    let engTerminalInterval = null;
-
-    function animateEngineeringMetrics() {
-        const nums = document.querySelectorAll('.eng-metric-number');
-        nums.forEach(num => {
-            if (num.classList.contains('counting')) return;
-            const target = parseInt(num.dataset.target || '0', 10);
-            num.classList.add('counting');
-            const duration = 1400;
-            const start = performance.now();
-            function step(ts) {
-                const elapsed = ts - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                num.textContent = Math.floor(target * eased).toString();
-                if (progress < 1) requestAnimationFrame(step);
-                else { num.textContent = target.toString(); num.classList.remove('counting'); }
-            }
-            requestAnimationFrame(step);
-        });
-    }
-
-    function animateProgressBars() {
-        const bars = document.querySelectorAll('.eng-progress-bar');
-        bars.forEach(bar => {
-            const p = parseFloat(bar.dataset.progress || '0');
-            // Respect reduced motion
-            const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReduce) {
-                bar.style.transform = `scaleX(${p})`;
-            } else {
-                // trigger CSS transform
-                requestAnimationFrame(() => { bar.style.transform = `scaleX(${p})`; });
-            }
-        });
-    }
-
-    function startTerminalLoop() {
-        const term = document.querySelector('.eng-terminal .term-body');
-        const termRoot = document.querySelector('.eng-terminal');
-        if (!term || !termRoot) return;
-        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduce) {
-            term.textContent = 'java --version\nopenjdk version "17.0.2"\n';
-            return;
-        }
-
-        const raw = termRoot.dataset.commands;
-        let commands = [];
-        try { commands = JSON.parse(raw); } catch (e) { commands = ['java --version','git push origin main']; }
-
-        let cmdIndex = 0;
-        let charIdx = 0;
-        let output = '';
-        let typing = true;
-
-        function clearAndNext() { term.textContent = ''; cmdIndex = (cmdIndex + 1) % commands.length; charIdx = 0; output = ''; typing = true; }
-
-        function tick() {
-            const cmd = commands[cmdIndex];
-            if (typing) {
-                // type one char
-                term.textContent = `$ ${cmd.slice(0, charIdx + 1)}`;
-                charIdx++;
-                if (charIdx >= cmd.length) {
-                    typing = false;
-                    // simulate output after short delay
-                    setTimeout(() => {
-                        // realistic-ish outputs per command
-                        const lower = cmd.toLowerCase();
-                        if (lower.includes('java')) {
-                            output = '\nopenjdk version "17.0.2" 2022-01-18\nOpenJDK Runtime Environment (build 17.0.2+8)';
-                        } else if (lower.includes('spring')) {
-                            output = '\nGenerating project: demo\nDependencies: web, lombok';
-                        } else if (lower.includes('docker')) {
-                            output = '\nCreating network "app_default" with the default driver\nStarting services...';
-                        } else if (lower.includes('git push')) {
-                            output = '\nEnumerating objects: 5, done.\nTo https://github.com/Priya-Pareekk/My_portfolio.git\n   73bb092..009f860  main -> main';
-                        } else {
-                            output = '\nCommand completed.';
-                        }
-                        term.textContent = `$ ${cmd}${output}`;
-                        // hold for a moment and then clear
-                        setTimeout(clearAndNext, 1600);
-                    }, 350);
-                }
-            }
-        }
-
-        // Run loop using setInterval so it's easy to stop
-        if (engTerminalInterval) clearInterval(engTerminalInterval);
-        engTerminalInterval = setInterval(tick, 60);
-    }
-
-    function stopTerminalLoop() {
-        if (engTerminalInterval) {
-            clearInterval(engTerminalInterval);
-            engTerminalInterval = null;
-        }
-    }
-
-    function animateRequestFlow(flowRoot) {
-        if (!flowRoot) return;
-        const steps = Array.from(flowRoot.querySelectorAll('.flow-step'));
-        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduce) return; // no sequential highlight
-
-        let idx = 0;
-        function stepHighlight() {
-            steps.forEach(s => s.classList.remove('active'));
-            steps[idx].classList.add('active');
-            idx = (idx + 1) % steps.length;
-            // schedule next
-            flowRoot._flowTimer = setTimeout(stepHighlight, 700);
-        }
-        // clear existing
-        if (flowRoot._flowTimer) clearTimeout(flowRoot._flowTimer);
-        stepHighlight();
-    }
-
-    // Observe the engineering dashboard and trigger animations once visible
-    const engRoot = document.querySelector('#skills');
-    if (engRoot && 'IntersectionObserver' in window) {
-        const engObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio > 0.12) {
-                    if (!engAnimated) {
-                        engAnimated = true;
-                        animateEngineeringMetrics();
-                        animateProgressBars();
-                        // start terminal loop
-                        startTerminalLoop();
-                        // animate request flow
-                        const flow = engRoot.querySelector('.eng-flow');
-                        animateRequestFlow(flow);
-                    }
-                } else {
-                    // pause terminal when out of view
-                    if (!entry.isIntersecting) stopTerminalLoop();
-                }
-            });
-        }, { threshold: [0.12, 0.4], rootMargin: '0px 0px -40px 0px' });
-        engObs.observe(engRoot);
-    }
 
     // Stagger reveal for sibling elements inside grids and rows
     document.querySelectorAll('.feature-row, .skills-grid, .projects-grid, .certs-scroll-track, .about-highlights, .card-info-grid').forEach(container => {
@@ -452,64 +245,6 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             child.style.transitionDelay = `${index * 0.08}s`;
         });
     });
-
-    // Hero headline reveal + small parallax
-    (function heroAnimations() {
-        const hero = document.getElementById('home');
-        if (!hero) return;
-        const lines = Array.from(document.querySelectorAll('.hero-headline-line'));
-        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        function revealLines() {
-            lines.forEach((line, i) => {
-                const delay = i * 80; // 80ms between lines
-                line.style.animationDelay = `${delay}ms`;
-                line.classList.add('revealed');
-            });
-        }
-
-        if (!prefersReduce && 'IntersectionObserver' in window) {
-            const hObs = new IntersectionObserver((entries, obs) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) {
-                        revealLines();
-                        obs.disconnect();
-                    }
-                });
-            }, { threshold: 0.2 });
-            hObs.observe(hero);
-        } else {
-            // Reduced motion or no observer: reveal immediately
-            revealLines();
-        }
-
-        // Parallax (mouse) for hero content
-        if (!prefersReduce) {
-            const content = document.querySelector('.hero-content');
-            if (!content) return;
-            let clientX = 0, clientY = 0;
-            let rafId = null;
-
-            window.addEventListener('mousemove', (e) => {
-                clientX = e.clientX;
-                clientY = e.clientY;
-                if (rafId) return;
-                rafId = requestAnimationFrame(() => {
-                    const rect = content.getBoundingClientRect();
-                    const dx = (clientX - (rect.left + rect.width / 2)) / rect.width;
-                    const dy = (clientY - (rect.top + rect.height / 2)) / rect.height;
-                    const max = 7; // px
-                    const tx = dx * max;
-                    const ty = dy * max;
-                    content.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-                    rafId = null;
-                });
-            });
-
-            // reset on leave
-            window.addEventListener('mouseleave', () => { if (content) content.style.transform = ''; });
-        }
-    })();
 
     // Stats bar standalone observer fallback
     const statsBar = document.querySelector('.stats-bar');

@@ -69,82 +69,125 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Premium Redesign) -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-inner">
-            <!-- subtle engineering grid & nodes background -->
-            <div class="hero-bg" aria-hidden="true">
-                <svg class="hero-grid-svg" viewBox="0 0 1200 600" preserveAspectRatio="none" focusable="false">
-                    <defs>
-                        <linearGradient id="nodeGrad" x1="0" x2="1">
-                            <stop offset="0%" stop-color="rgba(107,122,82,0.08)" />
-                            <stop offset="100%" stop-color="rgba(107,122,82,0.02)" />
-                        </linearGradient>
-                    </defs>
-                    <g class="grid-lines" stroke="rgba(41,42,36,0.04)" stroke-width="1">
-                        <!-- simple grid - rendered at very low opacity -->
-                        <path d="M0 50 H1200" />
-                        <path d="M0 150 H1200" />
-                        <path d="M0 250 H1200" />
-                        <path d="M0 350 H1200" />
-                        <path d="M0 450 H1200" />
-                        <path d="M0 550 H1200" />
-                        <path d="M100 0 V600" />
-                        <path d="M250 0 V600" />
-                        <path d="M400 0 V600" />
-                        <path d="M550 0 V600" />
-                        <path d="M700 0 V600" />
-                        <path d="M850 0 V600" />
-                        <path d="M1000 0 V600" />
-                    </g>
-                    <g class="grid-nodes" fill="url(#nodeGrad)">
-                        <circle cx="250" cy="120" r="2.2" />
-                        <circle cx="420" cy="220" r="2.2" />
-                        <circle cx="680" cy="160" r="2.2" />
-                        <circle cx="960" cy="300" r="2.2" />
-                    </g>
-                </svg>
-                <div class="hero-mesh" aria-hidden="true"></div>
+        <div class="hero-grid">
+            <div class="hero-content hero-left">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for Opportunities
+                </div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">Priya Pareek</span>
+                </h1>
+                <p class="hero-subtitle">
+                    4th year Computer Science Engineering student at VIT-AP University, focused on backend development and system design. I enjoy building scalable systems and solving real-world engineering problems through clean, efficient code.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#about" class="btn btn-primary magnetic-btn">
+                        <span class="material-symbols-outlined">person</span>
+                        About Me
+                    </a>
+                    <a href="#skills" class="btn btn-secondary magnetic-btn">
+                        Explore Skills
+                    </a>
+                </div>
             </div>
 
-            <div class="hero-stage">
-                <div class="hero-content">
-                    <div class="hero-badge">Available for Opportunities</div>
+            <div class="hero-right">
+                <div class="glass-card dashboard-card">
+                    <div class="dashboard-tabs">
+                        <button class="dashboard-tab active" data-tab="github">
+                            <span class="material-symbols-outlined">code</span>
+                            GitHub
+                        </button>
+                        <button class="dashboard-tab" data-tab="leetcode">
+                            <span class="material-symbols-outlined">terminal</span>
+                            LeetCode
+                        </button>
+                    </div>
 
-                    <h1 class="hero-headline" aria-label="BUILDING SCALABLE BACKEND SYSTEMS">
-                        <div class="hero-headline-line" data-line="0">BUILDING</div>
-                        <div class="hero-headline-line" data-line="1">SCALABLE</div>
-                        <div class="hero-headline-line" data-line="2">BACKEND</div>
-                        <div class="hero-headline-line" data-line="3">SYSTEMS</div>
-                    </h1>
-
-                    <p class="hero-subtitle">Designing scalable backend systems, building production-ready APIs, and exploring distributed architecture.</p>
-
-                    <div class="hero-ctas">
-                        <a href="#projects" class="btn btn-primary hero-cta-primary">
-                            Explore My Work
-                            <span class="cta-arrow">→</span>
+                    <div class="dashboard-panel active" id="panel-github">
+                        <div class="dashboard-live">
+                            <span class="currently-dot"></span>
+                            <span>Live from GitHub</span>
+                        </div>
+                        <div class="leetcode-total">
+                            <span id="githubRepoCount">—</span>
+                            <span class="leetcode-total-label">Public Repositories</span>
+                        </div>
+                        <div class="github-mini-stats">
+                            <div class="github-mini-stat">
+                                <span class="material-symbols-outlined">group</span>
+                                <span id="githubFollowers">—</span>
+                                <small>Followers</small>
+                            </div>
+                            <div class="github-mini-stat">
+                                <span class="material-symbols-outlined">star</span>
+                                <span id="githubStars">—</span>
+                                <small>Total Stars</small>
+                            </div>
+                            <div class="github-mini-stat">
+                                <span class="material-symbols-outlined">code</span>
+                                <span id="githubTopLang">—</span>
+                                <small>Top Language</small>
+                            </div>
+                        </div>
+                        <a href="https://github.com/Priya-Pareekk" target="_blank" rel="noopener noreferrer"
+                            class="dashboard-link magnetic-btn">
+                            View GitHub Profile
+                            <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
-                        <a href="priya_pareek_resume.pdf" download class="btn btn-secondary hero-cta-secondary">
-                            Download Resume
+                    </div>
+
+                    <div class="dashboard-panel" id="panel-leetcode">
+                        <div class="dashboard-live">
+                            <span class="currently-dot"></span>
+                            <span>Live from LeetCode</span>
+                        </div>
+                        <div class="leetcode-total">
+                            <span id="heroLeetcodeTotal">—</span>
+                            <span class="leetcode-total-label">Problems Solved</span>
+                        </div>
+                        <div class="leetcode-breakdown">
+                            <div class="leetcode-bar-row">
+                                <span class="leetcode-bar-label">Easy</span>
+                                <div class="leetcode-bar-track">
+                                    <div class="leetcode-bar-fill easy" id="barEasy" style="width: 0%"></div>
+                                </div>
+                                <span class="leetcode-bar-count" id="countEasy">0</span>
+                            </div>
+                            <div class="leetcode-bar-row">
+                                <span class="leetcode-bar-label">Medium</span>
+                                <div class="leetcode-bar-track">
+                                    <div class="leetcode-bar-fill medium" id="barMedium" style="width: 0%"></div>
+                                </div>
+                                <span class="leetcode-bar-count" id="countMedium">0</span>
+                            </div>
+                            <div class="leetcode-bar-row">
+                                <span class="leetcode-bar-label">Hard</span>
+                                <div class="leetcode-bar-track">
+                                    <div class="leetcode-bar-fill hard" id="barHard" style="width: 0%"></div>
+                                </div>
+                                <span class="leetcode-bar-count" id="countHard">0</span>
+                            </div>
+                        </div>
+                        <a href="https://leetcode.com/u/Priya_pareek/" target="_blank" rel="noopener noreferrer"
+                            class="dashboard-link magnetic-btn">
+                            View LeetCode Profile
+                            <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- decorative tech labels -->
-                <div class="tech-labels" aria-hidden="true">
-                    <span class="tech-label">JAVA</span>
-                    <span class="tech-label">SPRING BOOT</span>
-                    <span class="tech-label">POSTGRES</span>
-                    <span class="tech-label">SYSTEM DESIGN</span>
-                    <span class="tech-label">AWS</span>
-                </div>
-
-                <!-- centered subtle scroll indicator -->
-                <div class="hero-scroll" aria-hidden="true">
-                    <div class="hero-scroll-mouse"><div class="hero-scroll-wheel"></div></div>
-                </div>
             </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
         </div>
     </section>
 
@@ -288,150 +331,191 @@
         </div>
     </section>
 
-    <!-- Skills Redesigned: Engineering Dashboard -->
+    <!-- Skills Section with Icon Wave Marquee -->
     <section class="section section-alt" id="skills">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-tag">Engineering</span>
-                <h2 class="section-title center">Engineering Dashboard</h2>
-                <p class="section-subtitle">An operational view of my engineering focus, tools, and philosophy.</p>
+                <span class="section-tag">Technologies & tools</span>
+                <h2 class="section-title center">Technical Skills</h2>
+                <p class="section-subtitle">Technologies and tools I work with to build real-world solutions</p>
             </div>
+        </div>
 
-            <!-- Blueprint background (subtle, low-opacity) -->
-            <div class="eng-blueprint" aria-hidden="true"></div>
-
-            <!-- Top Metrics -->
-            <div class="eng-metrics" role="list">
-                <div class="eng-metric" role="listitem">
-                    <div class="eng-metric-number" data-target="300">0</div>
-                    <div class="eng-metric-label">LeetCode Problems</div>
-                </div>
-                <div class="eng-metric" role="listitem">
-                    <div class="eng-metric-number" data-target="865">0</div>
-                    <div class="eng-metric-label">CGPA (x100)</div>
-                </div>
-                <div class="eng-metric" role="listitem">
-                    <div class="eng-metric-number" data-target="4">0</div>
-                    <div class="eng-metric-label">Major Projects</div>
-                </div>
-                <div class="eng-metric" role="listitem">
-                    <div class="eng-metric-number" data-target="1">0</div>
-                    <div class="eng-metric-label">Primary Language (Java)</div>
-                </div>
-                <div class="eng-metric" role="listitem">
-                    <div class="eng-metric-number" data-target="1">0</div>
-                    <div class="eng-metric-label">Backend Focus</div>
-                </div>
-            </div>
-
-            <!-- Dashboard Cards Grid -->
-            <div class="eng-cards-grid">
-                <div class="eng-card" data-category="backend">
-                    <h3 class="eng-card-title">Backend Engineering</h3>
-                    <div class="eng-tech-list">
-                        <span class="eng-tech">Java</span>
-                        <span class="eng-tech">Spring Boot</span>
-                        <span class="eng-tech">FastAPI</span>
-                        <span class="eng-tech">Microservices</span>
+        <!-- Icon Wave Marquee — Row 1 (Left) -->
+        <div class="icon-wave-container">
+            <div class="icon-wave" data-direction="left">
+                <div class="icon-wave-track">
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+                        <span>Java</span>
                     </div>
-                    <div class="eng-progress" aria-hidden="true">
-                        <div class="eng-progress-track"><div class="eng-progress-bar" data-progress="0.85"></div></div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        <span>Python</span>
                     </div>
-                </div>
-
-                <div class="eng-card" data-category="api">
-                    <h3 class="eng-card-title">API Development</h3>
-                    <div class="eng-tech-list">
-                        <span class="eng-tech">REST</span>
-                        <span class="eng-tech">GraphQL</span>
-                        <span class="eng-tech">OpenAPI</span>
-                        <span class="eng-tech">JWT</span>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+                        <span>SQL</span>
                     </div>
-                    <div class="eng-progress" aria-hidden="true">
-                        <div class="eng-progress-track"><div class="eng-progress-bar" data-progress="0.78"></div></div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                        <span>Node.js</span>
                     </div>
-                </div>
-
-                <div class="eng-card" data-category="db">
-                    <h3 class="eng-card-title">Databases</h3>
-                    <div class="eng-tech-list">
-                        <span class="eng-tech">Postgres</span>
-                        <span class="eng-tech">Redis</span>
-                        <span class="eng-tech">SQL</span>
-                        <span class="eng-tech">Indexing</span>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express">
+                        <span>Express</span>
                     </div>
-                    <div class="eng-progress" aria-hidden="true">
-                        <div class="eng-progress-track"><div class="eng-progress-bar" data-progress="0.7"></div></div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                        <span>Docker</span>
                     </div>
-                </div>
-
-                <div class="eng-card" data-category="design">
-                    <h3 class="eng-card-title">System Design</h3>
-                    <div class="eng-tech-list">
-                        <span class="eng-tech">CQRS</span>
-                        <span class="eng-tech">Event Sourcing</span>
-                        <span class="eng-tech">Load Balancing</span>
-                        <span class="eng-tech">Caching</span>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                        <span>C++</span>
                     </div>
-                    <div class="eng-progress" aria-hidden="true">
-                        <div class="eng-progress-track"><div class="eng-progress-bar" data-progress="0.82"></div></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+                        <span>Java</span>
                     </div>
-                </div>
-
-                <div class="eng-card" data-category="cloud">
-                    <h3 class="eng-card-title">Cloud &amp; Deployment</h3>
-                    <div class="eng-tech-list">
-                        <span class="eng-tech">AWS</span>
-                        <span class="eng-tech">Vercel</span>
-                        <span class="eng-tech">Docker</span>
-                        <span class="eng-tech">Kubernetes</span>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        <span>Python</span>
                     </div>
-                    <div class="eng-progress" aria-hidden="true">
-                        <div class="eng-progress-track"><div class="eng-progress-bar" data-progress="0.6"></div></div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+                        <span>SQL</span>
                     </div>
-                </div>
-
-                <div class="eng-card" data-category="tools">
-                    <h3 class="eng-card-title">Development Tools</h3>
-                    <div class="eng-tech-list">
-                        <span class="eng-tech">Git</span>
-                        <span class="eng-tech">Docker Compose</span>
-                        <span class="eng-tech">CI/CD</span>
-                        <span class="eng-tech">IDE / Debugging</span>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                        <span>Node.js</span>
                     </div>
-                    <div class="eng-progress" aria-hidden="true">
-                        <div class="eng-progress-track"><div class="eng-progress-bar" data-progress="0.5"></div></div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express">
+                        <span>Express</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                        <span>Docker</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                        <span>C++</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Engineering Philosophy -->
-            <div class="eng-philosophy">
-                <p>"I believe scalable software comes from clean architecture, thoughtful design, and continuous learning."</p>
-            </div>
-
-            <!-- Compact Developer Terminal + Flow Visualization -->
-            <div class="eng-side-by-side">
-                <div class="eng-terminal" aria-hidden="false" data-commands='["java --version","spring init demo","docker compose up -d","git push origin main"]'>
-                    <div class="term-header">terminal</div>
-                    <pre class="term-body" aria-live="polite"></pre>
+        <!-- Icon Wave Marquee — Row 2 (Right) -->
+        <div class="icon-wave-container">
+            <div class="icon-wave" data-direction="right">
+                <div class="icon-wave-track">
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                        <span>Git</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                        <span>GitHub</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                        <span>React</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                        <span>HTML5</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                        <span>CSS3</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+                        <span>Azure</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                        <span>Git</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                        <span>GitHub</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                        <span>React</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                        <span>HTML5</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                        <span>CSS3</span>
+                    </div>
+                    <div class="icon-wave-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+                        <span>Azure</span>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="eng-flow" aria-hidden="false">
-                    <div class="flow-step">Client</div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-step">GET /api/projects</div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-step">Spring Boot</div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-step">Service Layer</div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-step">Database</div>
-                    <div class="flow-arrow">↓</div>
-                    <div class="flow-step">JSON Response</div>
+        <!-- Skill Categories below marquee -->
+        <div class="section-container" style="margin-top: 60px;">
+            <div class="skills-grid">
+                <div class="glass-card skill-category magnetic-btn">
+                    <div class="category-header">
+                        <span class="material-symbols-outlined">dns</span>
+                        <h3>Backend &amp; Core CS</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">System Design</span>
+                        <span class="skill-tag">DBMS</span>
+                        <span class="skill-tag">DSA</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-category magnetic-btn">
+                    <div class="category-header">
+                        <span class="material-symbols-outlined">developer_board</span>
+                        <h3>Frameworks &amp; Tools</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-category magnetic-btn">
+                    <div class="category-header">
+                        <span class="material-symbols-outlined">cloud</span>
+                        <h3>Cloud &amp; Security</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Generative AI</span>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -443,183 +527,60 @@
                 <h2 class="section-title center">Featured Projects</h2>
                 <p class="section-subtitle">A selection of projects showcasing my capabilities</p>
             </div>
-            <div class="projects-list">
-                <!-- Project Case Study 01 -->
-                <article class="project-case reveal-up" id="project-alphaguard">
-                    <header class="project-hero">
-                        <div class="project-number">01</div>
-                        <div class="project-hero-info">
-                            <h3 class="project-title">Alpha-Guard — Forensic Credit Risk Platform</h3>
-                            <p class="project-subtitle">Processes corporate disclosures into actionable risk intelligence combining deterministic models with LLM-based forensic analysis.</p>
-                            <div class="project-hero-ctas">
-                                <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source Code →</a>
-                                <button class="btn btn-secondary btn-open-case" data-project="alphaguard">Open Case Study</button>
-                            </div>
-                        </div>
-                    </header>
 
-                    <div class="project-preview">
-                        <div class="preview-frame">
-                            <div class="preview-media">
-                                <span class="material-symbols-outlined project-preview-icon">shield_moon</span>
-                            </div>
+            <div class="projects-grid">
+                <div class="project-card glass-card tilt-card">
+                    <div class="project-image">
+                        <span class="material-symbols-outlined project-icon">shield_moon</span>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Next.js</span>
+                            <span class="project-tag">FastAPI</span>
+                            <span class="project-tag">Gemini API</span>
+                            <span class="project-tag">Financial Data</span>
+                        </div>
+                        <h3>Alpha-Guard — Forensic Credit Risk Platform</h3>
+                        <p class="project-hook">Turns dense 10-K filings into risk intelligence in under 2.4 seconds, combining deterministic math with LLM-based forensic analysis.</p>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+                            <button class="btn-case-study magnetic-btn" data-project="alphaguard">
+                                View Case Study
+                                <span class="material-symbols-outlined">arrow_outward</span>
+                            </button>
+                            <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="project-link magnetic-btn">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                                View Code
+                            </a>
                         </div>
                     </div>
+                </div>
 
-                    <div class="project-body">
-                        <div class="project-columns">
-                            <div class="project-text">
-                                <h4>Problem</h4>
-                                <p>Institutional-grade financial auditing tools are expensive, and manually reading long filings isn't scalable for investors or analysts.</p>
-
-                                <h4>Solution</h4>
-                                <p>A dual-engine pipeline combining deterministic risk models with an LLM-based layer to surface interpretive signals and rapid risk scoring.</p>
-                            </div>
-
-                            <aside class="project-meta">
-                                <div class="architecture" data-animate>
-                                    <!-- Lightweight SVG flow diagram -->
-                                    <svg viewBox="0 0 260 420" class="architecture-svg" preserveAspectRatio="xMidYMid meet">
-                                        <g fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                            <path class="arch-line" d="M130 20 v40" />
-                                            <circle class="arch-node" cx="130" cy="68" r="6" fill="var(--surface)" stroke-width="1.6"/>
-                                            <path class="arch-line" d="M130 74 v40" />
-                                            <circle class="arch-node" cx="130" cy="126" r="6" />
-                                            <path class="arch-line" d="M130 132 v40" />
-                                            <circle class="arch-node" cx="130" cy="182" r="6" />
-                                            <path class="arch-line" d="M130 188 v40" />
-                                            <circle class="arch-node" cx="130" cy="242" r="6" />
-                                            <path class="arch-line" d="M130 248 v40" />
-                                            <circle class="arch-node" cx="130" cy="304" r="6" />
-                                            <path class="arch-line" d="M130 310 v40" />
-                                            <circle class="arch-node" cx="130" cy="362" r="6" />
-                                        </g>
-                                        <g class="arch-labels" fill="var(--text-secondary)" font-size="10" font-family="Inter, Arial">
-                                            <text x="20" y="74">User</text>
-                                            <text x="12" y="130">Frontend</text>
-                                            <text x="58" y="186">REST API</text>
-                                            <text x="44" y="246">Spring Boot</text>
-                                            <text x="30" y="306">Business Layer</text>
-                                            <text x="30" y="368">Database</text>
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                <div class="features-grid">
-                                    <div class="feature-card"><strong>Data Ingestion</strong><span>Robust EDGAR parsing pipeline</span></div>
-                                    <div class="feature-card"><strong>Risk Engine</strong><span>Deterministic scoring models</span></div>
-                                    <div class="feature-card"><strong>LLM Analysis</strong><span>Executive narrative NLP layer</span></div>
-                                    <div class="feature-card"><strong>Async Pipeline</strong><span>Resilient background processing</span></div>
-                                </div>
-
-                                <div class="engineering-highlights">
-                                    <span class="chip">REST APIs</span>
-                                    <span class="chip">JWT Auth</span>
-                                    <span class="chip">DB Optimization</span>
-                                    <span class="chip">Logging</span>
-                                    <span class="chip">CI/CD</span>
-                                </div>
-
-                                <div class="tech-stack">
-                                    <div class="stack-group"><strong>Backend</strong><small>Spring Boot, FastAPI</small></div>
-                                    <div class="stack-group"><strong>Database</strong><small>Postgres</small></div>
-                                    <div class="stack-group"><strong>Frontend</strong><small>Next.js</small></div>
-                                    <div class="stack-group"><strong>Deployment</strong><small>Vercel, Render</small></div>
-                                </div>
-
-                                <div class="project-metrics">
-                                    <div class="metric"><span class="metric-number" data-target="15">0</span><span class="metric-label">APIs</span></div>
-                                    <div class="metric"><span class="metric-number" data-target="99">0</span><span class="metric-label">% Uptime</span></div>
-                                    <div class="metric"><span class="metric-number" data-target="5">0</span><span class="metric-label">Modules</span></div>
-                                </div>
-                            </aside>
+                <div class="project-card glass-card tilt-card">
+                    <div class="project-image">
+                        <span class="material-symbols-outlined project-icon">monitoring</span>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Streamlit</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">API</span>
+                        </div>
+                        <h3>TubeRadar: YouTube Sentiment Suite</h3>
+                        <p class="project-hook">Turns thousands of YouTube comments into a live sentiment dashboard, with head-to-head competitor comparison.</p>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+                            <button class="btn-case-study magnetic-btn" data-project="tuberadar">
+                                View Case Study
+                                <span class="material-symbols-outlined">arrow_outward</span>
+                            </button>
+                            <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer"
+                                class="project-link magnetic-btn">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                                View Code
+                            </a>
                         </div>
                     </div>
-                </article>
-
-                <!-- Project Case Study 02 -->
-                <article class="project-case reveal-up" id="project-tuberadar">
-                    <header class="project-hero">
-                        <div class="project-number">02</div>
-                        <div class="project-hero-info">
-                            <h3 class="project-title">TubeRadar — YouTube Sentiment Suite</h3>
-                            <p class="project-subtitle">Converts thousands of comments into a live sentiment dashboard with competitor comparisons.</p>
-                            <div class="project-hero-ctas">
-                                <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source Code →</a>
-                                <button class="btn btn-secondary btn-open-case" data-project="tuberadar">Open Case Study</button>
-                            </div>
-                        </div>
-                    </header>
-
-                    <div class="project-preview">
-                        <div class="preview-frame">
-                            <div class="preview-media">
-                                <span class="material-symbols-outlined project-preview-icon">monitoring</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-body">
-                        <div class="project-columns">
-                            <div class="project-text">
-                                <h4>Problem</h4>
-                                <p>Brands need scalable sentiment insights across thousands of comments without manual review.</p>
-
-                                <h4>Solution</h4>
-                                <p>Real-time scraping and NLP pipelines produce digestible sentiment dashboards for decision makers.</p>
-                            </div>
-
-                            <aside class="project-meta">
-                                <div class="architecture" data-animate>
-                                    <!-- Reuse lightweight SVG flow diagram -->
-                                    <svg viewBox="0 0 260 420" class="architecture-svg" preserveAspectRatio="xMidYMid meet">
-                                        <g fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                            <path class="arch-line" d="M130 20 v40" />
-                                            <circle class="arch-node" cx="130" cy="68" r="6" />
-                                            <path class="arch-line" d="M130 74 v40" />
-                                            <circle class="arch-node" cx="130" cy="126" r="6" />
-                                            <path class="arch-line" d="M130 132 v40" />
-                                            <circle class="arch-node" cx="130" cy="182" r="6" />
-                                            <path class="arch-line" d="M130 188 v40" />
-                                            <circle class="arch-node" cx="130" cy="242" r="6" />
-                                        </g>
-                                        <g class="arch-labels" fill="var(--text-secondary)" font-size="10" font-family="Inter, Arial">
-                                            <text x="20" y="74">User</text>
-                                            <text x="12" y="130">Browser</text>
-                                            <text x="48" y="186">Scraper</text>
-                                            <text x="30" y="246">NLP Pipeline</text>
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                <div class="features-grid">
-                                    <div class="feature-card"><strong>Realtime Scraper</strong><span>Scalable comment collection</span></div>
-                                    <div class="feature-card"><strong>Sentiment Engine</strong><span>Fast polarity scoring</span></div>
-                                    <div class="feature-card"><strong>Dashboards</strong><span>Interactive visualizations</span></div>
-                                </div>
-
-                                <div class="engineering-highlights">
-                                    <span class="chip">APIs</span>
-                                    <span class="chip">NLP</span>
-                                    <span class="chip">Stream Processing</span>
-                                    <span class="chip">Deployment</span>
-                                </div>
-
-                                <div class="tech-stack">
-                                    <div class="stack-group"><strong>Backend</strong><small>Python, Streamlit</small></div>
-                                    <div class="stack-group"><strong>Database</strong><small>Postgres</small></div>
-                                    <div class="stack-group"><strong>Frontend</strong><small>Streamlit</small></div>
-                                    <div class="stack-group"><strong>Tools</strong><small>Plotly</small></div>
-                                </div>
-
-                                <div class="project-metrics">
-                                    <div class="metric"><span class="metric-number" data-target="10">0</span><span class="metric-label">Pipelines</span></div>
-                                    <div class="metric"><span class="metric-number" data-target="99">0</span><span class="metric-label">% Accuracy</span></div>
-                                </div>
-                            </aside>
-                        </div>
-                    </div>
-                </article>
+                </div>
             </div>
                     </div>
                 </div>
