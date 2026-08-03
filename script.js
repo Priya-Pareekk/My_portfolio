@@ -723,8 +723,8 @@ const LEETCODE_USERNAME = 'Priya_pareek';
                 closeCmdModal();
             } else if (resumeModal && resumeModal.classList.contains('open')) {
                 closeResumeModal();
-            } else if (document.getElementById('projectDrawer') && document.getElementById('projectDrawer').classList.contains('open')) {
-                closeProjectDrawer();
+            } else if (projectModal && projectModal.classList.contains('open')) {
+                closeProjectModal();
             }
         }
     });
@@ -751,113 +751,47 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         }
     };
 
-    // Project Drawer (reusable slide-over)
-    const projectDrawer = document.getElementById('projectDrawer');
-    const drawerBackdrop = document.getElementById('drawerBackdrop');
-    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-    const drawerTitle = document.getElementById('drawerTitle');
-    const drawerNumber = document.getElementById('drawerNumber');
-    const drawerGithub = document.getElementById('drawerGithub');
-    const drawerDemo = document.getElementById('drawerDemo');
-    const drawerMockup = document.getElementById('drawerMockup');
-    const drawerProblem = document.getElementById('drawerProblem');
-    const drawerSolution = document.getElementById('drawerSolution');
-    const drawerArchitecture = document.getElementById('drawerArchitecture');
-    const drawerHighlights = document.getElementById('drawerHighlights');
-    const drawerStack = document.getElementById('drawerStack');
-    const drawerChallenges = document.getElementById('drawerChallenges');
-    const drawerDeployment = document.getElementById('drawerDeployment');
+    const projectModal = document.getElementById('projectModal');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalBody = document.getElementById('projectModalBody');
+    const projectModalClose = document.getElementById('projectModalClose');
+    const projectModalBackdrop = document.getElementById('projectModalBackdrop');
 
-    let _prevScrollY = 0;
-
-    function openProjectDrawer(key) {
+    function openProjectModal(key) {
         const data = projectsData[key];
-        if (!data || !projectDrawer) return;
-        drawerTitle.textContent = data.title || '';
-        drawerNumber.textContent = key === 'alphaguard' ? '01' : '02';
-        drawerGithub.href = data.github || '#';
-        drawerDemo.href = data.demo || '#';
-        drawerDemo.style.display = data.demo ? 'inline-flex' : 'none';
+        if (!data || !projectModal || !projectModalTitle || !projectModalBody) return;
 
-        // Mockup image (placeholder if no demo)
-        const img = document.createElement('img');
-        img.alt = data.title;
-        img.src = data.demo ? `${data.demo}/screenshot.png` : `https://via.placeholder.com/800x450?text=${encodeURIComponent(data.title)}`;
-        drawerMockup.innerHTML = '';
-        drawerMockup.appendChild(img);
+        projectModalTitle.textContent = data.title;
+        projectModalBody.innerHTML = `
+            <p><strong>Problem:</strong> ${data.problem}</p>
+            <p><strong>Approach:</strong> ${data.approach}</p>
+            <p><strong>Stack:</strong> ${data.stack}</p>
+            <p><strong>Outcome:</strong> ${data.outcome}</p>
+            <div class="project-modal-links">
+                <a href="${data.github}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined">code</span> View Code
+                </a>
+                ${data.demo ? `<a href="${data.demo}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined">open_in_new</span> Live Demo
+                </a>` : ''}
+            </div>
+        `;
 
-        drawerProblem.textContent = data.problem || '';
-        drawerSolution.textContent = data.approach || '';
-
-        // architecture (simple reusable SVG)
-        drawerArchitecture.innerHTML = `
-            <svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="40" y="24" width="160" height="56" rx="8" class="arch-box" />
-                    <rect x="300" y="24" width="160" height="56" rx="8" class="arch-box" />
-                    <rect x="560" y="24" width="160" height="56" rx="8" class="arch-box" />
-                    <path class="arch-line" d="M120 80 L120 140 L360 140 L360 80" />
-                    <path class="arch-line" d="M440 80 L440 140 L600 140 L600 80" />
-                    <rect x="300" y="160" width="160" height="56" rx="8" class="arch-box" />
-                    <path class="arch-line" d="M360 216 L360 260" />
-                    <rect x="520" y="260" width="160" height="40" rx="6" class="arch-box" />
-                </g>
-            </svg>`;
-
-        // highlights and stack
-        drawerHighlights.innerHTML = '';
-        const highlights = ['REST APIs', 'Async Pipelines', 'DB Optimization', 'CI/CD'];
-        highlights.forEach(h => {
-            const el = document.createElement('div'); el.className = 'chip'; el.textContent = h; drawerHighlights.appendChild(el);
-        });
-
-        drawerStack.innerHTML = '';
-        (data.stack || '').split(',').slice(0,6).forEach(s => {
-            const sp = document.createElement('span'); sp.textContent = s.trim(); drawerStack.appendChild(sp);
-        });
-
-        drawerChallenges.textContent = data.outcome || '';
-        drawerDeployment.textContent = data.demo ? `Deployed at ${data.demo}` : 'No live demo available.';
-
-        // show drawer and backdrop, preserve scroll
-        _prevScrollY = window.scrollY || document.documentElement.scrollTop;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${_prevScrollY}px`;
-        projectDrawer.classList.add('open');
-        drawerBackdrop.classList.add('open');
-        projectDrawer.setAttribute('aria-hidden','false');
-
-        // animate large architecture drawing (stroke dash)
-        const svgLines = drawerArchitecture.querySelectorAll('.arch-line');
-        svgLines.forEach((p, i) => {
-            const len = p.getTotalLength ? p.getTotalLength() : 200;
-            p.style.strokeDasharray = len;
-            p.style.strokeDashoffset = len;
-            p.style.transition = 'stroke-dashoffset 800ms cubic-bezier(0.2,0.9,0.12,1) ' + (i*120) + 'ms';
-            requestAnimationFrame(()=> p.style.strokeDashoffset = '0');
-        });
+        projectModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
 
-    function closeProjectDrawer() {
-        if (!projectDrawer) return;
-        projectDrawer.classList.remove('open');
-        drawerBackdrop.classList.remove('open');
-        projectDrawer.setAttribute('aria-hidden','true');
-        // restore scroll
-        document.body.style.position = '';
-        document.body.style.top = '';
-        window.scrollTo(0, _prevScrollY || 0);
+    function closeProjectModal() {
+        if (!projectModal) return;
+        projectModal.classList.remove('open');
+        document.body.style.overflow = '';
     }
 
-    // click handlers
-    document.querySelectorAll('.btn-open-case').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const key = btn.dataset.project;
-            openProjectDrawer(key);
-        });
+    document.querySelectorAll('.btn-case-study').forEach(btn => {
+        btn.addEventListener('click', () => openProjectModal(btn.dataset.project));
     });
 
-    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeProjectDrawer);
-    if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeProjectDrawer);
+    if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
+    if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
 
 })();

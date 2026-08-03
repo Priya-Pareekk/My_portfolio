@@ -185,60 +185,106 @@
         </div>
     </section>
 
-    <!-- About — Premium Storytelling -->
+    <!-- About Section — Antigravity alternating layout -->
     <section class="section" id="about">
-        <div class="section-container about-grid">
-            <div class="about-left reveal-up">
-                <span class="section-tag">The Story</span>
-                <h2 class="section-title">The Engineer Behind The Code</h2>
+        <div class="section-container">
 
-                <p>Curiosity first pulled me into software — I wanted to know what made the apps I used every day actually work. That fascination turned into a quiet obsession with the systems running behind the scenes: servers, APIs, data stores, and the plumbing that keeps everything reliable.</p>
+            <!-- Feature Row 1: Text Left, Card Right -->
+            <div class="feature-row">
+                <div class="feature-text reveal-left">
+                    <span class="section-tag">Get to know me</span>
+                    <h2 class="section-title">About Me</h2>
+                    <p class="feature-description">
+                        I'm a 4th year Computer Science Engineering student at VIT-AP University, with a strong focus on backend development and system design. My interest lies in understanding how large-scale systems are built — from designing clean APIs and efficient databases to architecting systems that scale reliably under real-world load.
+                    </p>
+                    <p class="feature-description">
+                        I enjoy going deep into the fundamentals — data structures, algorithms, distributed systems — and applying that understanding to build backend systems that are both robust and maintainable. I'm currently preparing for SDE and backend developer roles, sharpening my problem-solving through consistent DSA practice and hands-on system design work.
+                    </p>
+                </div>
+                <div class="feature-visual reveal-right">
+                    <div class="about-visual">
+                        <svg class="architecture-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="1" fill="var(--border)" />
+                                </pattern>
+                            </defs>
+                            <rect width="400" height="400" rx="24" fill="var(--bg-alt)" />
+                            <rect width="400" height="400" rx="24" fill="url(#dotGrid)" />
 
-                <p>Over time I found myself gravitating toward backend engineering. Building solid APIs, designing fault-tolerant services, and thoughtfully composing components felt like solving satisfying puzzles with real-world impact.</p>
+                            <!-- Connection lines -->
+                            <path class="flow-line" d="M 90 100 L 200 100 L 200 180" fill="none" stroke="#D9A867" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="flow-line" d="M 310 100 L 200 100" fill="none" stroke="#D9A867" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="flow-line" d="M 200 220 L 200 280 L 120 320" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="flow-line" d="M 200 280 L 280 320" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
 
-                <p>Today I focus on scalable systems and clean architecture — small, deliberate choices that keep systems maintainable as they grow. I keep learning: Java, Spring Boot, databases, and system design are part of that daily practice.</p>
+                            <!-- Client node -->
+                            <rect x="50" y="80" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="90" y="104" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Client</text>
 
-                <p>My work is less about checkboxes and more about craft: building systems that are predictable, observable, and a pleasure to evolve.</p>
+                            <!-- API node -->
+                            <rect x="270" y="80" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="310" y="104" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">API</text>
+
+                            <!-- Server core -->
+                            <rect x="150" y="180" width="100" height="40" rx="8" fill="#1B1A16" />
+                            <text x="200" y="204" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#D9A867">Backend</text>
+
+                            <!-- Database node -->
+                            <rect x="80" y="320" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="120" y="344" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Database</text>
+
+                            <!-- Cache node -->
+                            <rect x="240" y="320" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="280" y="344" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Cache</text>
+
+                            <!-- Pulsing node dots -->
+                            <circle cx="200" cy="140" r="3" fill="#D9A867" class="pulse-dot" />
+                            <circle cx="200" cy="250" r="3" fill="var(--accent)" class="pulse-dot" />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
-            <aside class="about-right reveal-up">
-                <div class="snapshot-card">
-                    <div class="snapshot-header">
-                        <div class="snapshot-avatar">PP</div>
-                        <div>
-                            <div class="snapshot-name">Priya Pareek</div>
-                            <div class="snapshot-role">Backend Engineer</div>
+            <!-- Key Strengths Section -->
+            <div class="strengths-grid reveal-up">
+                <div class="strengths-header">
+                    <h2 class="section-title">Key Strengths</h2>
+                    <p>With a strong foundation in both theory and practice, I bring a unique blend of academic excellence and hands-on technical skills.</p>
+                </div>
+
+                <div class="strengths-list">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <span class="material-symbols-outlined">school</span>
+                        </div>
+                        <div class="strength-info">
+                            <h3>Academic Excellence</h3>
+                            <p>8.52 CGPA in B.Tech Computer Science Engineering at VIT-AP University.</p>
                         </div>
                     </div>
 
-                    <div class="snapshot-body">
-                        <div class="snapshot-row"><strong>University</strong><span>VIT-AP University</span></div>
-                        <div class="snapshot-row"><strong>Graduation</strong><span>2025</span></div>
-                        <div class="snapshot-row"><strong>CGPA</strong><span>8.65</span></div>
-                        <div class="snapshot-row"><strong>Current Focus</strong><span>Backend Systems & APIs</span></div>
-                        <div class="snapshot-row"><strong>Preferred Stack</strong><span>Java • Spring Boot • Postgres</span></div>
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <span class="material-symbols-outlined">check_circle</span>
+                        </div>
+                        <div class="strength-info">
+                            <h3>Problem Solving</h3>
+                            <p><span id="strengthLeetcodeCount">57</span>+ problems solved on LeetCode, sharpening algorithmic thinking through daily DSA practice.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="about-stats">
-                    <div class="stat-card reveal-up">
-                        <div class="stat-num" data-target="300">0</div>
-                        <div class="stat-label">LeetCode Problems</div>
-                    </div>
-                    <div class="stat-card reveal-up">
-                        <div class="stat-num" data-target="4">0</div>
-                        <div class="stat-label">Major Projects</div>
-                    </div>
-                    <div class="stat-card reveal-up">
-                        <div class="stat-num" data-target="1">0</div>
-                        <div class="stat-label">Primary Language</div>
-                    </div>
-                    <div class="stat-card reveal-up">
-                        <div class="stat-num" data-target="1">0</div>
-                        <div class="stat-label">Specialization</div>
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <span class="material-symbols-outlined">layers</span>
+                        </div>
+                        <div class="strength-info">
+                            <h3>System Design & Backend</h3>
+                            <p>Designed Alpha-Guard's dual-engine architecture — deterministic risk models paired with LLM-based NLP, deployed across Vercel and Render.</p>
+                        </div>
                     </div>
                 </div>
-            </aside>
+            </div>
         </div>
     </section>
 
@@ -389,103 +435,197 @@
         </div>
     </section>
 
-    <!-- Projects — Summary Cards + Slide-over Drawer -->
+    <!-- Projects Section — Antigravity card style -->
     <section class="section" id="projects">
         <div class="section-container">
             <div class="section-header">
                 <span class="section-tag">What I've built</span>
                 <h2 class="section-title center">Featured Projects</h2>
-                <p class="section-subtitle">A selection of projects — click to explore the case studies.</p>
+                <p class="section-subtitle">A selection of projects showcasing my capabilities</p>
             </div>
+            <div class="projects-list">
+                <!-- Project Case Study 01 -->
+                <article class="project-case reveal-up" id="project-alphaguard">
+                    <header class="project-hero">
+                        <div class="project-number">01</div>
+                        <div class="project-hero-info">
+                            <h3 class="project-title">Alpha-Guard — Forensic Credit Risk Platform</h3>
+                            <p class="project-subtitle">Processes corporate disclosures into actionable risk intelligence combining deterministic models with LLM-based forensic analysis.</p>
+                            <div class="project-hero-ctas">
+                                <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source Code →</a>
+                                <button class="btn btn-secondary btn-open-case" data-project="alphaguard">Open Case Study</button>
+                            </div>
+                        </div>
+                    </header>
 
-            <div class="projects-grid">
-                <div class="project-card" data-project="alphaguard">
-                    <div class="pc-left">
-                        <div class="pc-number">01</div>
-                        <h3 class="pc-title">Alpha-Guard</h3>
-                        <p class="pc-sub">Forensic credit risk platform combining deterministic models with LLM analysis.</p>
-                        <div class="pc-chips"><span>Spring Boot</span><span>Postgres</span><span>Docker</span></div>
+                    <div class="project-preview">
+                        <div class="preview-frame">
+                            <div class="preview-media">
+                                <span class="material-symbols-outlined project-preview-icon">shield_moon</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="pc-ctas">
-                        <a class="btn btn-tertiary" href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener">GitHub</a>
-                        <button class="btn btn-primary btn-open-case" data-project="alphaguard">View Case Study →</button>
-                    </div>
-                </div>
 
-                <div class="project-card" data-project="tuberadar">
-                    <div class="pc-left">
-                        <div class="pc-number">02</div>
-                        <h3 class="pc-title">TubeRadar</h3>
-                        <p class="pc-sub">Live sentiment dashboard for YouTube comments with competitor comparisons.</p>
-                        <div class="pc-chips"><span>Python</span><span>NLP</span><span>Plotly</span></div>
+                    <div class="project-body">
+                        <div class="project-columns">
+                            <div class="project-text">
+                                <h4>Problem</h4>
+                                <p>Institutional-grade financial auditing tools are expensive, and manually reading long filings isn't scalable for investors or analysts.</p>
+
+                                <h4>Solution</h4>
+                                <p>A dual-engine pipeline combining deterministic risk models with an LLM-based layer to surface interpretive signals and rapid risk scoring.</p>
+                            </div>
+
+                            <aside class="project-meta">
+                                <div class="architecture" data-animate>
+                                    <!-- Lightweight SVG flow diagram -->
+                                    <svg viewBox="0 0 260 420" class="architecture-svg" preserveAspectRatio="xMidYMid meet">
+                                        <g fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                            <path class="arch-line" d="M130 20 v40" />
+                                            <circle class="arch-node" cx="130" cy="68" r="6" fill="var(--surface)" stroke-width="1.6"/>
+                                            <path class="arch-line" d="M130 74 v40" />
+                                            <circle class="arch-node" cx="130" cy="126" r="6" />
+                                            <path class="arch-line" d="M130 132 v40" />
+                                            <circle class="arch-node" cx="130" cy="182" r="6" />
+                                            <path class="arch-line" d="M130 188 v40" />
+                                            <circle class="arch-node" cx="130" cy="242" r="6" />
+                                            <path class="arch-line" d="M130 248 v40" />
+                                            <circle class="arch-node" cx="130" cy="304" r="6" />
+                                            <path class="arch-line" d="M130 310 v40" />
+                                            <circle class="arch-node" cx="130" cy="362" r="6" />
+                                        </g>
+                                        <g class="arch-labels" fill="var(--text-secondary)" font-size="10" font-family="Inter, Arial">
+                                            <text x="20" y="74">User</text>
+                                            <text x="12" y="130">Frontend</text>
+                                            <text x="58" y="186">REST API</text>
+                                            <text x="44" y="246">Spring Boot</text>
+                                            <text x="30" y="306">Business Layer</text>
+                                            <text x="30" y="368">Database</text>
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div class="features-grid">
+                                    <div class="feature-card"><strong>Data Ingestion</strong><span>Robust EDGAR parsing pipeline</span></div>
+                                    <div class="feature-card"><strong>Risk Engine</strong><span>Deterministic scoring models</span></div>
+                                    <div class="feature-card"><strong>LLM Analysis</strong><span>Executive narrative NLP layer</span></div>
+                                    <div class="feature-card"><strong>Async Pipeline</strong><span>Resilient background processing</span></div>
+                                </div>
+
+                                <div class="engineering-highlights">
+                                    <span class="chip">REST APIs</span>
+                                    <span class="chip">JWT Auth</span>
+                                    <span class="chip">DB Optimization</span>
+                                    <span class="chip">Logging</span>
+                                    <span class="chip">CI/CD</span>
+                                </div>
+
+                                <div class="tech-stack">
+                                    <div class="stack-group"><strong>Backend</strong><small>Spring Boot, FastAPI</small></div>
+                                    <div class="stack-group"><strong>Database</strong><small>Postgres</small></div>
+                                    <div class="stack-group"><strong>Frontend</strong><small>Next.js</small></div>
+                                    <div class="stack-group"><strong>Deployment</strong><small>Vercel, Render</small></div>
+                                </div>
+
+                                <div class="project-metrics">
+                                    <div class="metric"><span class="metric-number" data-target="15">0</span><span class="metric-label">APIs</span></div>
+                                    <div class="metric"><span class="metric-number" data-target="99">0</span><span class="metric-label">% Uptime</span></div>
+                                    <div class="metric"><span class="metric-number" data-target="5">0</span><span class="metric-label">Modules</span></div>
+                                </div>
+                            </aside>
+                        </div>
                     </div>
-                    <div class="pc-ctas">
-                        <a class="btn btn-tertiary" href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener">GitHub</a>
-                        <button class="btn btn-primary btn-open-case" data-project="tuberadar">View Case Study →</button>
+                </article>
+
+                <!-- Project Case Study 02 -->
+                <article class="project-case reveal-up" id="project-tuberadar">
+                    <header class="project-hero">
+                        <div class="project-number">02</div>
+                        <div class="project-hero-info">
+                            <h3 class="project-title">TubeRadar — YouTube Sentiment Suite</h3>
+                            <p class="project-subtitle">Converts thousands of comments into a live sentiment dashboard with competitor comparisons.</p>
+                            <div class="project-hero-ctas">
+                                <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source Code →</a>
+                                <button class="btn btn-secondary btn-open-case" data-project="tuberadar">Open Case Study</button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="project-preview">
+                        <div class="preview-frame">
+                            <div class="preview-media">
+                                <span class="material-symbols-outlined project-preview-icon">monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-body">
+                        <div class="project-columns">
+                            <div class="project-text">
+                                <h4>Problem</h4>
+                                <p>Brands need scalable sentiment insights across thousands of comments without manual review.</p>
+
+                                <h4>Solution</h4>
+                                <p>Real-time scraping and NLP pipelines produce digestible sentiment dashboards for decision makers.</p>
+                            </div>
+
+                            <aside class="project-meta">
+                                <div class="architecture" data-animate>
+                                    <!-- Reuse lightweight SVG flow diagram -->
+                                    <svg viewBox="0 0 260 420" class="architecture-svg" preserveAspectRatio="xMidYMid meet">
+                                        <g fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                            <path class="arch-line" d="M130 20 v40" />
+                                            <circle class="arch-node" cx="130" cy="68" r="6" />
+                                            <path class="arch-line" d="M130 74 v40" />
+                                            <circle class="arch-node" cx="130" cy="126" r="6" />
+                                            <path class="arch-line" d="M130 132 v40" />
+                                            <circle class="arch-node" cx="130" cy="182" r="6" />
+                                            <path class="arch-line" d="M130 188 v40" />
+                                            <circle class="arch-node" cx="130" cy="242" r="6" />
+                                        </g>
+                                        <g class="arch-labels" fill="var(--text-secondary)" font-size="10" font-family="Inter, Arial">
+                                            <text x="20" y="74">User</text>
+                                            <text x="12" y="130">Browser</text>
+                                            <text x="48" y="186">Scraper</text>
+                                            <text x="30" y="246">NLP Pipeline</text>
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div class="features-grid">
+                                    <div class="feature-card"><strong>Realtime Scraper</strong><span>Scalable comment collection</span></div>
+                                    <div class="feature-card"><strong>Sentiment Engine</strong><span>Fast polarity scoring</span></div>
+                                    <div class="feature-card"><strong>Dashboards</strong><span>Interactive visualizations</span></div>
+                                </div>
+
+                                <div class="engineering-highlights">
+                                    <span class="chip">APIs</span>
+                                    <span class="chip">NLP</span>
+                                    <span class="chip">Stream Processing</span>
+                                    <span class="chip">Deployment</span>
+                                </div>
+
+                                <div class="tech-stack">
+                                    <div class="stack-group"><strong>Backend</strong><small>Python, Streamlit</small></div>
+                                    <div class="stack-group"><strong>Database</strong><small>Postgres</small></div>
+                                    <div class="stack-group"><strong>Frontend</strong><small>Streamlit</small></div>
+                                    <div class="stack-group"><strong>Tools</strong><small>Plotly</small></div>
+                                </div>
+
+                                <div class="project-metrics">
+                                    <div class="metric"><span class="metric-number" data-target="10">0</span><span class="metric-label">Pipelines</span></div>
+                                    <div class="metric"><span class="metric-number" data-target="99">0</span><span class="metric-label">% Accuracy</span></div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </article>
+            </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Drawer: reusable full-screen project case study panel -->
-    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
-    <aside id="projectDrawer" class="project-drawer" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="drawer-inner">
-            <button id="drawerCloseBtn" class="drawer-close" aria-label="Close">✕</button>
-            <div class="drawer-content">
-                <header class="drawer-header">
-                    <div class="drawer-number" id="drawerNumber">01</div>
-                    <h2 class="drawer-title" id="drawerTitle">Project Title</h2>
-                    <div class="drawer-actions">
-                        <a id="drawerGithub" class="btn btn-tertiary" href="#" target="_blank" rel="noopener">View Code</a>
-                        <a id="drawerDemo" class="btn btn-secondary" href="#" target="_blank" rel="noopener">Live Demo</a>
-                    </div>
-                </header>
-
-                <div class="drawer-body">
-                    <div class="drawer-left">
-                        <div class="browser-mockup" id="drawerMockup">
-                            <!-- screenshots injected here -->
-                        </div>
-                        <section class="drawer-section">
-                            <h4>Problem</h4>
-                            <p id="drawerProblem"></p>
-                        </section>
-                        <section class="drawer-section">
-                            <h4>Solution</h4>
-                            <p id="drawerSolution"></p>
-                        </section>
-                    </div>
-
-                    <aside class="drawer-right">
-                        <section class="drawer-section">
-                            <h4>Architecture</h4>
-                            <div id="drawerArchitecture" class="drawer-arch">
-                                <!-- large SVG inserted here -->
-                            </div>
-                        </section>
-
-                        <section class="drawer-section">
-                            <h4>Engineering Highlights</h4>
-                            <div id="drawerHighlights" class="drawer-highlights"></div>
-                        </section>
-
-                        <section class="drawer-section">
-                            <h4>Tech Stack</h4>
-                            <div id="drawerStack" class="drawer-stack"></div>
-                        </section>
-
-                        <section class="drawer-section">
-                            <h4>Challenges & Deployment</h4>
-                            <div id="drawerChallenges"></div>
-                            <div id="drawerDeployment" style="margin-top:8px;color:var(--text-muted);font-size:0.95rem;"></div>
-                        </section>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </aside>
 
     <!-- Certifications Section -->
     <section class="section section-alt" id="certifications">
