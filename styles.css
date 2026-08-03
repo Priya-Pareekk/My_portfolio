@@ -194,22 +194,51 @@ button {
 /* ---------- Hero Section ---------- */
 .hero {
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 140px 24px 80px;
+    min-height: calc(100vh - 40px);
+    display: block;
+    padding: 180px 0 120px;
     z-index: 1;
     background-color: var(--bg);
-    background-image: 
-        radial-gradient(circle at 40% 25%, rgba(107, 122, 82, 0.09) 0%, transparent 55%),
-        radial-gradient(circle at 75% 70%, rgba(138, 155, 110, 0.07) 0%, transparent 50%),
-        linear-gradient(rgba(41, 42, 36, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(41, 42, 36, 0.035) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 56px 56px, 56px 56px;
-    animation: heroMeshDrift 35s ease-in-out infinite alternate;
+}
+
+/* Premium Hero Inner Layout */
+.hero-inner {
+    position: relative;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+.hero-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 140px);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.05;
+}
+
+.hero-bg .hero-grid-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.hero-mesh {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(107,122,82,0.06), transparent 20%), radial-gradient(circle at 80% 70%, rgba(138,155,110,0.04), transparent 25%);
+    mix-blend-mode: multiply;
+    filter: blur(40px);
+    transform: translateZ(0);
+    animation: heroMeshDrift 26s ease-in-out infinite alternate;
 }
 
 @keyframes heroMeshDrift {
@@ -349,6 +378,97 @@ button {
     margin: 0 auto;
     padding: 0 24px;
 }
+
+/* Hero content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    max-width: 920px;
+    margin: 0 auto;
+    transform: translateZ(0);
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(107,122,82,0.06);
+    color: var(--accent-dark);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-headline {
+    font-weight: 900;
+    line-height: 0.95;
+    margin: 10px 0 18px;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.hero-headline-line {
+    font-size: clamp(2.7rem, 8vw, 7rem);
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(10px);
+    display: block;
+}
+
+.hero-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 900px;
+    margin-bottom: 28px;
+}
+
+.hero-ctas {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.hero-cta-primary, .hero-cta-secondary {
+    transition: transform 220ms var(--transition), box-shadow 220ms var(--transition);
+}
+
+.hero-cta-primary:hover, .hero-cta-secondary:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+}
+
+.hero-cta-primary .cta-arrow {
+    display: inline-block;
+    margin-left: 10px;
+    transform: translateX(0);
+    transition: transform 280ms ease;
+}
+
+.hero-cta-primary:hover .cta-arrow { transform: translateX(6px); }
+
+.tech-labels {
+    position: absolute;
+    inset: auto 0 20% 0;
+    z-index: 2;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.tech-label {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+.hero-scroll { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 2; }
+.hero-scroll-mouse { width: 28px; height: 44px; border: 1.5px solid var(--text-muted); border-radius: 14px; display:flex; align-items:flex-start; justify-content:center; padding-top:8px; }
+.hero-scroll-wheel { width:4px; height:8px; background:var(--text-muted); border-radius:3px; animation: scroll-bounce 1.8s infinite; }
 
 .hero-left {
     text-align: left;
@@ -2296,4 +2416,42 @@ button {
 
 .project-modal-links a:hover {
     background: var(--bg-alt);
+}
+
+/* Reveal animation for headline lines */
+@keyframes revealUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-headline-line.revealed {
+    animation: revealUp 560ms cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* background mesh animation */
+@keyframes heroMeshDrift {
+    0% { transform: translate3d(-20px,-10px,0) scale(1); }
+    100% { transform: translate3d(20px,10px,0) scale(1.02); }
+}
+
+/* Navbar transparent state while hero visible */
+.navbar.navbar--transparent {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.navbar.scrolled {
+    background: rgba(250, 249, 245, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(41, 42, 36, 0.12);
+    padding: 6px 12px 6px 20px;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-mesh, .hero-headline-line, .hero-scroll-wheel { animation: none !important; }
 }

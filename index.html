@@ -69,125 +69,82 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Premium Redesign) -->
     <section class="hero" id="home">
-        <div class="hero-grid">
-            <div class="hero-content hero-left">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    Available for Opportunities
-                </div>
-                <h1 class="hero-title">
-                    <span class="gradient-text">Priya Pareek</span>
-                </h1>
-                <p class="hero-subtitle">
-                    4th year Computer Science Engineering student at VIT-AP University, focused on backend development and system design. I enjoy building scalable systems and solving real-world engineering problems through clean, efficient code.
-                </p>
-                <div class="hero-ctas">
-                    <a href="#about" class="btn btn-primary magnetic-btn">
-                        <span class="material-symbols-outlined">person</span>
-                        About Me
-                    </a>
-                    <a href="#skills" class="btn btn-secondary magnetic-btn">
-                        Explore Skills
-                    </a>
-                </div>
+        <div class="hero-inner">
+            <!-- subtle engineering grid & nodes background -->
+            <div class="hero-bg" aria-hidden="true">
+                <svg class="hero-grid-svg" viewBox="0 0 1200 600" preserveAspectRatio="none" focusable="false">
+                    <defs>
+                        <linearGradient id="nodeGrad" x1="0" x2="1">
+                            <stop offset="0%" stop-color="rgba(107,122,82,0.08)" />
+                            <stop offset="100%" stop-color="rgba(107,122,82,0.02)" />
+                        </linearGradient>
+                    </defs>
+                    <g class="grid-lines" stroke="rgba(41,42,36,0.04)" stroke-width="1">
+                        <!-- simple grid - rendered at very low opacity -->
+                        <path d="M0 50 H1200" />
+                        <path d="M0 150 H1200" />
+                        <path d="M0 250 H1200" />
+                        <path d="M0 350 H1200" />
+                        <path d="M0 450 H1200" />
+                        <path d="M0 550 H1200" />
+                        <path d="M100 0 V600" />
+                        <path d="M250 0 V600" />
+                        <path d="M400 0 V600" />
+                        <path d="M550 0 V600" />
+                        <path d="M700 0 V600" />
+                        <path d="M850 0 V600" />
+                        <path d="M1000 0 V600" />
+                    </g>
+                    <g class="grid-nodes" fill="url(#nodeGrad)">
+                        <circle cx="250" cy="120" r="2.2" />
+                        <circle cx="420" cy="220" r="2.2" />
+                        <circle cx="680" cy="160" r="2.2" />
+                        <circle cx="960" cy="300" r="2.2" />
+                    </g>
+                </svg>
+                <div class="hero-mesh" aria-hidden="true"></div>
             </div>
 
-            <div class="hero-right">
-                <div class="glass-card dashboard-card">
-                    <div class="dashboard-tabs">
-                        <button class="dashboard-tab active" data-tab="github">
-                            <span class="material-symbols-outlined">code</span>
-                            GitHub
-                        </button>
-                        <button class="dashboard-tab" data-tab="leetcode">
-                            <span class="material-symbols-outlined">terminal</span>
-                            LeetCode
-                        </button>
-                    </div>
+            <div class="hero-stage">
+                <div class="hero-content">
+                    <div class="hero-badge">Available for Opportunities</div>
 
-                    <div class="dashboard-panel active" id="panel-github">
-                        <div class="dashboard-live">
-                            <span class="currently-dot"></span>
-                            <span>Live from GitHub</span>
-                        </div>
-                        <div class="leetcode-total">
-                            <span id="githubRepoCount">—</span>
-                            <span class="leetcode-total-label">Public Repositories</span>
-                        </div>
-                        <div class="github-mini-stats">
-                            <div class="github-mini-stat">
-                                <span class="material-symbols-outlined">group</span>
-                                <span id="githubFollowers">—</span>
-                                <small>Followers</small>
-                            </div>
-                            <div class="github-mini-stat">
-                                <span class="material-symbols-outlined">star</span>
-                                <span id="githubStars">—</span>
-                                <small>Total Stars</small>
-                            </div>
-                            <div class="github-mini-stat">
-                                <span class="material-symbols-outlined">code</span>
-                                <span id="githubTopLang">—</span>
-                                <small>Top Language</small>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Priya-Pareekk" target="_blank" rel="noopener noreferrer"
-                            class="dashboard-link magnetic-btn">
-                            View GitHub Profile
-                            <span class="material-symbols-outlined">arrow_forward</span>
+                    <h1 class="hero-headline" aria-label="BUILDING SCALABLE BACKEND SYSTEMS">
+                        <div class="hero-headline-line" data-line="0">BUILDING</div>
+                        <div class="hero-headline-line" data-line="1">SCALABLE</div>
+                        <div class="hero-headline-line" data-line="2">BACKEND</div>
+                        <div class="hero-headline-line" data-line="3">SYSTEMS</div>
+                    </h1>
+
+                    <p class="hero-subtitle">Designing scalable backend systems, building production-ready APIs, and exploring distributed architecture.</p>
+
+                    <div class="hero-ctas">
+                        <a href="#projects" class="btn btn-primary hero-cta-primary">
+                            Explore My Work
+                            <span class="cta-arrow">→</span>
                         </a>
-                    </div>
-
-                    <div class="dashboard-panel" id="panel-leetcode">
-                        <div class="dashboard-live">
-                            <span class="currently-dot"></span>
-                            <span>Live from LeetCode</span>
-                        </div>
-                        <div class="leetcode-total">
-                            <span id="heroLeetcodeTotal">—</span>
-                            <span class="leetcode-total-label">Problems Solved</span>
-                        </div>
-                        <div class="leetcode-breakdown">
-                            <div class="leetcode-bar-row">
-                                <span class="leetcode-bar-label">Easy</span>
-                                <div class="leetcode-bar-track">
-                                    <div class="leetcode-bar-fill easy" id="barEasy" style="width: 0%"></div>
-                                </div>
-                                <span class="leetcode-bar-count" id="countEasy">0</span>
-                            </div>
-                            <div class="leetcode-bar-row">
-                                <span class="leetcode-bar-label">Medium</span>
-                                <div class="leetcode-bar-track">
-                                    <div class="leetcode-bar-fill medium" id="barMedium" style="width: 0%"></div>
-                                </div>
-                                <span class="leetcode-bar-count" id="countMedium">0</span>
-                            </div>
-                            <div class="leetcode-bar-row">
-                                <span class="leetcode-bar-label">Hard</span>
-                                <div class="leetcode-bar-track">
-                                    <div class="leetcode-bar-fill hard" id="barHard" style="width: 0%"></div>
-                                </div>
-                                <span class="leetcode-bar-count" id="countHard">0</span>
-                            </div>
-                        </div>
-                        <a href="https://leetcode.com/u/Priya_pareek/" target="_blank" rel="noopener noreferrer"
-                            class="dashboard-link magnetic-btn">
-                            View LeetCode Profile
-                            <span class="material-symbols-outlined">arrow_forward</span>
+                        <a href="priya_pareek_resume.pdf" download class="btn btn-secondary hero-cta-secondary">
+                            Download Resume
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
+                <!-- decorative tech labels -->
+                <div class="tech-labels" aria-hidden="true">
+                    <span class="tech-label">JAVA</span>
+                    <span class="tech-label">SPRING BOOT</span>
+                    <span class="tech-label">POSTGRES</span>
+                    <span class="tech-label">SYSTEM DESIGN</span>
+                    <span class="tech-label">AWS</span>
+                </div>
+
+                <!-- centered subtle scroll indicator -->
+                <div class="hero-scroll" aria-hidden="true">
+                    <div class="hero-scroll-mouse"><div class="hero-scroll-wheel"></div></div>
+                </div>
             </div>
-            <span>Scroll to explore</span>
         </div>
     </section>
 

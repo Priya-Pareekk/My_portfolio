@@ -137,10 +137,38 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const navLinks = document.getElementById('navLinks');
     const navLinkEls = document.querySelectorAll('.nav-link');
 
-    // Sticky nav
-    window.addEventListener('scroll', () => {
-        navbar?.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    // Sticky nav + transparent state while hero visible
+    (function setupNavbarHeroState() {
+        const hero = document.getElementById('home');
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function setNavTransparent(on) {
+            if (!navbar) return;
+            navbar.classList.toggle('navbar--transparent', on);
+            navbar.classList.toggle('scrolled', !on && window.scrollY > 40);
+        }
+
+        // Default based on scroll
+        setNavTransparent(window.scrollY < 80 && !!hero);
+
+        if (hero && 'IntersectionObserver' in window) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    setNavTransparent(e.isIntersecting && e.intersectionRatio > 0.25);
+                });
+            }, { threshold: [0, 0.25, 0.5] });
+            obs.observe(hero);
+        } else {
+            // fallback: simple scroll
+            window.addEventListener('scroll', () => setNavTransparent(window.scrollY < 80));
+        }
+
+        if (!prefersReduce) {
+            window.addEventListener('scroll', () => {
+                navbar?.classList.toggle('scrolled', window.scrollY > 40);
+            });
+        }
+    })();
 
     // Mobile menu
     mobileMenuBtn?.addEventListener('click', () => {
@@ -245,6 +273,64 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             child.style.transitionDelay = `${index * 0.08}s`;
         });
     });
+
+    // Hero headline reveal + small parallax
+    (function heroAnimations() {
+        const hero = document.getElementById('home');
+        if (!hero) return;
+        const lines = Array.from(document.querySelectorAll('.hero-headline-line'));
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function revealLines() {
+            lines.forEach((line, i) => {
+                const delay = i * 80; // 80ms between lines
+                line.style.animationDelay = `${delay}ms`;
+                line.classList.add('revealed');
+            });
+        }
+
+        if (!prefersReduce && 'IntersectionObserver' in window) {
+            const hObs = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        revealLines();
+                        obs.disconnect();
+                    }
+                });
+            }, { threshold: 0.2 });
+            hObs.observe(hero);
+        } else {
+            // Reduced motion or no observer: reveal immediately
+            revealLines();
+        }
+
+        // Parallax (mouse) for hero content
+        if (!prefersReduce) {
+            const content = document.querySelector('.hero-content');
+            if (!content) return;
+            let clientX = 0, clientY = 0;
+            let rafId = null;
+
+            window.addEventListener('mousemove', (e) => {
+                clientX = e.clientX;
+                clientY = e.clientY;
+                if (rafId) return;
+                rafId = requestAnimationFrame(() => {
+                    const rect = content.getBoundingClientRect();
+                    const dx = (clientX - (rect.left + rect.width / 2)) / rect.width;
+                    const dy = (clientY - (rect.top + rect.height / 2)) / rect.height;
+                    const max = 7; // px
+                    const tx = dx * max;
+                    const ty = dy * max;
+                    content.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+                    rafId = null;
+                });
+            });
+
+            // reset on leave
+            window.addEventListener('mouseleave', () => { if (content) content.style.transform = ''; });
+        }
+    })();
 
     // Stats bar standalone observer fallback
     const statsBar = document.querySelector('.stats-bar');
