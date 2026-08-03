@@ -253,18 +253,50 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                if (entry.target.closest('.stats-bar')) {
+                const target = entry.target;
+                // Add visible class to the element (or its project parent)
+                const projectParent = target.closest && target.closest('.project-case');
+                if (projectParent) {
+                    projectParent.classList.add('visible');
+                    animateProjectMetrics(projectParent);
+                } else {
+                    target.classList.add('visible');
+                }
+
+                if (target.closest && target.closest('.stats-bar')) {
                     animateStats();
                 }
             }
         });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Observe reveal elements
-    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .section-header, .glass-card, .project-card, .cert-card').forEach(el => {
+    // Observe reveal elements (include new project-case elements)
+    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .section-header, .glass-card, .project-card, .cert-card, .project-case').forEach(el => {
         revealObserver.observe(el);
     });
+
+    // Animate project metrics when a project becomes visible
+    function animateProjectMetrics(projectEl) {
+        if (!projectEl) return;
+        const nums = projectEl.querySelectorAll('.metric-number');
+        nums.forEach(num => {
+            if (num.classList.contains('counting')) return;
+            const target = parseInt(num.dataset.target || '0', 10);
+            if (!target) { num.textContent = '0'; return; }
+            num.classList.add('counting');
+            const duration = 1200;
+            const start = performance.now();
+            function step(ts) {
+                const elapsed = ts - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                num.textContent = Math.floor(target * eased).toString();
+                if (progress < 1) requestAnimationFrame(step);
+                else { num.textContent = target.toString(); num.classList.remove('counting'); }
+            }
+            requestAnimationFrame(step);
+        });
+    }
 
     // Stagger reveal for sibling elements inside grids and rows
     document.querySelectorAll('.feature-row, .skills-grid, .projects-grid, .certs-scroll-track, .about-highlights, .card-info-grid').forEach(container => {

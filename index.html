@@ -484,60 +484,183 @@
                 <h2 class="section-title center">Featured Projects</h2>
                 <p class="section-subtitle">A selection of projects showcasing my capabilities</p>
             </div>
+            <div class="projects-list">
+                <!-- Project Case Study 01 -->
+                <article class="project-case reveal-up" id="project-alphaguard">
+                    <header class="project-hero">
+                        <div class="project-number">01</div>
+                        <div class="project-hero-info">
+                            <h3 class="project-title">Alpha-Guard — Forensic Credit Risk Platform</h3>
+                            <p class="project-subtitle">Processes corporate disclosures into actionable risk intelligence combining deterministic models with LLM-based forensic analysis.</p>
+                            <div class="project-hero-ctas">
+                                <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source Code →</a>
+                                <button class="btn btn-secondary btn-open-case" data-project="alphaguard">Open Case Study</button>
+                            </div>
+                        </div>
+                    </header>
 
-            <div class="projects-grid">
-                <div class="project-card glass-card tilt-card">
-                    <div class="project-image">
-                        <span class="material-symbols-outlined project-icon">shield_moon</span>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">Next.js</span>
-                            <span class="project-tag">FastAPI</span>
-                            <span class="project-tag">Gemini API</span>
-                            <span class="project-tag">Financial Data</span>
-                        </div>
-                        <h3>Alpha-Guard — Forensic Credit Risk Platform</h3>
-                        <p class="project-hook">Turns dense 10-K filings into risk intelligence in under 2.4 seconds, combining deterministic math with LLM-based forensic analysis.</p>
-                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
-                            <button class="btn-case-study magnetic-btn" data-project="alphaguard">
-                                View Case Study
-                                <span class="material-symbols-outlined">arrow_outward</span>
-                            </button>
-                            <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="project-link magnetic-btn">
-                                <span class="material-symbols-outlined">arrow_forward</span>
-                                View Code
-                            </a>
+                    <div class="project-preview">
+                        <div class="preview-frame">
+                            <div class="preview-media">
+                                <span class="material-symbols-outlined project-preview-icon">shield_moon</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card glass-card tilt-card">
-                    <div class="project-image">
-                        <span class="material-symbols-outlined project-icon">monitoring</span>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Streamlit</span>
-                            <span class="project-tag">NLP</span>
-                            <span class="project-tag">API</span>
+                    <div class="project-body">
+                        <div class="project-columns">
+                            <div class="project-text">
+                                <h4>Problem</h4>
+                                <p>Institutional-grade financial auditing tools are expensive, and manually reading long filings isn't scalable for investors or analysts.</p>
+
+                                <h4>Solution</h4>
+                                <p>A dual-engine pipeline combining deterministic risk models with an LLM-based layer to surface interpretive signals and rapid risk scoring.</p>
+                            </div>
+
+                            <aside class="project-meta">
+                                <div class="architecture" data-animate>
+                                    <!-- Lightweight SVG flow diagram -->
+                                    <svg viewBox="0 0 260 420" class="architecture-svg" preserveAspectRatio="xMidYMid meet">
+                                        <g fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                            <path class="arch-line" d="M130 20 v40" />
+                                            <circle class="arch-node" cx="130" cy="68" r="6" fill="var(--surface)" stroke-width="1.6"/>
+                                            <path class="arch-line" d="M130 74 v40" />
+                                            <circle class="arch-node" cx="130" cy="126" r="6" />
+                                            <path class="arch-line" d="M130 132 v40" />
+                                            <circle class="arch-node" cx="130" cy="182" r="6" />
+                                            <path class="arch-line" d="M130 188 v40" />
+                                            <circle class="arch-node" cx="130" cy="242" r="6" />
+                                            <path class="arch-line" d="M130 248 v40" />
+                                            <circle class="arch-node" cx="130" cy="304" r="6" />
+                                            <path class="arch-line" d="M130 310 v40" />
+                                            <circle class="arch-node" cx="130" cy="362" r="6" />
+                                        </g>
+                                        <g class="arch-labels" fill="var(--text-secondary)" font-size="10" font-family="Inter, Arial">
+                                            <text x="20" y="74">User</text>
+                                            <text x="12" y="130">Frontend</text>
+                                            <text x="58" y="186">REST API</text>
+                                            <text x="44" y="246">Spring Boot</text>
+                                            <text x="30" y="306">Business Layer</text>
+                                            <text x="30" y="368">Database</text>
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div class="features-grid">
+                                    <div class="feature-card"><strong>Data Ingestion</strong><span>Robust EDGAR parsing pipeline</span></div>
+                                    <div class="feature-card"><strong>Risk Engine</strong><span>Deterministic scoring models</span></div>
+                                    <div class="feature-card"><strong>LLM Analysis</strong><span>Executive narrative NLP layer</span></div>
+                                    <div class="feature-card"><strong>Async Pipeline</strong><span>Resilient background processing</span></div>
+                                </div>
+
+                                <div class="engineering-highlights">
+                                    <span class="chip">REST APIs</span>
+                                    <span class="chip">JWT Auth</span>
+                                    <span class="chip">DB Optimization</span>
+                                    <span class="chip">Logging</span>
+                                    <span class="chip">CI/CD</span>
+                                </div>
+
+                                <div class="tech-stack">
+                                    <div class="stack-group"><strong>Backend</strong><small>Spring Boot, FastAPI</small></div>
+                                    <div class="stack-group"><strong>Database</strong><small>Postgres</small></div>
+                                    <div class="stack-group"><strong>Frontend</strong><small>Next.js</small></div>
+                                    <div class="stack-group"><strong>Deployment</strong><small>Vercel, Render</small></div>
+                                </div>
+
+                                <div class="project-metrics">
+                                    <div class="metric"><span class="metric-number" data-target="15">0</span><span class="metric-label">APIs</span></div>
+                                    <div class="metric"><span class="metric-number" data-target="99">0</span><span class="metric-label">% Uptime</span></div>
+                                    <div class="metric"><span class="metric-number" data-target="5">0</span><span class="metric-label">Modules</span></div>
+                                </div>
+                            </aside>
                         </div>
-                        <h3>TubeRadar: YouTube Sentiment Suite</h3>
-                        <p class="project-hook">Turns thousands of YouTube comments into a live sentiment dashboard, with head-to-head competitor comparison.</p>
-                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
-                            <button class="btn-case-study magnetic-btn" data-project="tuberadar">
-                                View Case Study
-                                <span class="material-symbols-outlined">arrow_outward</span>
-                            </button>
-                            <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer"
-                                class="project-link magnetic-btn">
-                                <span class="material-symbols-outlined">arrow_forward</span>
-                                View Code
-                            </a>
+                    </div>
+                </article>
+
+                <!-- Project Case Study 02 -->
+                <article class="project-case reveal-up" id="project-tuberadar">
+                    <header class="project-hero">
+                        <div class="project-number">02</div>
+                        <div class="project-hero-info">
+                            <h3 class="project-title">TubeRadar — YouTube Sentiment Suite</h3>
+                            <p class="project-subtitle">Converts thousands of comments into a live sentiment dashboard with competitor comparisons.</p>
+                            <div class="project-hero-ctas">
+                                <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Source Code →</a>
+                                <button class="btn btn-secondary btn-open-case" data-project="tuberadar">Open Case Study</button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="project-preview">
+                        <div class="preview-frame">
+                            <div class="preview-media">
+                                <span class="material-symbols-outlined project-preview-icon">monitoring</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="project-body">
+                        <div class="project-columns">
+                            <div class="project-text">
+                                <h4>Problem</h4>
+                                <p>Brands need scalable sentiment insights across thousands of comments without manual review.</p>
+
+                                <h4>Solution</h4>
+                                <p>Real-time scraping and NLP pipelines produce digestible sentiment dashboards for decision makers.</p>
+                            </div>
+
+                            <aside class="project-meta">
+                                <div class="architecture" data-animate>
+                                    <!-- Reuse lightweight SVG flow diagram -->
+                                    <svg viewBox="0 0 260 420" class="architecture-svg" preserveAspectRatio="xMidYMid meet">
+                                        <g fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                            <path class="arch-line" d="M130 20 v40" />
+                                            <circle class="arch-node" cx="130" cy="68" r="6" />
+                                            <path class="arch-line" d="M130 74 v40" />
+                                            <circle class="arch-node" cx="130" cy="126" r="6" />
+                                            <path class="arch-line" d="M130 132 v40" />
+                                            <circle class="arch-node" cx="130" cy="182" r="6" />
+                                            <path class="arch-line" d="M130 188 v40" />
+                                            <circle class="arch-node" cx="130" cy="242" r="6" />
+                                        </g>
+                                        <g class="arch-labels" fill="var(--text-secondary)" font-size="10" font-family="Inter, Arial">
+                                            <text x="20" y="74">User</text>
+                                            <text x="12" y="130">Browser</text>
+                                            <text x="48" y="186">Scraper</text>
+                                            <text x="30" y="246">NLP Pipeline</text>
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div class="features-grid">
+                                    <div class="feature-card"><strong>Realtime Scraper</strong><span>Scalable comment collection</span></div>
+                                    <div class="feature-card"><strong>Sentiment Engine</strong><span>Fast polarity scoring</span></div>
+                                    <div class="feature-card"><strong>Dashboards</strong><span>Interactive visualizations</span></div>
+                                </div>
+
+                                <div class="engineering-highlights">
+                                    <span class="chip">APIs</span>
+                                    <span class="chip">NLP</span>
+                                    <span class="chip">Stream Processing</span>
+                                    <span class="chip">Deployment</span>
+                                </div>
+
+                                <div class="tech-stack">
+                                    <div class="stack-group"><strong>Backend</strong><small>Python, Streamlit</small></div>
+                                    <div class="stack-group"><strong>Database</strong><small>Postgres</small></div>
+                                    <div class="stack-group"><strong>Frontend</strong><small>Streamlit</small></div>
+                                    <div class="stack-group"><strong>Tools</strong><small>Plotly</small></div>
+                                </div>
+
+                                <div class="project-metrics">
+                                    <div class="metric"><span class="metric-number" data-target="10">0</span><span class="metric-label">Pipelines</span></div>
+                                    <div class="metric"><span class="metric-number" data-target="99">0</span><span class="metric-label">% Accuracy</span></div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </article>
             </div>
                     </div>
                 </div>
