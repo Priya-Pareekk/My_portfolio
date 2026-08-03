@@ -298,6 +298,153 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         });
     }
 
+    // ---------- Engineering Dashboard Animations ----------
+    let engAnimated = false;
+    let engTerminalInterval = null;
+
+    function animateEngineeringMetrics() {
+        const nums = document.querySelectorAll('.eng-metric-number');
+        nums.forEach(num => {
+            if (num.classList.contains('counting')) return;
+            const target = parseInt(num.dataset.target || '0', 10);
+            num.classList.add('counting');
+            const duration = 1400;
+            const start = performance.now();
+            function step(ts) {
+                const elapsed = ts - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                num.textContent = Math.floor(target * eased).toString();
+                if (progress < 1) requestAnimationFrame(step);
+                else { num.textContent = target.toString(); num.classList.remove('counting'); }
+            }
+            requestAnimationFrame(step);
+        });
+    }
+
+    function animateProgressBars() {
+        const bars = document.querySelectorAll('.eng-progress-bar');
+        bars.forEach(bar => {
+            const p = parseFloat(bar.dataset.progress || '0');
+            // Respect reduced motion
+            const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReduce) {
+                bar.style.transform = `scaleX(${p})`;
+            } else {
+                // trigger CSS transform
+                requestAnimationFrame(() => { bar.style.transform = `scaleX(${p})`; });
+            }
+        });
+    }
+
+    function startTerminalLoop() {
+        const term = document.querySelector('.eng-terminal .term-body');
+        const termRoot = document.querySelector('.eng-terminal');
+        if (!term || !termRoot) return;
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduce) {
+            term.textContent = 'java --version\nopenjdk version "17.0.2"\n';
+            return;
+        }
+
+        const raw = termRoot.dataset.commands;
+        let commands = [];
+        try { commands = JSON.parse(raw); } catch (e) { commands = ['java --version','git push origin main']; }
+
+        let cmdIndex = 0;
+        let charIdx = 0;
+        let output = '';
+        let typing = true;
+
+        function clearAndNext() { term.textContent = ''; cmdIndex = (cmdIndex + 1) % commands.length; charIdx = 0; output = ''; typing = true; }
+
+        function tick() {
+            const cmd = commands[cmdIndex];
+            if (typing) {
+                // type one char
+                term.textContent = `$ ${cmd.slice(0, charIdx + 1)}`;
+                charIdx++;
+                if (charIdx >= cmd.length) {
+                    typing = false;
+                    // simulate output after short delay
+                    setTimeout(() => {
+                        // realistic-ish outputs per command
+                        const lower = cmd.toLowerCase();
+                        if (lower.includes('java')) {
+                            output = '\nopenjdk version "17.0.2" 2022-01-18\nOpenJDK Runtime Environment (build 17.0.2+8)';
+                        } else if (lower.includes('spring')) {
+                            output = '\nGenerating project: demo\nDependencies: web, lombok';
+                        } else if (lower.includes('docker')) {
+                            output = '\nCreating network "app_default" with the default driver\nStarting services...';
+                        } else if (lower.includes('git push')) {
+                            output = '\nEnumerating objects: 5, done.\nTo https://github.com/Priya-Pareekk/My_portfolio.git\n   73bb092..009f860  main -> main';
+                        } else {
+                            output = '\nCommand completed.';
+                        }
+                        term.textContent = `$ ${cmd}${output}`;
+                        // hold for a moment and then clear
+                        setTimeout(clearAndNext, 1600);
+                    }, 350);
+                }
+            }
+        }
+
+        // Run loop using setInterval so it's easy to stop
+        if (engTerminalInterval) clearInterval(engTerminalInterval);
+        engTerminalInterval = setInterval(tick, 60);
+    }
+
+    function stopTerminalLoop() {
+        if (engTerminalInterval) {
+            clearInterval(engTerminalInterval);
+            engTerminalInterval = null;
+        }
+    }
+
+    function animateRequestFlow(flowRoot) {
+        if (!flowRoot) return;
+        const steps = Array.from(flowRoot.querySelectorAll('.flow-step'));
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduce) return; // no sequential highlight
+
+        let idx = 0;
+        function stepHighlight() {
+            steps.forEach(s => s.classList.remove('active'));
+            steps[idx].classList.add('active');
+            idx = (idx + 1) % steps.length;
+            // schedule next
+            flowRoot._flowTimer = setTimeout(stepHighlight, 700);
+        }
+        // clear existing
+        if (flowRoot._flowTimer) clearTimeout(flowRoot._flowTimer);
+        stepHighlight();
+    }
+
+    // Observe the engineering dashboard and trigger animations once visible
+    const engRoot = document.querySelector('#skills');
+    if (engRoot && 'IntersectionObserver' in window) {
+        const engObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.12) {
+                    if (!engAnimated) {
+                        engAnimated = true;
+                        animateEngineeringMetrics();
+                        animateProgressBars();
+                        // start terminal loop
+                        startTerminalLoop();
+                        // animate request flow
+                        const flow = engRoot.querySelector('.eng-flow');
+                        animateRequestFlow(flow);
+                    }
+                } else {
+                    // pause terminal when out of view
+                    if (!entry.isIntersecting) stopTerminalLoop();
+                }
+            });
+        }, { threshold: [0.12, 0.4], rootMargin: '0px 0px -40px 0px' });
+        engObs.observe(engRoot);
+    }
+
     // Stagger reveal for sibling elements inside grids and rows
     document.querySelectorAll('.feature-row, .skills-grid, .projects-grid, .certs-scroll-track, .about-highlights, .card-info-grid').forEach(container => {
         const children = container.querySelectorAll('.glass-card, .project-card, .cert-card, .highlight-card, .reveal-left, .reveal-right, .card-info');
