@@ -84,6 +84,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
 (async function fetchLeetCodeSolved() {
     const statEl = document.getElementById('leetcodeStat');
     const heroTotal = document.getElementById('heroLeetcodeTotal');
+    const strengthCount = document.getElementById('strengthLeetcodeCount');
     const barEasy = document.getElementById('barEasy');
     const barMedium = document.getElementById('barMedium');
     const barHard = document.getElementById('barHard');
@@ -95,6 +96,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const cached = localStorage.getItem(cacheKey);
     if (cached && statEl) statEl.dataset.target = cached;
     if (cached && heroTotal) heroTotal.textContent = cached;
+    if (cached && strengthCount) strengthCount.textContent = cached;
 
     try {
         const res = await fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`);
@@ -114,6 +116,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
                 }
             }
             if (heroTotal) heroTotal.textContent = solved;
+            if (strengthCount) strengthCount.textContent = solved;
             localStorage.setItem(cacheKey, solved);
         }
 
@@ -455,8 +458,75 @@ const LEETCODE_USERNAME = 'Priya_pareek';
                 closeCmdModal();
             } else if (resumeModal && resumeModal.classList.contains('open')) {
                 closeResumeModal();
+            } else if (projectModal && projectModal.classList.contains('open')) {
+                closeProjectModal();
             }
         }
     });
+
+    // ─── Project Case Study Modal ───────────
+    const projectsData = {
+        alphaguard: {
+            title: 'Alpha-Guard — Forensic Credit Risk Platform',
+            problem: 'Institutional-grade financial auditing tools are locked behind expensive enterprise terminals, leaving individual investors to rely on stock price hype instead of fundamentals — and manually reading hundreds of pages of regulatory filings isn\'t realistic.',
+            approach: 'Built a dual-engine system that unites deterministic math (Altman Z-Score risk classification) with an LLM layer that scans executive narratives for evasive language and policy shifts. Added a Monte Carlo simulation engine running 1,000 statistical paths for revenue stress-testing, backed by a resilient async data pipeline (SEC EDGAR with Yahoo Finance fallback) covering both US and Indian exchanges.',
+            stack: 'Next.js, TypeScript, Tailwind CSS, FastAPI, Pandas, NumPy, Scikit-learn, Google Gemini API, Playwright/BeautifulSoup, deployed on Vercel + Render.',
+            outcome: 'Processes full corporate disclosures like 10-K filings into actionable risk intelligence — combining quantitative and qualitative signals — in under 2.4 seconds.',
+            github: 'https://github.com/Priya-Pareekk/Alpha-Guard',
+            demo: 'https://alphaguard.netlify.app'
+        },
+        tuberadar: {
+            title: 'TubeRadar — YouTube Sentiment Analysis',
+            problem: 'Brands and creators need to gauge audience sentiment across hundreds of YouTube comments without reading each one manually.',
+            approach: 'Built a dashboard that scrapes comments via the Google API and runs TextBlob NLP for polarity scoring, visualized with Plotly — including a "Competitor Battle" mode for side-by-side brand comparison.',
+            stack: 'Python, Streamlit, TextBlob, Google API, Plotly.',
+            outcome: 'A real-time sentiment analysis suite usable for both single-channel monitoring and competitor benchmarking.',
+            github: 'https://github.com/Priya-Pareekk/youtube_radar',
+            demo: ''
+        }
+    };
+
+    const projectModal = document.getElementById('projectModal');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalBody = document.getElementById('projectModalBody');
+    const projectModalClose = document.getElementById('projectModalClose');
+    const projectModalBackdrop = document.getElementById('projectModalBackdrop');
+
+    function openProjectModal(key) {
+        const data = projectsData[key];
+        if (!data || !projectModal || !projectModalTitle || !projectModalBody) return;
+
+        projectModalTitle.textContent = data.title;
+        projectModalBody.innerHTML = `
+            <p><strong>Problem:</strong> ${data.problem}</p>
+            <p><strong>Approach:</strong> ${data.approach}</p>
+            <p><strong>Stack:</strong> ${data.stack}</p>
+            <p><strong>Outcome:</strong> ${data.outcome}</p>
+            <div class="project-modal-links">
+                <a href="${data.github}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined">code</span> View Code
+                </a>
+                ${data.demo ? `<a href="${data.demo}" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined">open_in_new</span> Live Demo
+                </a>` : ''}
+            </div>
+        `;
+
+        projectModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+        if (!projectModal) return;
+        projectModal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.btn-case-study').forEach(btn => {
+        btn.addEventListener('click', () => openProjectModal(btn.dataset.project));
+    });
+
+    if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
+    if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
 
 })();

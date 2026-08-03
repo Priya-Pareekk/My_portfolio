@@ -1060,9 +1060,13 @@ button {
 
 .strengths-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 60px;
+    align-items: start;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
 .strength-bubble {
@@ -1726,9 +1730,7 @@ button {
         grid-template-columns: 1fr;
     }
 
-    .strengths-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
 
     .footer-top,
     .footer-bottom {
@@ -1766,9 +1768,7 @@ button {
         grid-template-columns: 1fr;
     }
 
-    .strengths-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
 }
 
 /* ---------- Resume Preview Modal ---------- */
@@ -2092,4 +2092,208 @@ button {
     border-radius: 4px;
     padding: 1px 5px;
     color: var(--text-secondary);
+}
+
+/* ---------- Fix 1: About Visual Architecture Illustration ---------- */
+.about-visual {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.architecture-illustration {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+}
+
+.flow-line {
+    stroke-dashoffset: 0;
+    animation: flow-dash 2.5s linear infinite;
+}
+
+@keyframes flow-dash {
+    to { stroke-dashoffset: -24; }
+}
+
+.pulse-dot {
+    animation: node-pulse 2s ease-in-out infinite;
+}
+
+@keyframes node-pulse {
+    0%, 100% { opacity: 1; r: 3; }
+    50% { opacity: 0.4; r: 5; }
+}
+
+.strengths-grid {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 60px;
+    align-items: start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.strengths-header {
+    position: sticky;
+    top: 110px;
+}
+
+.strengths-header h2 {
+    margin-bottom: 16px;
+}
+
+.strengths-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.strengths-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    align-content: start;
+}
+
+.strength-card {
+    height: 100%;
+}
+
+@media (max-width: 900px) {
+    .strengths-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .strengths-header {
+        position: static;
+    }
+
+    .strengths-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.strength-card:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+}
+
+.strength-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.strength-card:hover .strength-icon {
+    background: var(--accent);
+}
+
+.strength-card:hover .strength-icon .material-symbols-outlined {
+    color: #fff;
+}
+
+.strength-icon .material-symbols-outlined {
+    font-size: 22px;
+    color: var(--accent-dark);
+    transition: var(--transition);
+}
+
+.strength-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.strength-info p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ---------- Fix 3: Projects Case Study Modal ---------- */
+.project-hook {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 14px 0;
+}
+
+.btn-case-study {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: var(--radius-full);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.86rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-case-study:hover {
+    background: var(--accent-dark);
+}
+
+.btn-case-study .material-symbols-outlined {
+    font-size: 16px;
+}
+
+.project-modal-box {
+    max-width: 680px;
+}
+
+.project-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.project-modal-body p {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.project-modal-body strong {
+    color: var(--accent-dark);
+    font-weight: 600;
+}
+
+.project-modal-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.project-modal-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.project-modal-links a:hover {
+    background: var(--bg-alt);
 }

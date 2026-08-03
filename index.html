@@ -245,78 +245,85 @@
                     </p>
                 </div>
                 <div class="feature-visual reveal-right">
-                    <div class="glass-card about-image-card">
-                        <img src="" alt="Priya Pareek" class="about-img" id="aboutImg" style="display: none;"
-                            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';"
-                            onload="this.style.display='block'; if(this.nextElementSibling) this.nextElementSibling.style.display='none';">
-                        <div class="about-image-placeholder">
-                            <span class="material-symbols-outlined">add_a_photo</span>
-                            <p>Image Placeholder</p>
-                            <small>Add your image URL or file here</small>
-                        </div>
+                    <div class="about-visual">
+                        <svg class="architecture-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="1" fill="var(--border)" />
+                                </pattern>
+                            </defs>
+                            <rect width="400" height="400" rx="24" fill="var(--bg-alt)" />
+                            <rect width="400" height="400" rx="24" fill="url(#dotGrid)" />
+
+                            <!-- Connection lines -->
+                            <path class="flow-line" d="M 90 100 L 200 100 L 200 180" fill="none" stroke="#D9A867" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="flow-line" d="M 310 100 L 200 100" fill="none" stroke="#D9A867" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="flow-line" d="M 200 220 L 200 280 L 120 320" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="flow-line" d="M 200 280 L 280 320" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
+
+                            <!-- Client node -->
+                            <rect x="50" y="80" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="90" y="104" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Client</text>
+
+                            <!-- API node -->
+                            <rect x="270" y="80" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="310" y="104" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">API</text>
+
+                            <!-- Server core -->
+                            <rect x="150" y="180" width="100" height="40" rx="8" fill="#1B1A16" />
+                            <text x="200" y="204" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#D9A867">Backend</text>
+
+                            <!-- Database node -->
+                            <rect x="80" y="320" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="120" y="344" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Database</text>
+
+                            <!-- Cache node -->
+                            <rect x="240" y="320" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
+                            <text x="280" y="344" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Cache</text>
+
+                            <!-- Pulsing node dots -->
+                            <circle cx="200" cy="140" r="3" fill="#D9A867" class="pulse-dot" />
+                            <circle cx="200" cy="250" r="3" fill="var(--accent)" class="pulse-dot" />
+                        </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Feature Row 2: Card Left, Text Right (reversed) -->
-            <div class="feature-row feature-row-reverse">
-                <div class="feature-text reveal-right">
+            <!-- Key Strengths Section -->
+            <div class="strengths-grid reveal-up">
+                <div class="strengths-header">
                     <h2 class="section-title">Key Strengths</h2>
-                    <p class="feature-description">
-                        With a strong foundation in both theory and practice, I bring a unique blend of academic
-                        excellence and hands-on technical skills.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-card magnetic-btn">
+                    <p>With a strong foundation in both theory and practice, I bring a unique blend of academic excellence and hands-on technical skills.</p>
+                </div>
+
+                <div class="strengths-list">
+                    <div class="strength-card">
+                        <div class="strength-icon">
                             <span class="material-symbols-outlined">school</span>
-                            <div>
-                                <h4>Academic Excellence</h4>
-                                <p>Consistent academic performance in CSE program</p>
-                            </div>
                         </div>
-                        <div class="highlight-card magnetic-btn">
-                            <span class="material-symbols-outlined">task_alt</span>
-                            <div>
-                                <h4>Problem Solving</h4>
-                                <p>Consistent DSA practice with 50+ problems solved, strengthening algorithmic thinking</p>
-                            </div>
-                        </div>
-                        <div class="highlight-card magnetic-btn">
-                            <span class="material-symbols-outlined">layers</span>
-                            <div>
-                                <h4>System Design &amp; Backend</h4>
-                                <p>Focused on scalable backend architecture, efficient APIs, and system design fundamentals</p>
-                            </div>
+                        <div class="strength-info">
+                            <h3>Academic Excellence</h3>
+                            <p>8.52 CGPA in B.Tech Computer Science Engineering at VIT-AP University.</p>
                         </div>
                     </div>
-                </div>
-                <div class="feature-visual reveal-left">
-                    <div class="glass-card strengths-visual-card">
-                        <div class="strengths-grid">
-                            <div class="strength-bubble">
-                                <span class="material-symbols-outlined">dns</span>
-                                <span>Backend</span>
-                            </div>
-                            <div class="strength-bubble accent">
-                                <span class="material-symbols-outlined">hub</span>
-                                <span>System Design</span>
-                            </div>
-                            <div class="strength-bubble">
-                                <span class="material-symbols-outlined">database</span>
-                                <span>Database</span>
-                            </div>
-                            <div class="strength-bubble accent-2">
-                                <span class="material-symbols-outlined">alt_route</span>
-                                <span>DSA &amp; Algorithms</span>
-                            </div>
-                            <div class="strength-bubble accent-3">
-                                <span class="material-symbols-outlined">api</span>
-                                <span>APIs</span>
-                            </div>
-                            <div class="strength-bubble">
-                                <span class="material-symbols-outlined">settings</span>
-                                <span>DevOps</span>
-                            </div>
+
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <span class="material-symbols-outlined">check_circle</span>
+                        </div>
+                        <div class="strength-info">
+                            <h3>Problem Solving</h3>
+                            <p><span id="strengthLeetcodeCount">57</span>+ problems solved on LeetCode, sharpening algorithmic thinking through daily DSA practice.</p>
+                        </div>
+                    </div>
+
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <span class="material-symbols-outlined">layers</span>
+                        </div>
+                        <div class="strength-info">
+                            <h3>System Design & Backend</h3>
+                            <p>Designed Alpha-Guard's dual-engine architecture — deterministic risk models paired with LLM-based NLP, deployed across Vercel and Render.</p>
                         </div>
                     </div>
                 </div>
@@ -534,72 +541,17 @@
                             <span class="project-tag">Financial Data</span>
                         </div>
                         <h3>Alpha-Guard — Forensic Credit Risk Platform</h3>
-                        <div class="project-case-study">
-                            <p><strong>Problem:</strong> Institutional-grade financial auditing tools are locked behind expensive enterprise terminals, leaving individual investors to rely on stock price hype instead of fundamentals — and manually reading hundreds of pages of regulatory filings isn't realistic.</p>
-                            <p><strong>Approach:</strong> Built a dual-engine system that unites deterministic math (Altman Z-Score risk classification) with an LLM layer that scans executive narratives for evasive language and policy shifts. Added a Monte Carlo simulation engine running 1,000 statistical paths for revenue stress-testing, backed by a resilient async data pipeline (SEC EDGAR with Yahoo Finance fallback) covering both US and Indian exchanges.</p>
-                            <div class="project-architecture-diag">
-                                <div class="architecture-diag-title">System Architecture</div>
-                                <svg viewBox="0 0 540 420" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; display: block; margin: 0 auto; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;">
-                                    <defs>
-                                        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                            <path d="M 0 2 L 8 5 L 0 8 z" fill="#6B7A52" />
-                                        </marker>
-                                    </defs>
-
-                                    <!-- 1. Client -->
-                                    <rect x="150" y="10" width="240" height="48" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
-                                    <text x="270" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">Client</text>
-                                    <text x="270" y="46" text-anchor="middle" font-size="11" fill="#565A4D">Next.js frontend</text>
-
-                                    <!-- Arrow 1 -> 2 -->
-                                    <line x1="270" y1="58" x2="270" y2="88" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
-
-                                    <!-- 2. API -->
-                                    <rect x="150" y="88" width="240" height="48" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
-                                    <text x="270" y="108" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">API</text>
-                                    <text x="270" y="124" text-anchor="middle" font-size="11" fill="#565A4D">FastAPI backend</text>
-
-                                    <!-- Arrow 2 -> 3 -->
-                                    <line x1="270" y1="136" x2="270" y2="166" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
-
-                                    <!-- 3. Data Pipeline -->
-                                    <rect x="110" y="166" width="320" height="48" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
-                                    <text x="270" y="186" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">Data Pipeline</text>
-                                    <text x="270" y="202" text-anchor="middle" font-size="11" fill="#565A4D">SEC EDGAR → Yahoo Finance fallback</text>
-
-                                    <!-- Split Arrows 3 -> 4a & 4b -->
-                                    <path d="M 270 214 L 270 230 L 135 230 L 135 250" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
-                                    <path d="M 270 214 L 270 230 L 405 230 L 405 250" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
-
-                                    <!-- 4a. Quant Engine (Left) -->
-                                    <rect x="20" y="250" width="230" height="60" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
-                                    <text x="135" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#292A24">Quant Engine</text>
-                                    <text x="135" y="285" text-anchor="middle" font-size="10.5" fill="#565A4D">Altman Z-Score, Monte Carlo</text>
-                                    <text x="135" y="299" text-anchor="middle" font-size="10" fill="#6B7A52">1,000 simulated paths</text>
-
-                                    <!-- 4b. Gemini NLP (Right) -->
-                                    <rect x="290" y="250" width="230" height="60" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
-                                    <text x="405" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#292A24">Gemini NLP</text>
-                                    <text x="405" y="285" text-anchor="middle" font-size="10.5" fill="#565A4D">Forensic text analysis</text>
-                                    <text x="405" y="299" text-anchor="middle" font-size="10" fill="#6B7A52">Truth Score engine</text>
-
-                                    <!-- Converging Arrows 4a & 4b -> 5 -->
-                                    <path d="M 135 310 L 135 330 L 270 330 L 270 348" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
-                                    <path d="M 405 310 L 405 330 L 270 330 L 270 348" fill="none" stroke="#6B7A52" stroke-width="1.5" marker-end="url(#arrow)" />
-
-                                    <!-- 5. Risk Report -->
-                                    <rect x="80" y="350" width="380" height="54" rx="8" fill="#FAF9F5" stroke="#6B7A52" stroke-width="1.5" />
-                                    <text x="270" y="371" text-anchor="middle" font-size="12.5" font-weight="700" fill="#292A24">Risk Report</text>
-                                    <text x="270" y="389" text-anchor="middle" font-size="11" fill="#565A4D">Combined structural + linguistic score · Delivered in &lt; 2.4s</text>
-                                </svg>
-                            </div>
-                            <p><strong>Stack:</strong> Next.js, TypeScript, Tailwind CSS, FastAPI, Pandas, NumPy, Scikit-learn, Google Gemini API, Playwright/BeautifulSoup, deployed on Vercel + Railway.</p>
-                            <p><strong>Outcome:</strong> Processes full corporate disclosures like 10-K filings into actionable risk intelligence — combining quantitative and qualitative signals — in under 2.4 seconds.</p>
+                        <p class="project-hook">Turns dense 10-K filings into risk intelligence in under 2.4 seconds, combining deterministic math with LLM-based forensic analysis.</p>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+                            <button class="btn-case-study magnetic-btn" data-project="alphaguard">
+                                View Case Study
+                                <span class="material-symbols-outlined">arrow_outward</span>
+                            </button>
+                            <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="project-link magnetic-btn">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                                View Code
+                            </a>
                         </div>
-                        <a href="https://github.com/Priya-Pareekk/Alpha-Guard" target="_blank" rel="noopener noreferrer" class="project-link magnetic-btn">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                            View Code
-                        </a>
                     </div>
                 </div>
 
@@ -615,17 +567,21 @@
                             <span class="project-tag">API</span>
                         </div>
                         <h3>TubeRadar: YouTube Sentiment Suite</h3>
-                        <div class="project-case-study">
-                            <p><strong>Problem:</strong> Brands and creators need to gauge audience sentiment across hundreds of YouTube comments without reading each one manually.</p>
-                            <p><strong>Approach:</strong> Built a dashboard that scrapes comments via the Google API and runs TextBlob NLP for polarity scoring, visualized with Plotly — including a "Competitor Battle" mode for side-by-side brand comparison.</p>
-                            <p><strong>Stack:</strong> Python, Streamlit, TextBlob, Google API, Plotly.</p>
-                            <p><strong>Outcome:</strong> A real-time sentiment analysis suite usable for both single-channel monitoring and competitor benchmarking.</p>
+                        <p class="project-hook">Turns thousands of YouTube comments into a live sentiment dashboard, with head-to-head competitor comparison.</p>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+                            <button class="btn-case-study magnetic-btn" data-project="tuberadar">
+                                View Case Study
+                                <span class="material-symbols-outlined">arrow_outward</span>
+                            </button>
+                            <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer"
+                                class="project-link magnetic-btn">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                                View Code
+                            </a>
                         </div>
-                        <a href="https://github.com/Priya-Pareekk/youtube_radar" target="_blank" rel="noopener noreferrer"
-                            class="project-link magnetic-btn">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                            View Code
-                        </a>
+                    </div>
+                </div>
+            </div>
                     </div>
                 </div>
             </div>
@@ -785,6 +741,24 @@
         </div>
     </footer>
 
+    <!-- Project Case Study Modal -->
+    <div class="resume-modal" id="projectModal">
+        <div class="resume-modal-backdrop" id="projectModalBackdrop"></div>
+        <div class="resume-modal-box project-modal-box">
+            <div class="resume-modal-header">
+                <h3 id="projectModalTitle">Project Title</h3>
+                <div class="resume-modal-actions">
+                    <button class="resume-modal-close" id="projectModalClose" aria-label="Close case study">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+            </div>
+            <div class="project-modal-body" id="projectModalBody">
+                <!-- Filled dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Resume Preview Modal -->
     <div class="resume-modal" id="resumeModal">
         <div class="resume-modal-backdrop" id="resumeModalBackdrop"></div>
@@ -792,11 +766,11 @@
             <div class="resume-modal-header">
                 <h3>Priya Pareek — Resume</h3>
                 <div class="resume-modal-actions">
-                    <a href="Pareek_Resume.pdf" download class="resume-modal-btn magnetic-btn" aria-label="Download resume">
+                    <a href="priya_pareek_resume.pdf" download class="resume-modal-btn magnetic-btn" aria-label="Download resume">
                         <span class="material-symbols-outlined">download</span>
                         Download
                     </a>
-                    <a href="Pareek_Resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-modal-btn magnetic-btn" aria-label="Open resume in new tab">
+                    <a href="priya_pareek_resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-modal-btn magnetic-btn" aria-label="Open resume in new tab">
                         <span class="material-symbols-outlined">open_in_new</span>
                         Open in New Tab
                     </a>
@@ -806,7 +780,7 @@
                 </div>
             </div>
             <div class="resume-modal-body">
-                <iframe src="Pareek_Resume.pdf" title="Priya Pareek Resume Preview" id="resumeIframe"></iframe>
+                <iframe src="priya_pareek_resume.pdf" title="Priya Pareek Resume Preview" id="resumeIframe"></iframe>
             </div>
         </div>
     </div>
