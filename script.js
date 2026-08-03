@@ -850,12 +850,120 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     }
 
     // click handlers
+    // Project Modal — richer rendering
+    const projectModal = document.getElementById('projectModal');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalBody = document.getElementById('projectModalBody');
+    const projectModalClose = document.getElementById('projectModalClose');
+    const projectModalBackdrop = document.getElementById('projectModalBackdrop');
+
+    function openProjectModal(key) {
+        const data = projectsData[key];
+        if (!data || !projectModal || !projectModalTitle || !projectModalBody) return;
+
+        projectModalTitle.textContent = data.title || '';
+
+        // Build structured sections
+        const sections = [];
+
+        // Problem
+        const problemWrap = document.createElement('div');
+        problemWrap.className = 'modal-section';
+        const problemLabel = document.createElement('span');
+        problemLabel.className = 'modal-section-label';
+        problemLabel.textContent = 'The Problem';
+        const problemP = document.createElement('p');
+        problemP.textContent = data.problem || '';
+        problemWrap.appendChild(problemLabel);
+        problemWrap.appendChild(problemP);
+        sections.push(problemWrap);
+
+        // Approach
+        const approachWrap = document.createElement('div');
+        approachWrap.className = 'modal-section';
+        const approachLabel = document.createElement('span');
+        approachLabel.className = 'modal-section-label';
+        approachLabel.textContent = 'Approach';
+        const approachP = document.createElement('p');
+        approachP.textContent = data.approach || '';
+        approachWrap.appendChild(approachLabel);
+        approachWrap.appendChild(approachP);
+        sections.push(approachWrap);
+
+        // Stack row
+        const stackWrap = document.createElement('div');
+        stackWrap.className = 'modal-stack-row';
+        const stackLabel = document.createElement('span');
+        stackLabel.className = 'modal-section-label';
+        stackLabel.textContent = 'Tech Stack';
+        const chips = document.createElement('div');
+        chips.className = 'modal-stack-chips';
+        (data.stack || '').split(',').map(s => s.trim()).filter(Boolean).forEach(s => {
+            const chip = document.createElement('span');
+            chip.className = 'modal-stack-chip';
+            chip.textContent = s;
+            chips.appendChild(chip);
+        });
+        stackWrap.appendChild(stackLabel);
+        stackWrap.appendChild(chips);
+        sections.push(stackWrap);
+
+        // Outcome
+        const outcomeWrap = document.createElement('div');
+        outcomeWrap.className = 'modal-section';
+        const outcomeLabel = document.createElement('span');
+        outcomeLabel.className = 'modal-section-label';
+        outcomeLabel.textContent = 'Outcome';
+        const outcomeP = document.createElement('p');
+        outcomeP.textContent = data.outcome || '';
+        outcomeWrap.appendChild(outcomeLabel);
+        outcomeWrap.appendChild(outcomeP);
+        sections.push(outcomeWrap);
+
+        // Clear and append with staggered animation delays
+        projectModalBody.innerHTML = '';
+        sections.forEach((el, idx) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(12px)';
+            el.style.animation = 'modalFadeUp 400ms ease forwards';
+            el.style.animationDelay = (idx * 60) + 'ms';
+            projectModalBody.appendChild(el);
+        });
+
+        // Link row (existing style)
+        const linksDiv = document.createElement('div');
+        linksDiv.className = 'project-modal-links';
+        linksDiv.innerHTML = `
+            <a href="${data.github}" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined">code</span> View Code
+            </a>
+            ${data.demo ? `<a href="${data.demo}" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined">open_in_new</span> Live Demo
+            </a>` : ''}
+        `;
+        linksDiv.style.marginTop = '12px';
+        projectModalBody.appendChild(linksDiv);
+
+        projectModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+        if (!projectModal) return;
+        projectModal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    // wire buttons to open modal (preserve previous wiring pattern)
     document.querySelectorAll('.btn-open-case').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const key = btn.dataset.project;
-            openProjectDrawer(key);
+            openProjectModal(key);
         });
     });
+
+    if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
+    if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
 
     if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeProjectDrawer);
     if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeProjectDrawer);
