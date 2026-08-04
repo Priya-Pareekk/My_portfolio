@@ -625,12 +625,26 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             input.focus();
         }
 
+        let commandHistory = [];
+        let historyIndex = -1;
+
         const commands = {
-            help: () => appendLine('Commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>resume</strong>, <strong>contact</strong>, <strong>github</strong>, <strong>leetcode</strong>, <strong>clear</strong>'),
+            help: () => appendLine('Commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>certifications</strong>, <strong>resume</strong>, <strong>contact</strong>, <strong>github</strong>, <strong>leetcode</strong>, <strong>clear</strong>'),
             about: () => { scrollToSection('about'); appendLine('Opening About section →'); },
             skills: () => { scrollToSection('skills'); appendLine('Opening Skills section →'); },
             projects: () => { scrollToSection('projects'); appendLine('Opening Projects section →'); },
+            certifications: () => { scrollToSection('certifications'); appendLine('Opening Certifications section →'); },
             contact: () => { scrollToSection('contact'); appendLine('Opening Contact section →'); },
+            live: () => { scrollToSection('live'); appendLine('Opening Live section →'); },
+            email: () => {
+                try {
+                    navigator.clipboard.writeText('priyapareeek29@gmail.com');
+                    appendLine('Email copied to clipboard: priyapareeek29@gmail.com');
+                } catch (e) {
+                    appendLine('Email: priyapareeek29@gmail.com');
+                }
+            },
+            coffee: () => appendLine('☕ Brewing... — this is what powers most of my commits.'),
             resume: () => { appendLine('Opening resume preview →'); if (typeof openResumeModal === 'function') openResumeModal(); },
             github: () => { appendLine('Switching dashboard to GitHub →'); document.querySelector('.dashboard-tab[data-tab="github"]')?.click(); },
             leetcode: () => { appendLine('Switching dashboard to LeetCode →'); document.querySelector('.dashboard-tab[data-tab="leetcode"]')?.click(); },
@@ -653,7 +667,26 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             if (e.key === 'Enter' && !introRunning) {
                 const val = input.value;
                 input.value = '';
+                if (val.trim()) {
+                    commandHistory.push(val);
+                    historyIndex = commandHistory.length;
+                }
                 runCommand(val);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    input.value = commandHistory[historyIndex] || '';
+                }
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    input.value = commandHistory[historyIndex] || '';
+                } else {
+                    historyIndex = commandHistory.length;
+                    input.value = '';
+                }
             }
         });
 

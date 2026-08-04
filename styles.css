@@ -853,13 +853,14 @@ button {
     border-bottom: 1px solid var(--border);
 }
 
+.container,
 .section-container {
     max-width: 1140px;
     margin: 0 auto;
 }
 
 .section-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 48px;
 }
 
@@ -1026,7 +1027,7 @@ button {
 }
 
 .section-title.center {
-    text-align: center;
+    text-align: left;
 }
 
 .section-subtitle {
@@ -1034,7 +1035,7 @@ button {
     font-size: 1.05rem;
     font-weight: 400;
     max-width: 580px;
-    margin: 0 auto;
+    margin: 0;
     line-height: 1.6;
 }
 

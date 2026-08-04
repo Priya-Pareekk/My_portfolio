@@ -106,24 +106,36 @@
 
     <section class="live-section" id="live">
         <div class="container">
-            <span class="section-path">~/live</span>
-            <span class="section-tag">SEE IT LIVE</span>
-            <h2 class="section-title">Ask my portfolio a question</h2>
-            <p class="section-subtitle">A real terminal, and live stats pulled straight from GitHub and LeetCode.</p>
+            <div class="section-header">
+                <span class="section-path">~/live</span>
+                <span class="section-tag">SEE IT LIVE</span>
+                <h2 class="section-title">Ask my portfolio a question</h2>
+                <p class="section-subtitle">A real terminal, and live stats pulled straight from GitHub and LeetCode.</p>
+            </div>
 
             <div class="live-grid">
-                <div class="terminal-window" role="region" aria-label="Interactive terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span></span><span></span><span></span>
+                <div>
+                    <div class="terminal-window" role="region" aria-label="Interactive terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="terminal-title">priya@portfolio — zsh</span>
                         </div>
-                        <span class="terminal-title">priya@portfolio — zsh</span>
+                        <div class="terminal-body" id="terminalBody"></div>
+                        <div class="terminal-input-row">
+                            <span class="terminal-prompt">guest@priya:~$</span>
+                            <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+                            <span class="terminal-cursor">▋</span>
+                        </div>
                     </div>
-                    <div class="terminal-body" id="terminalBody"></div>
-                    <div class="terminal-input-row">
-                        <span class="terminal-prompt">guest@priya:~$</span>
-                        <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
-                        <span class="terminal-cursor">▋</span>
+                    <div class="terminal-quick-commands">
+                        <button data-cmd="about">about</button>
+                        <button data-cmd="skills">skills</button>
+                        <button data-cmd="projects">projects</button>
+                        <button data-cmd="certifications">certifications</button>
+                        <button data-cmd="contact">contact</button>
+                        <button data-cmd="help">help</button>
                     </div>
                 </div>
                 <div class="glass-card dashboard-card">
@@ -291,8 +303,9 @@
     <section class="section section-alt" id="skills">
         <div class="section-container">
             <div class="section-header">
+                <span class="section-path">~/skills</span>
                 <span class="section-tag">Technologies & tools</span>
-                <h2 class="section-title center">Technical Skills</h2>
+                <h2 class="section-title">Technical Skills</h2>
                 <p class="section-subtitle">Technologies and tools I work with to build real-world solutions</p>
             </div>
         </div>
@@ -488,8 +501,9 @@
     <section class="section" id="projects">
         <div class="section-container">
             <div class="section-header">
+                <span class="section-path">~/projects</span>
                 <span class="section-tag">What I've built</span>
-                <h2 class="section-title center">Featured Projects</h2>
+                <h2 class="section-title">Featured Projects</h2>
                 <p class="section-subtitle">A selection of projects showcasing my capabilities</p>
             </div>
 
@@ -557,8 +571,9 @@
     <section class="section section-alt" id="certifications">
         <div class="section-container">
             <div class="section-header">
+                <span class="section-path">~/certifications</span>
                 <span class="section-tag">Achievements</span>
-                <h2 class="section-title center">Certifications</h2>
+                <h2 class="section-title">Certifications</h2>
                 <p class="section-subtitle">Professional certifications and achievements</p>
             </div>
 
@@ -649,10 +664,12 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <span class="section-path">~/contact</span>
-            <span class="section-tag">GET IN TOUCH</span>
-            <h2 class="section-title">Let's Talk</h2>
-            <p class="section-subtitle">Open to SDE and backend developer roles. Reach out directly, or copy my email below.</p>
+            <div class="section-header">
+                <span class="section-path">~/contact</span>
+                <span class="section-tag">GET IN TOUCH</span>
+                <h2 class="section-title">Let's Talk</h2>
+                <p class="section-subtitle">Open to SDE and backend developer roles. Reach out directly, or copy my email below.</p>
+            </div>
 
             <div class="contact-grid">
                 <button class="contact-card magnetic-btn" id="copyEmailBtn" type="button">
@@ -732,6 +749,7 @@
                     <a href="#skills">Skills</a>
                     <a href="#projects">Projects</a>
                     <a href="#certifications">Certifications</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
             <p class="footer-note">Built with vanilla JS &middot; Deployed on GitHub Pages &middot; LeetCode stats fetched live via API</p>
