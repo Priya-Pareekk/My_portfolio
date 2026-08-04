@@ -111,9 +111,8 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         if (solved) {
             if (statEl) {
                 statEl.dataset.target = solved;
-                if (statEl.textContent !== '0' && !statEl.classList.contains('counting')) {
-                    statEl.textContent = solved;
-                }
+                // Always sync the visible stat immediately so fallback/stale values don't persist
+                statEl.textContent = solved;
             }
             if (heroTotal) heroTotal.textContent = solved;
             if (strengthCount) strengthCount.textContent = solved;
@@ -570,6 +569,50 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         // clicked outside
         sidebarEl.classList.remove('open');
     });
+
+    // ─── Hero Terminal (small interactive prompt) ───────────
+    function initHeroTerminal() {
+        const body = document.getElementById('terminalBody');
+        const input = document.getElementById('terminalInput');
+        if (!body || !input) return;
+
+        function print(line, cls) {
+            const el = document.createElement('div');
+            el.className = cls || 'term-line';
+            el.textContent = line;
+            body.appendChild(el);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        print('Welcome — type "help" for commands.');
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter') return;
+            const raw = input.value.trim();
+            if (!raw) return;
+            print(`$ ${raw}`, 'term-cmd');
+            const cmd = raw.toLowerCase();
+            if (cmd === 'help') {
+                print('help — show commands');
+                print('about — short bio');
+                print('projects — list projects');
+                print('clear — clear the terminal');
+            } else if (cmd === 'about') {
+                print('I build backend systems focused on reliability, scalability, and clear engineering tradeoffs.');
+            } else if (cmd === 'projects') {
+                print('Alpha-Guard — forensic credit risk platform');
+                print('TubeRadar — YouTube sentiment analysis');
+            } else if (cmd === 'clear') {
+                body.innerHTML = '';
+            } else {
+                print('Unknown command. Try "help".');
+            }
+            input.value = '';
+        });
+    }
+
+    // initialize terminal if present
+    initHeroTerminal();
 
         // ─── Subtle Network Background (hero)
         (function initNetworkBackground() {

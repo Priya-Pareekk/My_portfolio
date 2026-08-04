@@ -116,6 +116,17 @@
                         Explore Skills
                     </a>
                 </div>
+
+                <!-- Terminal Window (restored) -->
+                <div class="terminal-window glass-card" role="region" aria-label="Interactive terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">~/<span class="terminal-cwd">portfolio</span></span>
+                    </div>
+                    <div class="terminal-body" id="terminalBody" aria-live="polite"></div>
+                    <div class="terminal-input-row">
+                        <input id="terminalInput" class="terminal-input" type="text" autocomplete="off" placeholder="Type 'help' or try 'about'..." />
+                    </div>
+                </div>
             </div>
 
             <div class="hero-right">
@@ -244,9 +255,9 @@
                 <span class="stat-label">Projects</span>
             </div>
             <div class="stat-divider"></div>
-            <div class="stat-item">
-                <!-- Fallback value below (150) is used only if the live API fails -->
-                <span class="stat-number" id="leetcodeStat" data-target="150">0</span>
+                <div class="stat-item">
+                <!-- Fallback value below (57) is used only if the live API fails -->
+                <span class="stat-number" id="leetcodeStat" data-target="57">57</span>
                 <span class="stat-label">LeetCode Solved</span>
             </div>
         </div>
@@ -261,12 +272,11 @@
                 <div class="feature-text reveal-left">
                     <span class="section-tag">Get to know me</span>
                     <h2 class="section-title">About Me</h2>
-                    <p class="feature-description">
-                        I'm a 4th year Computer Science Engineering student at VIT-AP University, with a strong focus on backend development and system design. My interest lies in understanding how large-scale systems are built — from designing clean APIs and efficient databases to architecting systems that scale reliably under real-world load.
-                    </p>
-                    <p class="feature-description">
-                        I enjoy going deep into the fundamentals — data structures, algorithms, distributed systems — and applying that understanding to build backend systems that are both robust and maintainable. I'm currently preparing for SDE and backend developer roles, sharpening my problem-solving through consistent DSA practice and hands-on system design work.
-                    </p>
+                    <p class="feature-description">I got into backend development almost by accident — debugging a slow API call taught me more about how software actually works than any framework tutorial did. That curiosity turned into a real focus: understanding what happens underneath the interface, where the actual engineering decisions live.</p>
+
+                    <p class="feature-description">I'm in my final year at VIT-AP University, and most of what I build reflects that same instinct — Alpha-Guard came from wanting to understand how financial systems process risk at scale, not just what the numbers say. I care about the difference between code that works and architecture that holds up.</p>
+
+                    <p class="feature-description">Outside of building, I spend a lot of time in the terminal above this section, quite literally — daily DSA practice, reading through system design case studies, and slowly getting faster at spotting where a design will break before it does.</p>
                 </div>
                 <div class="feature-visual reveal-right">
                     <div class="about-visual">
@@ -704,24 +714,7 @@
         </div>
     </section>
 
-    <!-- Light CTA Section -->
-    <section class="cta-section section">
-        <div class="cta-section-content">
-            <h2>Let's Build Something<br><span class="gradient-text">Amazing Together</span></h2>
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            </p>
-            <div class="hero-ctas">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=priyapareeek29@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic-btn">
-                    <span class="material-symbols-outlined">mail</span>
-                    Get In Touch
-                </a>
-                <a href="https://www.linkedin.com/in/priya-pareek-68993a323" target="_blank" rel="noopener noreferrer"
-                    class="btn btn-secondary magnetic-btn">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Old CTA removed: replaced by consolidated contact section below -->
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">

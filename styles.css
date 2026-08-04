@@ -747,7 +747,7 @@ button {
 .section {
     position: relative;
     z-index: 1;
-    padding: 130px 24px;
+    padding: 100px 24px;
 }
 
 .section-alt {
@@ -763,7 +763,7 @@ button {
 
 .section-header {
     text-align: center;
-    margin-bottom: 76px;
+    margin-bottom: 48px;
 }
 
 .section-tag {
@@ -805,9 +805,9 @@ button {
 .feature-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 60px;
     align-items: center;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
 }
 
 .feature-row:last-child {
@@ -1280,7 +1280,8 @@ button {
 }
 
 .project-image {
-    height: 210px;
+    min-height: 140px;
+    padding: 24px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -2221,6 +2222,11 @@ button {
     line-height: 1.5;
 }
 
+/* Make last strength card span full width to avoid empty grid cell */
+.strength-card:last-child {
+    grid-column: 1 / -1;
+}
+
 /* ---------- Fix 3: Projects Case Study Modal ---------- */
 .project-hook {
     font-size: 0.92rem;
@@ -2392,6 +2398,31 @@ button {
     color: var(--text-muted);
 }
 
+/* ---------- Contact Card Link Reset ---------- */
+a.contact-card,
+a.contact-card:link,
+a.contact-card:visited,
+a.contact-card:hover,
+a.contact-card:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.contact-card-text h3 {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.contact-card-text p {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+/* Reduce top spacing for contact section to match other sections */
+.contact-section {
+    padding-top: 60px;
+}
+
 @media (max-width: 768px) {
     .contact-grid {
         grid-template-columns: 1fr;
@@ -2534,6 +2565,40 @@ button {
 .sidebar-socials {
     display: flex;
     gap: 12px;
+}
+
+/* Sidebar social icon link styling */
+.sidebar-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-alt);
+    color: var(--text-secondary);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.sidebar-socials a:visited,
+.sidebar-socials a:link {
+    color: var(--text-secondary);
+}
+
+.sidebar-socials a:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.sidebar-socials svg,
+.sidebar-socials .material-symbols-outlined {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    fill: currentColor;
+    stroke: none;
 }
 
 .main-content {
