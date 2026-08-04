@@ -535,16 +535,41 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
     if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
 
-        // ─── Sidebar: ensure mobile toggle element closes sidebar on outside click
-        document.addEventListener('click', (e) => {
-            const sidebarEl = document.getElementById('sidebar');
-            const toggle = document.getElementById('mobileMenuToggle');
-            if (!sidebarEl || !sidebarEl.classList.contains('open')) return;
-            if (toggle && toggle.contains(e.target)) return;
-            if (sidebarEl.contains(e.target)) return;
-            // clicked outside
-            sidebarEl.classList.remove('open');
+    // ─── Contact: Copy Email ───────────
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const copyHint = document.getElementById('copyHint');
+
+    if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', async () => {
+            const email = document.getElementById('emailDisplay')?.textContent || 'priyapareeek29@gmail.com';
+            try {
+                await navigator.clipboard.writeText(email);
+                if (copyHint) {
+                    copyHint.textContent = 'Copied!';
+                    copyHint.style.opacity = '1';
+                }
+                setTimeout(() => {
+                    if (copyHint) {
+                        copyHint.textContent = 'Click to copy';
+                        copyHint.style.opacity = '';
+                    }
+                }, 1800);
+            } catch (err) {
+                window.location.href = `mailto:${email}`;
+            }
         });
+    }
+
+    // ─── Sidebar: ensure mobile toggle element closes sidebar on outside click
+    document.addEventListener('click', (e) => {
+        const sidebarEl = document.getElementById('sidebar');
+        const toggle = document.getElementById('mobileMenuToggle');
+        if (!sidebarEl || !sidebarEl.classList.contains('open')) return;
+        if (toggle && toggle.contains(e.target)) return;
+        if (sidebarEl.contains(e.target)) return;
+        // clicked outside
+        sidebarEl.classList.remove('open');
+    });
 
         // ─── Subtle Network Background (hero)
         (function initNetworkBackground() {
@@ -562,14 +587,15 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             }
 
             function createNodes() {
-                const count = Math.floor((width * height) / 45000);
-                nodes = Array.from({ length: Math.min(count, 22) }, () => ({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.15,
-                    vy: (Math.random() - 0.5) * 0.15
-                }));
-            }
+                    const count = Math.floor((width * height) / 45000);
+                    const cap = width < 600 ? 10 : 22;
+                    nodes = Array.from({ length: Math.min(count, cap) }, () => ({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * 0.15,
+                        vy: (Math.random() - 0.5) * 0.15
+                    }));
+                }
 
             function step() {
                 ctx.clearRect(0, 0, width, height);
@@ -612,12 +638,20 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             step();
 
             let resizeTimer;
-            window.addEventListener('resize', () => {
+            function onResizeDebounced() {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
                     resize();
                     createNodes();
                 }, 120);
+            }
+
+            window.addEventListener('resize', onResizeDebounced);
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    resize();
+                    createNodes();
+                }, 200);
             });
         })();
 })();

@@ -2298,6 +2298,146 @@ button {
     background: var(--bg-alt);
 }
 
+/* ---------- Contact Section ---------- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon .material-symbols-outlined {
+    font-size: 22px;
+    color: var(--accent-dark);
+}
+
+.contact-card-text h3 {
+    font-size: 0.94rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.contact-card-text p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    word-break: break-word;
+}
+
+.contact-copy-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.contact-card:hover .contact-copy-hint {
+    opacity: 1;
+}
+
+.contact-arrow {
+    margin-left: auto;
+    font-size: 18px;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.contact-card:hover .contact-arrow {
+    color: var(--accent-dark);
+    transform: translate(2px, -2px);
+}
+
+.contact-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Mobile Optimization Safety Rules ---------- */
+@media (max-width: 1024px) {
+    body { overflow-x: hidden; }
+}
+
+@media (max-width: 480px) {
+    /* Terminal adjustments */
+    .terminal-header { padding: 10px 12px; }
+    .terminal-title { font-size: 0.7rem; }
+    .terminal-body { font-size: 0.78rem; padding: 14px 16px; min-height: 180px; }
+    .terminal-input-row { padding: 0 16px 14px; font-size: 0.78rem; }
+    .terminal-quick-commands button { font-size: 0.72rem; padding: 5px 10px; }
+    .terminal-input { font-size: 16px; }
+
+    /* Dashboard card */
+    .dashboard-card { padding: 20px; }
+    .leetcode-total span:first-child { font-size: 1.9rem; }
+    .github-mini-stats { gap: 6px; }
+    .github-mini-stat { padding: 10px 4px; }
+    .github-mini-stat span:not(.material-symbols-outlined) { font-size: 0.95rem; }
+
+    /* Gitlog / philosophy */
+    .gitlog-body, .philosophy-code { font-size: 0.76rem; overflow-x: auto; }
+    .philosophy-block { padding: 18px 16px; }
+
+    /* Language legend */
+    .lang-legend { gap: 10px; }
+    .lang-legend-item { font-size: 0.72rem; }
+
+    /* Modals adjustments (project) */
+    .project-modal-box { max-width: 100%; }
+    .project-modal-body { padding: 18px; }
+    .project-modal-links { flex-direction: column; }
+    .project-modal-links a { justify-content: center; }
+
+    /* Misc spacing */
+    .section { padding-left: 16px; padding-right: 16px; }
+}
+
+
 /* ---------- Sidebar Layout (Fixed Left) ---------- */
 .layout-wrapper {
     display: flex;
