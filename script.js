@@ -84,6 +84,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
 (async function fetchLeetCodeSolved() {
     const statEl = document.getElementById('leetcodeStat');
     const heroTotal = document.getElementById('heroLeetcodeTotal');
+    const heroStat = document.getElementById('heroLeetcodeStat');
     const strengthCount = document.getElementById('strengthLeetcodeCount');
     const barEasy = document.getElementById('barEasy');
     const barMedium = document.getElementById('barMedium');
@@ -96,6 +97,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const cached = localStorage.getItem(cacheKey);
     if (cached && statEl) statEl.dataset.target = cached;
     if (cached && heroTotal) heroTotal.textContent = cached;
+    if (cached && heroStat) heroStat.textContent = cached;
     if (cached && strengthCount) strengthCount.textContent = cached;
 
     try {
@@ -115,6 +117,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
                 statEl.textContent = solved;
             }
             if (heroTotal) heroTotal.textContent = solved;
+            if (heroStat) heroStat.textContent = solved;
             if (strengthCount) strengthCount.textContent = solved;
             localStorage.setItem(cacheKey, solved);
         }
@@ -130,47 +133,38 @@ const LEETCODE_USERNAME = 'Priya_pareek';
 (() => {
     'use strict';
 
-    // ─── Navigation (supports top navbar or new sidebar) ─────────────────
-    const navbar = document.getElementById('navbar');
-    const sidebar = document.getElementById('sidebar');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn') || document.getElementById('mobileMenuToggle');
-    const navLinks = document.getElementById('navLinks') || document.querySelector('.sidebar-nav');
-    const navLinkEls = document.querySelectorAll('.nav-link, .sidebar-nav-link');
+    // ─── Navigation (top nav + mobile panel) ─────────────────
+    const topNav = document.getElementById('topNav');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNavPanel = document.getElementById('mobileNavPanel');
+    const navLinkEls = document.querySelectorAll('.top-nav a[href^="#"], .mobile-nav-panel a[href^="#"]');
 
-    // Sticky top navbar behavior (if present)
-    window.addEventListener('scroll', () => {
-        navbar?.classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    // Mobile toggle: either open old navLinks or show sidebar
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            if (sidebar) sidebar.classList.toggle('open');
-            if (navLinks && navLinks.classList) navLinks.classList.toggle('open');
-            mobileMenuBtn.classList.toggle('active');
-        });
+    function syncTopNavState() {
+        topNav?.classList.toggle('scrolled', window.scrollY > 40);
     }
 
-    // Close mobile menu/sidebar on link click
+    syncTopNavState();
+    window.addEventListener('scroll', syncTopNavState);
+
+    mobileMenuToggle?.addEventListener('click', () => {
+        mobileNavPanel?.classList.toggle('open');
+    });
+
     navLinkEls.forEach(link => {
         link.addEventListener('click', () => {
-            if (sidebar) sidebar.classList.remove('open');
-            if (navLinks && navLinks.classList) navLinks.classList.remove('open');
-            mobileMenuBtn?.classList.remove('active');
+            mobileNavPanel?.classList.remove('open');
         });
     });
 
     // Active link highlighting using IntersectionObserver for better accuracy
-    const sections = document.querySelectorAll('main section[id], section[id]');
-    const sidebarLinks = document.querySelectorAll('.sidebar-nav-link');
+    const sections = document.querySelectorAll('section[id]');
 
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinkEls.forEach(link => {
-                    const href = link.getAttribute('href') || link.dataset.section && `#${link.dataset.section}`;
-                    const id = entry.target.id;
-                    if (href) link.classList.toggle('active', href === `#${id}` || link.dataset.section === id);
+                    const href = link.getAttribute('href');
+                    link.classList.toggle('active', href === `#${entry.target.id}`);
                 });
             }
         });
@@ -186,7 +180,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             e.preventDefault();
             const target = document.querySelector(targetId);
             if (target) {
-                const offset = 80;
+                const offset = topNav ? topNav.offsetHeight + 12 : 80;
                 window.scrollTo({
                     top: target.offsetTop - offset,
                     behavior: 'smooth'
@@ -196,7 +190,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     });
 
     // ─── Stats Counter Animation ─────────────────────────
-    const statNumbers = document.querySelectorAll('.stat-number');
+    const statNumbers = document.querySelectorAll('.stat-number, .hero-stat-number');
     let statsAnimated = false;
 
     function animateStats() {
@@ -262,6 +256,24 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         statsObserver.observe(statsBar);
     }
 
+    if (document.querySelector('.hero-minimal .hero-stat-number')) {
+        animateStats();
+    }
+
+    const graphDividers = document.querySelectorAll('.graph-divider');
+    if (graphDividers.length) {
+        const graphObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    graphObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        graphDividers.forEach(div => graphObserver.observe(div));
+    }
+
     // ─── Icon Wave Marquee Hover Pause ───────────────────
     document.querySelectorAll('.icon-wave').forEach(wave => {
         const track = wave.querySelector('.icon-wave-track');
@@ -303,6 +315,8 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     }
 
     if (resumePreviewBtn) resumePreviewBtn.addEventListener('click', openResumeModal);
+    document.getElementById('heroResumeBtn')?.addEventListener('click', openResumeModal);
+    document.getElementById('navResumeBtn')?.addEventListener('click', openResumeModal);
     if (resumeModalClose) resumeModalClose.addEventListener('click', closeResumeModal);
     if (resumeModalBackdrop) resumeModalBackdrop.addEventListener('click', closeResumeModal);
 
@@ -559,60 +573,102 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         });
     }
 
-    // ─── Sidebar: ensure mobile toggle element closes sidebar on outside click
-    document.addEventListener('click', (e) => {
-        const sidebarEl = document.getElementById('sidebar');
-        const toggle = document.getElementById('mobileMenuToggle');
-        if (!sidebarEl || !sidebarEl.classList.contains('open')) return;
-        if (toggle && toggle.contains(e.target)) return;
-        if (sidebarEl.contains(e.target)) return;
-        // clicked outside
-        sidebarEl.classList.remove('open');
-    });
-
-    // ─── Hero Terminal (small interactive prompt) ───────────
-    function initHeroTerminal() {
+    // ─── Hero Terminal (Step 9 interactive prompt) ───────────
+    (function initTerminal() {
         const body = document.getElementById('terminalBody');
         const input = document.getElementById('terminalInput');
+        const quickBtns = document.querySelectorAll('.terminal-quick-commands button');
         if (!body || !input) return;
 
-        function print(line, cls) {
-            const el = document.createElement('div');
-            el.className = cls || 'term-line';
-            el.textContent = line;
-            body.appendChild(el);
+        let introRunning = true;
+
+        function appendLine(html, cls = 'output') {
+            const line = document.createElement('div');
+            line.className = `terminal-line ${cls}`;
+            line.innerHTML = html;
+            body.appendChild(line);
             body.scrollTop = body.scrollHeight;
+            return line;
         }
 
-        print('Welcome — type "help" for commands.');
+        function typeIntoLine(prefix, text, cls, speed = 22) {
+            return new Promise(resolve => {
+                const line = appendLine(prefix, cls);
+                let i = 0;
+                function step() {
+                    line.innerHTML = prefix + text.slice(0, i);
+                    body.scrollTop = body.scrollHeight;
+                    if (i < text.length) {
+                        i++;
+                        setTimeout(step, speed);
+                    } else {
+                        resolve();
+                    }
+                }
+                step();
+            });
+        }
+
+        function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+        async function runIntro() {
+            await typeIntoLine('<span class="prompt-echo">guest@priya:~$ </span>', 'whoami', 'output');
+            appendLine('<strong>Priya Pareek</strong> — Backend Developer & CS Student', 'output');
+            await sleep(300);
+
+            await typeIntoLine('<span class="prompt-echo">guest@priya:~$ </span>', 'cat focus.txt', 'output');
+            appendLine('System Design · DSA · Backend Development · currently prepping for SDE placements', 'output');
+            await sleep(300);
+
+            appendLine('Type <strong>help</strong> to see available commands, or use the buttons below.', 'output');
+            introRunning = false;
+            input.focus();
+        }
+
+        const commands = {
+            help: () => appendLine('Commands: <strong>about</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>resume</strong>, <strong>contact</strong>, <strong>github</strong>, <strong>leetcode</strong>, <strong>clear</strong>'),
+            about: () => { scrollToSection('about'); appendLine('Opening About section →'); },
+            skills: () => { scrollToSection('skills'); appendLine('Opening Skills section →'); },
+            projects: () => { scrollToSection('projects'); appendLine('Opening Projects section →'); },
+            contact: () => { scrollToSection('contact'); appendLine('Opening Contact section →'); },
+            resume: () => { appendLine('Opening resume preview →'); if (typeof openResumeModal === 'function') openResumeModal(); },
+            github: () => { appendLine('Switching dashboard to GitHub →'); document.querySelector('.dashboard-tab[data-tab="github"]')?.click(); },
+            leetcode: () => { appendLine('Switching dashboard to LeetCode →'); document.querySelector('.dashboard-tab[data-tab="leetcode"]')?.click(); },
+            whoami: () => appendLine('<strong>Priya Pareek</strong> — Backend Developer & CS Student @ VIT-AP University'),
+            clear: () => { body.innerHTML = ''; },
+            'sudo hire-me': () => appendLine('Permission granted. Scroll down and see for yourself. 😄'),
+        };
+
+        function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
+
+        function runCommand(raw) {
+            const cmd = raw.trim().toLowerCase();
+            appendLine(`<span class="prompt-echo">guest@priya:~$ </span>${raw}`, 'output');
+            if (!cmd) return;
+            if (commands[cmd]) { commands[cmd](); }
+            else { appendLine(`command not found: ${cmd} — type <strong>help</strong> for options`, 'error'); }
+        }
 
         input.addEventListener('keydown', (e) => {
-            if (e.key !== 'Enter') return;
-            const raw = input.value.trim();
-            if (!raw) return;
-            print(`$ ${raw}`, 'term-cmd');
-            const cmd = raw.toLowerCase();
-            if (cmd === 'help') {
-                print('help — show commands');
-                print('about — short bio');
-                print('projects — list projects');
-                print('clear — clear the terminal');
-            } else if (cmd === 'about') {
-                print('I build backend systems focused on reliability, scalability, and clear engineering tradeoffs.');
-            } else if (cmd === 'projects') {
-                print('Alpha-Guard — forensic credit risk platform');
-                print('TubeRadar — YouTube sentiment analysis');
-            } else if (cmd === 'clear') {
-                body.innerHTML = '';
-            } else {
-                print('Unknown command. Try "help".');
+            if (e.key === 'Enter' && !introRunning) {
+                const val = input.value;
+                input.value = '';
+                runCommand(val);
             }
-            input.value = '';
         });
-    }
 
-    // initialize terminal if present
-    initHeroTerminal();
+        quickBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (introRunning) return;
+                runCommand(btn.dataset.cmd);
+                input.focus();
+            });
+        });
+
+        document.querySelector('.terminal-window')?.addEventListener('click', () => input.focus());
+
+        runIntro();
+    })();
 
         // ─── Subtle Network Background (hero)
         (function initNetworkBackground() {
@@ -623,7 +679,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             let width = 0, height = 0, nodes = [];
 
             function resize() {
-                const hero = canvas.closest('.hero');
+                const hero = canvas.closest('.hero-minimal, .hero');
                 if (!hero) return;
                 width = canvas.width = hero.offsetWidth;
                 height = canvas.height = hero.offsetHeight;

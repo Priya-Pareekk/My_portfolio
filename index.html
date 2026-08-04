@@ -34,102 +34,98 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <nav class="top-nav" id="topNav">
+        <a href="#home" class="nav-logo">PP.</a>
+        <div class="nav-links">
+            <a href="#live">Live</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Work</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="nav-resume-btn" id="navResumeBtn">Resume</button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </nav>
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+        <a href="#live">Live</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Work</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </div>
 
-    <div class="layout-wrapper">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-top">
-                <div class="sidebar-avatar">PP</div>
-                <h1 class="sidebar-name">Priya Pareek</h1>
-                <p class="sidebar-title">Backend Developer &amp; CS Student</p>
+    <section class="hero-minimal" id="home">
+        <canvas id="networkCanvas" class="network-canvas"></canvas>
+        <div class="hero-minimal-inner">
+            <span class="hero-eyebrow">PORTFOLIO — 2026</span>
+            <h1 class="hero-name">Priya Pareek.</h1>
+            <p class="hero-role">Backend Engineer · System Design · Problem Solver</p>
+            <p class="hero-punchline">I design backend systems that hold up under real pressure — not just ones that pass the demo.</p>
+
+            <div class="hero-cta-row">
+                <a href="#projects" class="btn btn-primary magnetic-btn">View My Work</a>
+                <button class="btn btn-secondary magnetic-btn" id="heroResumeBtn">View Resume</button>
             </div>
 
-            <nav class="sidebar-nav">
-                <a href="#home" class="sidebar-nav-link" data-section="home">Home</a>
-                <a href="#about" class="sidebar-nav-link" data-section="about">About</a>
-                <a href="#skills" class="sidebar-nav-link" data-section="skills">Skills</a>
-                <a href="#projects" class="sidebar-nav-link" data-section="projects">Projects</a>
-                <a href="#certifications" class="sidebar-nav-link" data-section="certifications">Certifications</a>
-                <a href="#contact" class="sidebar-nav-link" data-section="contact">Contact</a>
-            </nav>
-
-            <div class="sidebar-bottom">
-                <div class="sidebar-socials">
-                    <a href="https://github.com/Priya-Pareekk" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/priya-pareek-68993a323" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    </a>
-                    <a href="mailto:priyapareeek29@gmail.com" aria-label="Email">
-                        <span class="material-symbols-outlined">mail</span>
-                    </a>
+            <div class="hero-stats-row">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="2">0</span>
+                    <span class="hero-stat-label">Projects Shipped</span>
                 </div>
-
-                <button class="cmd-trigger-btn" id="cmdPaletteBtn" type="button" aria-label="Open command palette">
-                    <span class="material-symbols-outlined">search</span>
-                    <kbd class="cmd-kbd" id="cmdKbdHint">Ctrl K</kbd>
-                </button>
-
-                <button class="nav-cta" id="resumePreviewBtn" type="button">
-                    <span class="material-symbols-outlined">description</span>
-                    Resume
-                </button>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" data-target="1000">0</span>
+                    <span class="hero-stat-label">Monte Carlo Paths</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number" id="heroLeetcodeStat" data-target="57">0</span>
+                    <span class="hero-stat-label">LeetCode Solved</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number-static">8.52</span>
+                    <span class="hero-stat-label">CGPA (VIT-AP)</span>
+                </div>
             </div>
-        </aside>
-
-        <div class="mobile-topbar" id="mobileTopbar">
-            <span class="sidebar-avatar">PP</span>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
         </div>
 
-        <main class="main-content">
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll</span>
+        </div>
+    </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <canvas id="networkCanvas" class="network-canvas"></canvas>
-        <div class="hero-grid">
-            <div class="hero-content hero-left">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    Available for Opportunities
-                </div>
-                <h1 class="hero-title">
-                    <span class="gradient-text">Priya Pareek</span>
-                </h1>
-                <p class="hero-subtitle">
-                    4th year Computer Science Engineering student at VIT-AP University, focused on backend development and system design. I enjoy building scalable systems and solving real-world engineering problems through clean, efficient code.
-                </p>
-                <div class="hero-ctas">
-                    <a href="#about" class="btn btn-primary magnetic-btn">
-                        <span class="material-symbols-outlined">person</span>
-                        About Me
-                    </a>
-                    <a href="#skills" class="btn btn-secondary magnetic-btn">
-                        Explore Skills
-                    </a>
-                </div>
+    <section class="live-section" id="live">
+        <div class="container">
+            <span class="section-path">~/live</span>
+            <span class="section-tag">SEE IT LIVE</span>
+            <h2 class="section-title">Ask my portfolio a question</h2>
+            <p class="section-subtitle">A real terminal, and live stats pulled straight from GitHub and LeetCode.</p>
 
-                <!-- Terminal Window (restored) -->
-                <div class="terminal-window glass-card" role="region" aria-label="Interactive terminal">
+            <div class="live-grid">
+                <div class="terminal-window" role="region" aria-label="Interactive terminal">
                     <div class="terminal-header">
-                        <span class="terminal-title">~/<span class="terminal-cwd">portfolio</span></span>
+                        <div class="terminal-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="terminal-title">priya@portfolio — zsh</span>
                     </div>
-                    <div class="terminal-body" id="terminalBody" aria-live="polite"></div>
+                    <div class="terminal-body" id="terminalBody"></div>
                     <div class="terminal-input-row">
-                        <input id="terminalInput" class="terminal-input" type="text" autocomplete="off" placeholder="Type 'help' or try 'about'..." />
+                        <span class="terminal-prompt">guest@priya:~$</span>
+                        <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input">
+                        <span class="terminal-cursor">▋</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="hero-right">
                 <div class="glass-card dashboard-card">
                     <div class="dashboard-tabs">
                         <button class="dashboard-tab active" data-tab="github">
@@ -168,8 +164,7 @@
                                 <small>Top Language</small>
                             </div>
                         </div>
-                        <a href="https://github.com/Priya-Pareekk" target="_blank" rel="noopener noreferrer"
-                            class="dashboard-link magnetic-btn">
+                        <a href="https://github.com/Priya-Pareekk" target="_blank" rel="noopener noreferrer" class="dashboard-link magnetic-btn">
                             View GitHub Profile
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
@@ -207,8 +202,7 @@
                                 <span class="leetcode-bar-count" id="countHard">0</span>
                             </div>
                         </div>
-                        <a href="https://leetcode.com/u/Priya_pareek/" target="_blank" rel="noopener noreferrer"
-                            class="dashboard-link magnetic-btn">
+                        <a href="https://leetcode.com/u/Priya_pareek/" target="_blank" rel="noopener noreferrer" class="dashboard-link magnetic-btn">
                             View LeetCode Profile
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
@@ -216,15 +210,16 @@
                 </div>
             </div>
         </div>
-
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
-            </div>
-            <span>Scroll to explore</span>
-        </div>
     </section>
+
+    <div class="graph-divider" data-label="system.uptime">
+        <svg viewBox="0 0 1200 80" preserveAspectRatio="none" class="graph-divider-svg">
+            <path class="graph-line" d="M0,60 L150,54 L300,42 L450,47 L600,22 L750,30 L900,12 L1050,18 L1200,6"
+                fill="none" stroke="var(--accent)" stroke-width="2" />
+            <circle class="graph-dot" cx="1200" cy="6" r="4" fill="#D9A867" />
+        </svg>
+        <span class="graph-label">system.uptime</span>
+    </div>
 
     <!-- Currently Strip -->
     <section class="currently-strip">
@@ -263,106 +258,33 @@
         </div>
     </section>
 
-    <!-- About Section — Antigravity alternating layout -->
+    <!-- About Section -->
     <section class="section" id="about">
         <div class="section-container">
+            <div class="about-intro">
+                <p><span class="section-number">01</span> About Me</p>
+                <h2>I'm a backend-focused CS student obsessed with <em>systems that don't break.</em></h2>
+                <p class="about-lede">From forensic financial engines to sentiment pipelines, I care more about the architecture holding things up than the surface people see.</p>
+            </div>
 
-            <!-- Feature Row 1: Text Left, Card Right -->
-            <div class="feature-row">
-                <div class="feature-text reveal-left">
-                    <span class="section-tag">Get to know me</span>
-                    <h2 class="section-title">About Me</h2>
-                    <p class="feature-description">I got into backend development almost by accident — debugging a slow API call taught me more about how software actually works than any framework tutorial did. That curiosity turned into a real focus: understanding what happens underneath the interface, where the actual engineering decisions live.</p>
-
-                    <p class="feature-description">I'm in my final year at VIT-AP University, and most of what I build reflects that same instinct — Alpha-Guard came from wanting to understand how financial systems process risk at scale, not just what the numbers say. I care about the difference between code that works and architecture that holds up.</p>
-
-                    <p class="feature-description">Outside of building, I spend a lot of time in the terminal above this section, quite literally — daily DSA practice, reading through system design case studies, and slowly getting faster at spotting where a design will break before it does.</p>
+            <div class="about-pillars">
+                <div class="about-pillar">
+                    <span class="pillar-number">01</span>
+                    <h3>Backend Engineering</h3>
+                    <p>Designing APIs and services built to stay reliable under real load, not just pass a demo.</p>
                 </div>
-                <div class="feature-visual reveal-right">
-                    <div class="about-visual">
-                        <svg class="architecture-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                                    <circle cx="2" cy="2" r="1" fill="var(--border)" />
-                                </pattern>
-                            </defs>
-                            <rect width="400" height="400" rx="24" fill="var(--bg-alt)" />
-                            <rect width="400" height="400" rx="24" fill="url(#dotGrid)" />
-
-                            <!-- Connection lines -->
-                            <path class="flow-line" d="M 90 100 L 200 100 L 200 180" fill="none" stroke="#D9A867" stroke-width="2" stroke-dasharray="6 6" />
-                            <path class="flow-line" d="M 310 100 L 200 100" fill="none" stroke="#D9A867" stroke-width="2" stroke-dasharray="6 6" />
-                            <path class="flow-line" d="M 200 220 L 200 280 L 120 320" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
-                            <path class="flow-line" d="M 200 280 L 280 320" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" />
-
-                            <!-- Client node -->
-                            <rect x="50" y="80" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
-                            <text x="90" y="104" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Client</text>
-
-                            <!-- API node -->
-                            <rect x="270" y="80" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
-                            <text x="310" y="104" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">API</text>
-
-                            <!-- Server core -->
-                            <rect x="150" y="180" width="100" height="40" rx="8" fill="#1B1A16" />
-                            <text x="200" y="204" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#D9A867">Backend</text>
-
-                            <!-- Database node -->
-                            <rect x="80" y="320" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
-                            <text x="120" y="344" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Database</text>
-
-                            <!-- Cache node -->
-                            <rect x="240" y="320" width="80" height="40" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5" />
-                            <text x="280" y="344" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="var(--text-secondary)">Cache</text>
-
-                            <!-- Pulsing node dots -->
-                            <circle cx="200" cy="140" r="3" fill="#D9A867" class="pulse-dot" />
-                            <circle cx="200" cy="250" r="3" fill="var(--accent)" class="pulse-dot" />
-                        </svg>
-                    </div>
+                <div class="about-pillar">
+                    <span class="pillar-number">02</span>
+                    <h3>System Design</h3>
+                    <p>Thinking in terms of scale, failure modes, and tradeoffs before writing a single line of code.</p>
+                </div>
+                <div class="about-pillar">
+                    <span class="pillar-number">03</span>
+                    <h3>Problem Solving</h3>
+                    <p>Daily DSA practice, sharpening how I break down and reason through hard problems.</p>
                 </div>
             </div>
         </div>
-
-            <!-- Key Strengths Section -->
-            <div class="strengths-grid reveal-up">
-                <div class="strengths-header">
-                    <h2 class="section-title">Key Strengths</h2>
-                    <p>With a strong foundation in both theory and practice, I bring a unique blend of academic excellence and hands-on technical skills.</p>
-                </div>
-
-                <div class="strengths-list">
-                    <div class="strength-card">
-                        <div class="strength-icon">
-                            <span class="material-symbols-outlined">school</span>
-                        </div>
-                        <div class="strength-info">
-                            <h3>Academic Excellence</h3>
-                            <p>8.52 CGPA in B.Tech Computer Science Engineering at VIT-AP University.</p>
-                        </div>
-                    </div>
-
-                    <div class="strength-card">
-                        <div class="strength-icon">
-                            <span class="material-symbols-outlined">check_circle</span>
-                        </div>
-                        <div class="strength-info">
-                            <h3>Problem Solving</h3>
-                            <p><span id="strengthLeetcodeCount">57</span>+ problems solved on LeetCode, sharpening algorithmic thinking through daily DSA practice.</p>
-                        </div>
-                    </div>
-
-                    <div class="strength-card">
-                        <div class="strength-icon">
-                            <span class="material-symbols-outlined">layers</span>
-                        </div>
-                        <div class="strength-info">
-                            <h3>System Design & Backend</h3>
-                            <p>Designed Alpha-Guard's dual-engine architecture — deterministic risk models paired with LLM-based NLP, deployed across Vercel and Render.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </section>
 
     <!-- Skills Section with Icon Wave Marquee -->
@@ -552,6 +474,15 @@
             </div>
         </div>
     </section>
+
+    <div class="graph-divider" data-label="builds.passing">
+        <svg viewBox="0 0 1200 80" preserveAspectRatio="none" class="graph-divider-svg">
+            <path class="graph-line" d="M0,58 L140,56 L280,48 L420,52 L560,28 L700,34 L840,18 L980,20 L1200,10"
+                fill="none" stroke="var(--accent)" stroke-width="2" />
+            <circle class="graph-dot" cx="1200" cy="10" r="4" fill="#D9A867" />
+        </svg>
+        <span class="graph-label">builds.passing</span>
+    </div>
 
     <!-- Projects Section — Antigravity card style -->
     <section class="section" id="projects">
@@ -764,9 +695,6 @@
             </div>
         </div>
     </section>
-
-        </main>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
