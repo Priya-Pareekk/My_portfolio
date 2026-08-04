@@ -131,47 +131,53 @@ const LEETCODE_USERNAME = 'Priya_pareek';
 (() => {
     'use strict';
 
-    // ─── Navigation ──────────────────────────────────────
+    // ─── Navigation (supports top navbar or new sidebar) ─────────────────
     const navbar = document.getElementById('navbar');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-    const navLinkEls = document.querySelectorAll('.nav-link');
+    const sidebar = document.getElementById('sidebar');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn') || document.getElementById('mobileMenuToggle');
+    const navLinks = document.getElementById('navLinks') || document.querySelector('.sidebar-nav');
+    const navLinkEls = document.querySelectorAll('.nav-link, .sidebar-nav-link');
 
-    // Sticky nav
+    // Sticky top navbar behavior (if present)
     window.addEventListener('scroll', () => {
         navbar?.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // Mobile menu
-    mobileMenuBtn?.addEventListener('click', () => {
-        navLinks?.classList.toggle('open');
-        mobileMenuBtn.classList.toggle('active');
-    });
+    // Mobile toggle: either open old navLinks or show sidebar
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            if (sidebar) sidebar.classList.toggle('open');
+            if (navLinks && navLinks.classList) navLinks.classList.toggle('open');
+            mobileMenuBtn.classList.toggle('active');
+        });
+    }
 
-    // Close mobile menu on link click
+    // Close mobile menu/sidebar on link click
     navLinkEls.forEach(link => {
         link.addEventListener('click', () => {
-            navLinks?.classList.remove('open');
+            if (sidebar) sidebar.classList.remove('open');
+            if (navLinks && navLinks.classList) navLinks.classList.remove('open');
             mobileMenuBtn?.classList.remove('active');
         });
     });
 
-    // Active link highlight on scroll
-    const sections = document.querySelectorAll('section[id]');
-    function updateActiveLink() {
-        const scrollPos = window.scrollY + 180;
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute('id');
-            if (scrollPos >= top && scrollPos < top + height) {
+    // Active link highlighting using IntersectionObserver for better accuracy
+    const sections = document.querySelectorAll('main section[id], section[id]');
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav-link');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 navLinkEls.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    const href = link.getAttribute('href') || link.dataset.section && `#${link.dataset.section}`;
+                    const id = entry.target.id;
+                    if (href) link.classList.toggle('active', href === `#${id}` || link.dataset.section === id);
                 });
             }
         });
-    }
-    window.addEventListener('scroll', updateActiveLink);
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.15 });
+
+    sections.forEach(s => sectionObserver.observe(s));
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -529,4 +535,89 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
     if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
 
+        // ─── Sidebar: ensure mobile toggle element closes sidebar on outside click
+        document.addEventListener('click', (e) => {
+            const sidebarEl = document.getElementById('sidebar');
+            const toggle = document.getElementById('mobileMenuToggle');
+            if (!sidebarEl || !sidebarEl.classList.contains('open')) return;
+            if (toggle && toggle.contains(e.target)) return;
+            if (sidebarEl.contains(e.target)) return;
+            // clicked outside
+            sidebarEl.classList.remove('open');
+        });
+
+        // ─── Subtle Network Background (hero)
+        (function initNetworkBackground() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const canvas = document.getElementById('networkCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width = 0, height = 0, nodes = [];
+
+            function resize() {
+                const hero = canvas.closest('.hero');
+                if (!hero) return;
+                width = canvas.width = hero.offsetWidth;
+                height = canvas.height = hero.offsetHeight;
+            }
+
+            function createNodes() {
+                const count = Math.floor((width * height) / 45000);
+                nodes = Array.from({ length: Math.min(count, 22) }, () => ({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.15
+                }));
+            }
+
+            function step() {
+                ctx.clearRect(0, 0, width, height);
+
+                nodes.forEach(n => {
+                    n.x += n.vx;
+                    n.y += n.vy;
+                    if (n.x < 0 || n.x > width) n.vx *= -1;
+                    if (n.y < 0 || n.y > height) n.vy *= -1;
+                });
+
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 180) {
+                            ctx.strokeStyle = `rgba(107, 122, 82, ${1 - dist / 180})`;
+                            ctx.lineWidth = 0.6;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                nodes.forEach(n => {
+                    ctx.fillStyle = 'rgba(217, 168, 103, 0.6)';
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, 1.8, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(step);
+            }
+
+            resize();
+            createNodes();
+            step();
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    resize();
+                    createNodes();
+                }, 120);
+            });
+        })();
 })();
