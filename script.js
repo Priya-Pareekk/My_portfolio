@@ -8,10 +8,11 @@ const GITHUB_USERNAME = 'Priya-Pareekk';
 
 (async function fetchGithubStats() {
     const repoEl = document.getElementById('githubRepoCount');
+    const heroRepoEl = document.getElementById('heroGithubRepoCount');
     const followersEl = document.getElementById('githubFollowers');
     const starsEl = document.getElementById('githubStars');
     const topLangEl = document.getElementById('githubTopLang');
-    if (!repoEl) return;
+    if (!repoEl && !heroRepoEl) return;
 
     const cacheKey = 'github_stats_cache';
     const cacheTimeKey = 'github_stats_cache_time';
@@ -22,10 +23,14 @@ const GITHUB_USERNAME = 'Priya-Pareekk';
     if (cached) {
         try {
             const c = JSON.parse(cached);
-            repoEl.textContent = c.repos;
-            followersEl.textContent = c.followers;
-            starsEl.textContent = c.stars;
-            topLangEl.textContent = c.topLang;
+            if (repoEl) repoEl.textContent = c.repos;
+            if (heroRepoEl) {
+                heroRepoEl.dataset.target = c.repos;
+                heroRepoEl.textContent = c.repos;
+            }
+            if (followersEl) followersEl.textContent = c.followers;
+            if (starsEl) starsEl.textContent = c.stars;
+            if (topLangEl) topLangEl.textContent = c.topLang;
         } catch (e) { /* ignore corrupt cache */ }
     }
 
@@ -59,10 +64,14 @@ const GITHUB_USERNAME = 'Priya-Pareekk';
             topLang: topLang
         };
 
-        repoEl.textContent = stats.repos;
-        followersEl.textContent = stats.followers;
-        starsEl.textContent = stats.stars;
-        topLangEl.textContent = stats.topLang;
+        if (repoEl) repoEl.textContent = stats.repos;
+        if (heroRepoEl) {
+            heroRepoEl.dataset.target = stats.repos;
+            heroRepoEl.textContent = stats.repos;
+        }
+        if (followersEl) followersEl.textContent = stats.followers;
+        if (starsEl) starsEl.textContent = stats.stars;
+        if (topLangEl) topLangEl.textContent = stats.topLang;
 
         localStorage.setItem(cacheKey, JSON.stringify(stats));
         localStorage.setItem(cacheTimeKey, Date.now().toString());
@@ -70,10 +79,11 @@ const GITHUB_USERNAME = 'Priya-Pareekk';
         console.warn('GitHub live stats unavailable, using fallback values.', err);
         // Fallback values shown only if there's no cache AND the API call fails
         if (!cached) {
-            repoEl.textContent = '3';
-            followersEl.textContent = '—';
-            starsEl.textContent = '—';
-            topLangEl.textContent = 'JavaScript';
+            if (repoEl) repoEl.textContent = '3';
+            if (heroRepoEl) heroRepoEl.textContent = '3';
+            if (followersEl) followersEl.textContent = '—';
+            if (starsEl) starsEl.textContent = '—';
+            if (topLangEl) topLangEl.textContent = 'JavaScript';
         }
     }
 })();
