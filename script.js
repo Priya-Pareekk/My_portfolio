@@ -103,40 +103,71 @@ const LEETCODE_USERNAME = 'Priya_pareek';
     const countMedium = document.getElementById('countMedium');
     const countHard = document.getElementById('countHard');
 
-    const cacheKey = 'leetcode_solved_count';
+    const cacheKey = 'leetcode_solved_data_v2';
+
+    function updateUI(solved, easy, medium, hard) {
+        const total = solved || (easy + medium + hard);
+        if (statEl) {
+            statEl.dataset.target = total;
+            statEl.textContent = total;
+        }
+        if (heroTotal) heroTotal.textContent = total;
+        if (heroStat) heroStat.textContent = total;
+        if (strengthCount) strengthCount.textContent = total;
+
+        const maxCount = Math.max(easy, medium, hard, 1);
+        if (barEasy) { barEasy.style.width = `${(easy / maxCount) * 100}%`; }
+        if (barMedium) { barMedium.style.width = `${(medium / maxCount) * 100}%`; }
+        if (barHard) { barHard.style.width = `${(hard / maxCount) * 100}%`; }
+
+        if (countEasy) countEasy.textContent = easy;
+        if (countMedium) countMedium.textContent = medium;
+        if (countHard) countHard.textContent = hard;
+    }
+
+    // Restore cached breakdown instantly if available
     const cached = localStorage.getItem(cacheKey);
-    if (cached && statEl) statEl.dataset.target = cached;
-    if (cached && heroTotal) heroTotal.textContent = cached;
-    if (cached && heroStat) heroStat.textContent = cached;
-    if (cached && strengthCount) strengthCount.textContent = cached;
+    if (cached) {
+        try {
+            const data = JSON.parse(cached);
+            updateUI(data.solved, data.easy, data.medium, data.hard);
+        } catch (e) { /* ignore corrupt cache */ }
+    } else {
+        // Initial defaults
+        updateUI(67, 38, 26, 3);
+    }
 
     try {
-        const res = await fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`);
-        if (!res.ok) throw new Error('LeetCode API request failed');
-        const data = await res.json();
-        const solved = data.solvedProblem ?? data.totalSolved ?? data.solved;
-        const easy = data.easySolved ?? 0;
-        const medium = data.mediumSolved ?? 0;
-        const hard = data.hardSolved ?? 0;
-        const maxCount = Math.max(easy, medium, hard, 1);
-
-        if (solved) {
-            if (statEl) {
-                statEl.dataset.target = solved;
-                // Always sync the visible stat immediately so fallback/stale values don't persist
-                statEl.textContent = solved;
-            }
-            if (heroTotal) heroTotal.textContent = solved;
-            if (heroStat) heroStat.textContent = solved;
-            if (strengthCount) strengthCount.textContent = solved;
-            localStorage.setItem(cacheKey, solved);
+        let data = null;
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6000);
+            const res = await fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (res.ok) data = await res.json();
+        } catch (e) {
+            console.warn('Primary LeetCode API failed or timed out, trying secondary endpoint...');
         }
 
-        if (barEasy) { barEasy.style.width = `${(easy / maxCount) * 100}%`; countEasy.textContent = easy; }
-        if (barMedium) { barMedium.style.width = `${(medium / maxCount) * 100}%`; countMedium.textContent = medium; }
-        if (barHard) { barHard.style.width = `${(hard / maxCount) * 100}%`; countHard.textContent = hard; }
+        if (!data || (!data.solvedProblem && !data.totalSolved)) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6000);
+            const res = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${LEETCODE_USERNAME}`, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (res.ok) data = await res.json();
+        }
+
+        if (data) {
+            const solved = data.solvedProblem ?? data.totalSolved ?? data.solved ?? 67;
+            const easy = data.easySolved ?? 38;
+            const medium = data.mediumSolved ?? 26;
+            const hard = data.hardSolved ?? 3;
+
+            updateUI(solved, easy, medium, hard);
+            localStorage.setItem(cacheKey, JSON.stringify({ solved, easy, medium, hard }));
+        }
     } catch (err) {
-        console.warn('LeetCode live stat unavailable, using fallback value.', err);
+        console.warn('LeetCode live stat unavailable, using fallback values.', err);
     }
 })();
 
