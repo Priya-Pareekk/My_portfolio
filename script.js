@@ -542,7 +542,7 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             stack: 'Python, Streamlit, TextBlob, Google API, Plotly.',
             outcome: 'A real-time sentiment analysis suite usable for both single-channel monitoring and competitor benchmarking.',
             github: 'https://github.com/Priya-Pareekk/youtube_radar',
-            demo: ''
+            demo: 'https://youtube-radar-ten.vercel.app/'
         }
     };
 
