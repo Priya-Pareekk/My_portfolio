@@ -543,6 +543,16 @@ const LEETCODE_USERNAME = 'Priya_pareek';
             outcome: 'A real-time sentiment analysis suite usable for both single-channel monitoring and competitor benchmarking.',
             github: 'https://github.com/Priya-Pareekk/youtube_radar',
             demo: 'https://youtube-radar-ten.vercel.app/'
+        },
+        relay: {
+            title: 'Relay — Distributed Job & Task Queue System',
+            problem: 'Most backend systems need to handle work asynchronously — sending emails, generating reports, processing uploads — without blocking the request that triggered them, and without silently losing work when something downstream fails. Relay was built to explore that problem properly: not just "queue a job," but queue it reliably, retry it intelligently, and make failures visible and recoverable instead of silent.',
+            architecture: 'A REST API accepts job submissions and publishes them to a Kafka topic. A consumer service processes jobs through pluggable executors (Email Notification, Report Generation), and on failure, retries with exponential backoff tracked in PostgreSQL. After exceeding max retries, a job is routed to a dead-letter topic for manual recovery. A cron-based scheduler triggers recurring jobs automatically. The full stack runs in Docker Compose with Postgres, Kafka, and a monitoring layer.',
+            decisions: '<br>&bull; <strong>Transactional Outbox Pattern:</strong> Eliminates dual-write inconsistency between database state and Kafka event publishing.<br>&bull; <strong>SELECT FOR UPDATE SKIP LOCKED:</strong> Enables concurrent multi-worker retry scheduling without double-processing jobs.<br>&bull; <strong>Dedicated Poison-Pill Handling:</strong> Ensures malformed messages cannot block queue consumers.<br>&bull; <strong>Correlation-ID Logging:</strong> Provides end-to-end distributed tracing across all services.',
+            stack: 'Java, Spring Boot, Apache Kafka, PostgreSQL, Docker, Next.js, TypeScript, Prometheus, Grafana',
+            challenges: 'Built as a single-broker Kafka setup, so true multi-broker fault tolerance hasn\'t been demonstrated. Throughput hasn\'t been formally load-tested. These are documented as explicit next steps rather than gaps papered over.',
+            github: 'https://github.com/Priya-Pareekk/Relay',
+            demo: ''
         }
     };
 
@@ -557,19 +567,45 @@ const LEETCODE_USERNAME = 'Priya_pareek';
         if (!data || !projectModal || !projectModalTitle || !projectModalBody) return;
 
         projectModalTitle.textContent = data.title;
+
+        let contentHtml = '';
+        if (data.problem) {
+            contentHtml += `<p><strong>Problem:</strong> ${data.problem}</p>`;
+        }
+        if (data.approach) {
+            contentHtml += `<p><strong>Approach:</strong> ${data.approach}</p>`;
+        }
+        if (data.architecture) {
+            contentHtml += `<p><strong>Architecture:</strong> ${data.architecture}</p>`;
+        }
+        if (data.decisions) {
+            contentHtml += `<p><strong>Key Engineering Decisions:</strong> ${data.decisions}</p>`;
+        }
+        if (data.stack) {
+            contentHtml += `<p><strong>Stack:</strong> ${data.stack}</p>`;
+        }
+        if (data.outcome) {
+            contentHtml += `<p><strong>Outcome:</strong> ${data.outcome}</p>`;
+        }
+        if (data.challenges) {
+            contentHtml += `<p><strong>Challenges &amp; Limitations:</strong> ${data.challenges}</p>`;
+        }
+
+        let linksHtml = '';
+        if (data.github) {
+            linksHtml += `<a href="${data.github}" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined">code</span> View Code
+            </a>`;
+        }
+        if (data.demo) {
+            linksHtml += `<a href="${data.demo}" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined">open_in_new</span> Live Demo
+            </a>`;
+        }
+
         projectModalBody.innerHTML = `
-            <p><strong>Problem:</strong> ${data.problem}</p>
-            <p><strong>Approach:</strong> ${data.approach}</p>
-            <p><strong>Stack:</strong> ${data.stack}</p>
-            <p><strong>Outcome:</strong> ${data.outcome}</p>
-            <div class="project-modal-links">
-                <a href="${data.github}" target="_blank" rel="noopener noreferrer">
-                    <span class="material-symbols-outlined">code</span> View Code
-                </a>
-                ${data.demo ? `<a href="${data.demo}" target="_blank" rel="noopener noreferrer">
-                    <span class="material-symbols-outlined">open_in_new</span> Live Demo
-                </a>` : ''}
-            </div>
+            ${contentHtml}
+            ${linksHtml ? `<div class="project-modal-links">${linksHtml}</div>` : ''}
         `;
 
         projectModal.classList.add('open');
